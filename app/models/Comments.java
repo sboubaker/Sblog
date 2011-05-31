@@ -6,19 +6,19 @@ public class Comments {
 
 	public String content;
 
-	/** Field mapping. */
+	
 
 	public Date date;
 
-	/** Field mapping. */
+	
 
 	public String status;
 
-	/** Field mapping. */
+	
 
 	public String usermail;
 
-	/** Field mapping. */
+	
 
 	public String username;
 
