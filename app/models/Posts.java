@@ -15,7 +15,7 @@ public class Posts {
 	/** Field mapping. */
 	public Set<PostCategories> postCategories = new HashSet<PostCategories>();
 
-	/** Field mapping. */
+	
 	public Set<PostTags> postTags = new HashSet<PostTags>();
 
 	/** Field mapping. */
