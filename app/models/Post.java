@@ -9,13 +9,14 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 import play.data.validation.Required;
-import play.modules.morphia.Model;
 
 import com.google.code.morphia.Datastore;
+import com.google.code.morphia.Key;
 import com.google.code.morphia.Morphia;
 import com.google.code.morphia.annotations.Embedded;
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Reference;
 import com.google.code.morphia.query.Query;
 import com.mongodb.Mongo;
 import com.mongodb.MongoException;
@@ -37,9 +38,11 @@ public class Post{
     @Required
     public String title;
     /** Field mapping. */
-    public List<PostCategories> postCategories = new ArrayList<PostCategories>();
+    @Reference
+    public List<Categorie> categories = new ArrayList<Categorie>();
     /** Field mapping. */
-    public List<PostTags> postTags = new ArrayList<PostTags>();
+    @Reference
+    public List<Tag> tags = new ArrayList<Tag>();
     /** Field mapping. */
     @Embedded
     public List<Comment> comments = new ArrayList<Comment>();
@@ -81,35 +84,64 @@ public class Post{
         // Create a data store 
         Datastore ds = morphia.createDatastore( mongo, "sblog" ); 
 
-        // Query for all users in the database 
-        System.out.println( "Posts before we start:" ); 
-        Query<Post> users = ds.find( Post.class ); 
-        for( Post u : users.fetch()) 
-        { 
-            System.out.println( "Posts: " + u ); 
-        } 
-        Comment comments1=new Comment();
-        comments1.username="sabri";
-        comments1.usermail="boubaker@gmail.com";
-        comments1.date=new Date();
-        comments1.content="this is the first comment";
-        comments1.status="OK";
-        Comment comments2=new Comment();
-        comments2.username="sabri";
-        comments2.usermail="boubaker@gmail.com";
-        comments2.date=new Date();
-        comments2.content="this is the second comment";
-        comments2.status="OK";
+//        // Query for all users in the database 
+//        System.out.println( "Posts before we start:" ); 
+//        Query<Post> users = ds.find( Post.class ); 
+//        for( Post u : users.fetch()) 
+//        { 
+//            System.out.println( "Posts: " + u ); 
+//        } 
+//        Comment comments1=new Comment();
+//        comments1.username="sabri";
+//        comments1.usermail="boubaker@gmail.com";
+//        comments1.date=new Date();
+//        comments1.content="this is the first comment";
+//        comments1.status="OK";
+//        Comment comments2=new Comment();
+//        comments2.username="sabri";
+//        comments2.usermail="boubaker@gmail.com";
+//        comments2.date=new Date();
+//        comments2.content="this is the second comment";
+//        comments2.status="OK";
+//        
+//        Tag tag=new Tag();
+//        tag.tag="Java";
+//        
+//        Tag tag2=new Tag();
+//        tag2.tag="Mongodb";
+//        
+//        Categorie categorie=new Categorie();
+//        categorie.name="Dev";
+//        
+//        Categorie categorie2=new Categorie();
+//        categorie2.name="NoSql";
+//        
+//        Post post=new Post();
+//        post.content="blablabla<html><a/></html>";
+//        post.lastchange=new Date();
+//        post.status="OK";
+//        post.title="Some title";
+//        post.comments=new ArrayList<Comment>();
+//        post.comments.add(comments1);
+//        post.comments.add(comments2);
+//        
+//        //save categories
+//        ds.save(categorie);
+//        ds.save(categorie2);
+//        //save tags
+//        ds.save(tag);
+//        ds.save(tag2);
+//        //save post
+//        post.categories=new ArrayList<Categorie>();
+//        post.categories.add(categorie);
+//        post.categories.add(categorie2);
+//        
+//        post.tags=new ArrayList<Tag>();
+//        post.tags.add(tag);
+//        post.tags.add(tag2);
+//        
+//        ds.save( post );
         
-        Post post=new Post();
-        post.content="blablabla<html><a/></html>";
-        post.lastchange=new Date();
-        post.status="OK";
-        post.title="Some title";
-        post.comments=new ArrayList<Comment>();
-        post.comments.add(comments1);
-        post.comments.add(comments2);
-        ds.save( post );
         
         
      // Test querying for families 
@@ -123,6 +155,11 @@ public class Post{
             System.out.println( "Children (" + children.size() + ")" ); 
             for( Comment child : children ) { 
                 System.out.println( "\t" + child ); 
+            }
+            List<Tag> tags = f.tags; 
+            System.out.println( "Children (" + children.size() + ")" ); 
+            for( Tag child : tags ) { 
+                System.out.println( "\t" + child.tag ); 
             } 
         } 
 

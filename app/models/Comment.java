@@ -7,11 +7,10 @@ import org.bson.types.ObjectId;
 import play.data.validation.Required;
 
 import com.google.code.morphia.annotations.Embedded;
+import com.google.code.morphia.annotations.Id;
 
 @Embedded
 public class Comment {
-    
-    public ObjectId id;
     /** Field mapping. */
     @Required
     public String content;
