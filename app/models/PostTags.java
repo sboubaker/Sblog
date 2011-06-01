@@ -6,9 +6,9 @@ public class PostTags {
 	/** Field mapping. */
 	public Long id;
 	/** Field mapping. */
-	public Posts post;
+	public Post post;
 	/** Field mapping. */
-	public Tags tag;
+	public Tag tag;
 
 	public PostTags() {
 		// Default constructor

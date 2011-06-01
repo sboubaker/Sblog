@@ -3,11 +3,11 @@ package models;
 public class PostCategories {
 
 	/** Field mapping. */
-	public Categories category;
+	public Categorie category;
 	/** Field mapping. */
 	public Long id;
 	/** Field mapping. */
-	public Posts post;
+	public Post post;
 
 	public PostCategories() {
 		// Default constructor
