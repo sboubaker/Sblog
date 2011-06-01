@@ -5,12 +5,13 @@ import java.util.Date;
 import org.bson.types.ObjectId;
 
 import play.data.validation.Required;
+import play.modules.morphia.Model;
 
 import com.google.code.morphia.annotations.Embedded;
 import com.google.code.morphia.annotations.Id;
 
 @Embedded
-public class Comment {
+public class Comment extends Model {
     /** Field mapping. */
     @Required
     public String content;

@@ -8,6 +8,7 @@ import java.util.Set;
 import org.bson.types.ObjectId;
 
 import play.data.validation.Required;
+import play.modules.morphia.Model;
 
 import com.google.code.morphia.Key;
 import com.google.code.morphia.annotations.Entity;
@@ -16,7 +17,7 @@ import com.google.code.morphia.annotations.Reference;
 
 
 @Entity("tags")
-public class Tag {
+public class Tag extends Model {
     
     @Id
     public ObjectId id;
