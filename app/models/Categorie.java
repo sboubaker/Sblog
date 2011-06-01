@@ -3,7 +3,7 @@ package models;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Categories {
+public class Categorie {
 
 	/** Field mapping. */
 	public Long id;
@@ -17,7 +17,7 @@ public class Categories {
 	/**
 	 * Default constructor, mainly for hibernate use.
 	 */
-	public Categories() {
+	public Categorie() {
 		// Default constructor
 	}
 

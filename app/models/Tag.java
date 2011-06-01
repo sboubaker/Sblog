@@ -3,7 +3,7 @@ package models;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Tags {
+public class Tag {
 
 	
 	public Long id;
@@ -18,7 +18,7 @@ public class Tags {
 	/**
 	 * Default constructor
 	 */
-	public Tags() {
+	public Tag() {
 		// Default constructor
 	}
 
@@ -28,7 +28,7 @@ public class Tags {
 	 * @param id
 	 * 
 	 */
-	public Tags(Long id) {
+	public Tag(Long id) {
 		this.id = id;
 	}
 
