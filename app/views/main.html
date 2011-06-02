@@ -1,16 +1,59 @@
-<!DOCTYPE html>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-    <head>
-        <title>#{get 'title' /}</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
-        #{get 'moreStyles' /}
-        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-        <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}" type="text/javascript" charset="utf-8"></script>
-        #{get 'moreScripts' /}
-    </head>
-    <body>
-        #{doLayout /}
-    </body>
+<head>
+<link rel="stylesheet" type="text/css" media="screen"
+	href="@{'/public/stylesheets/main.css'}" />
+<script type="text/javascript"
+	src="@{'/public/javascripts/jquery-1.5.2.min.js'}"></script>
+</head>
+<body>
+	<div id="container">
+		<div id="top" style="height: 160px;">
+			<div id="top-header">
+				<div id="admin" class="col-right">
+					<a href="#">login</a>
+				</div>
+			</div>
+			<div id="menu">
+				<div>
+					<div class="col-full">
+						<ul class="nav current-about">
+							<li class="home"><a href="#">Home</a>
+							</li>
+							<li class="about"><a href="#">About</a>
+							</li>
+							<li class="services"><a href="#">Services</a>
+							</li>
+							<li class="contact"><a href="#">Contact</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="content" class="col-full">
+			<div id="main" class="col-left">
+				<div class="postbox" id="post-28210">
+					<h2>Titre</h2>
+					The template content seems pretty light. In fact, all you see are
+					Play tags. Play tags are similar to JSP tags. This is the tag that
+					generates the welcome message you saw in the browser. The tag tells
+					Play that this template inherits another template called main.html.
+					Template inheritance is a powerful concept that allows you to
+					create complex web pages by reusing common parts.
+				</div>
+				<div class="postbox" id="post-28210">
+					<h2>Titre</h2>
+					The template content seems pretty light. In fact, all you see are
+					Play tags. Play tags are similar to JSP tags. This is the tag that
+					generates the welcome message you saw in the browser. The tag tells
+					Play that this template inherits another template called main.html.
+					Template inheritance is a powerful concept that allows you to
+					create complex web pages by reusing common parts.
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
 </html>
