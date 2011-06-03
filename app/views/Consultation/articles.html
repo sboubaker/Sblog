@@ -1,0 +1,15 @@
+#{list items:list, as:'post'}
+<div class="postbox">
+	<div>
+		<a href="#"><h2>${post.title}</h2> </a>
+		<p style="font-size: 0.9em;">Date:${post.lastchange}.</p>
+		<p style="font-size: 0.9em;">Catégorie(s): 
+		#{list items:post.categories, as:'categorie'} ${categorie.name}&nbsp#{/list}
+		</p>
+	</div>
+	<div>${post.content}</div>
+	<a href="#" onclick="load('/article/${post.id}','#main');">&nbsp;
+		Lire la suite de cet article</a> <a href="#"
+		style="float: right;">Commenter&nbsp;</a>
+</div>
+#{/list}
