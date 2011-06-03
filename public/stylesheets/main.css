@@ -1,6 +1,10 @@
 /*
 **Body
 */
+body {
+	background: #f7f7f7;
+}
+
 .col-full {
 	margin: 0 auto;
 	width: 960px;
@@ -242,11 +246,35 @@ div.fb3:hover {
 }
 
 .postbox {
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	background-color: #E9E9E9;
+	border: 1px solid #F0F0F0;
+	margin: 20px 0 0;
+	padding: 0 0 10px;
+}
+
+.article {
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	background-color: #E9E9E9;
+	border: 1px solid #F0F0F0;
+	margin: 20px 0 0;
+	padding: 0 0 10px;
+}
+
+.comment {
 	-moz-background-clip: border;
 	-moz-background-inline-policy: continuous;
 	-moz-background-origin: padding;
-	background: #FFFFFF none repeat scroll 0 0;
-	border-bottom: 1px solid #DFDFDF;
-	margin: 20px 0 0;
-	padding: 0 0 10px;
+	background: #F2F2F2 none repeat scroll 0 0;
+	border-bottom: 1px solid #DDDDDD;
+	border-top: 1px solid #DDDDDD;
+	padding: 10px 10px 0;
+	width: 495px;
+	margin-top: 20px;
 }

@@ -5,53 +5,54 @@
 	href="@{'/public/stylesheets/main.css'}" />
 <script type="text/javascript"
 	src="@{'/public/javascripts/jquery-1.5.2.min.js'}"></script>
+	<script type="text/javascript"
+	src="@{'/public/javascripts/md5.js'}"></script>
 </head>
 <body>
 	<div id="container" style="top: 200px;">
 		<div id="top">
+			<div id="photo-geek" class="col-full">
+				<img src="@{'/public/images/ban.gif'}"
+					style="width: 960px; height: 100px;" />
+			</div>
+			<br />
 			<div id="menu">
 				<div>
 					<div class="fb2">
-						<a href="#">Facebook</a>
-						<a href="#">Links</a>
-						<a href="#">Hover</a>
-						<a href="#">CSS</a>
-						<a href="#">Style</a>
+						<a href="#" onclick="load('/articles/1/cloud','#main');">Cloud</a>
+						<a href="#" onclick="load('/articles/1/java','#main');">Java</a> <a href="#">SOA</a>
+						<a href="#" onclick="load('/articles/1/humour','#main');">Humour</a>
 						<a href="#" style="float: right;">login</a>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div id="content" class="col-full">
-			
-			<div id="main" class="col-left" style="width: 70%;">
-				<div class="postbox">
-				<h2>Titre</h2>
-				The current version of Mongo supports only very basic security.  One authenticates a username and password in the context of a particular database.  Once authenticated, a normal user has full read and write access to the database in question while a read only user only has read access.
-				</div>
-				<div class="postbox">
-				<h2>Titre</h2>
-				The current version of Mongo supports only very basic security.  One authenticates a username and password in the context of a particular database.  Once authenticated, a normal user has full read and write access to the database in question while a read only user only has read access.</div>
-			</div>
+
+			<div id="main" class="col-left" style="width: 70%;"></div>
 			<div id="side" class="col-right">
-			
-				<div class="fbx" >
-  					<h3>Articles recents</h3>
-  					AK is preparing a css post about Facebook. <br>
-  					AK is checking his Facebook.<br>
+
+				<div class="fbx">
+					<h3>Articles recents</h3>
+					AK is preparing a css post about Facebook. <br> AK is checking
+						his Facebook.<br>
 				</div>
-				<div class="fbx" >
-  					<h3>Articles recents</h3>
-  					AK is preparing a css post about Facebook. <br>
-  					AK is checking his Facebook.<br>
-				</div>
-				<div class="fbx" >
-  					<h3>Articles recents</h3>
-  					AK is preparing a css post about Facebook. <br>
-  					AK is checking his Facebook.<br>
+				<div class="fbx">
+					<h3>Articles recents</h3>
+					<a>Ajouter un article</a><br>
+					<a>Tous les articles</a><br>
+					<a>Tous les commentaires</a><br>
 				</div>
 			</div>
 		</div>
 	</div>
+<script type="text/javascript">
+function load(arg1,arg2){
+$.get(arg1, function(data) {
+  $(arg2).html(data);
+});
+}
+</script>
 </body>
+
 </html>

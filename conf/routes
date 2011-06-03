@@ -3,15 +3,19 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
+
+GET     /                                       Consultation.index
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
+
 GET     /public/                                staticDir:public
 
-GET     /hello                                  Application.sayHi
+GET     /articles/{type}/{value}            	Consultation.articles
+
+GET     /article/{id}            				Consultation.article
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}

@@ -48,13 +48,13 @@ public class BasicTest extends UnitTest {
 
 		Comment comments1 = new Comment();
 		comments1.username = "sabri";
-		comments1.usermail = "boubaker@gmail.com";
+		comments1.usermail = "boubaker.sabri@gmail.com";
 		comments1.date = new Date();
 		comments1.content = "this is the first comment";
 		comments1.status = "OK";
 		Comment comments2 = new Comment();
 		comments2.username = "sabri";
-		comments2.usermail = "boubaker@gmail.com";
+		comments2.usermail = "boubaker.sabri@gmail.com";
 		comments2.date = new Date();
 		comments2.content = "this is the second comment";
 		comments2.status = "OK";
@@ -73,7 +73,7 @@ public class BasicTest extends UnitTest {
 		post.content = "blablabla<html><a/></html>";
 		post.lastchange = new Date();
 		post.status = "OK";
-		post.title = "Some title";
+		post.title = "Cloud";
 		post.comments = new ArrayList<Comment>();
 		post.comments.add(comments1);
 		post.comments.add(comments2);
