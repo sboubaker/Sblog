@@ -6,10 +6,12 @@ import java.util.List;
 import play.modules.morphia.Model;
 
 import com.google.code.morphia.annotations.Entity;
+import com.google.code.morphia.annotations.Reference;
 
 @Entity("tags")
 public class Tag extends Model {
-
+	
+	@Reference
 	public List<Post> posts = new ArrayList<Post>();
 	public String tag;
 

@@ -3,6 +3,10 @@
 */
 body {
 	background: #f7f7f7;
+	direction: ltr;
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	font-size: 14px;
+	text-align: left;
 }
 
 .col-full {
@@ -171,6 +175,7 @@ div.fb3:hover {
 	padding: 5px;
 	border: 1px solid #B7B7B7;
 	margin-top: 20px;
+	width: 150px;
 }
 
 .fbx H3 {
@@ -252,8 +257,8 @@ div.fb3:hover {
 	-moz-border-radius-topright: 5px;
 	background-color: #E9E9E9;
 	border: 1px solid #F0F0F0;
-	margin: 20px 0 0;
-	padding: 0 0 10px;
+	margin: 10px 0 0;
+	padding:0 10px 0;
 }
 
 .article {
@@ -263,8 +268,8 @@ div.fb3:hover {
 	-moz-border-radius-topright: 5px;
 	background-color: #E9E9E9;
 	border: 1px solid #F0F0F0;
-	margin: 20px 0 0;
-	padding: 0 0 10px;
+	margin: 10px 0 0;
+	padding:0 10px 0;
 }
 
 .comment {

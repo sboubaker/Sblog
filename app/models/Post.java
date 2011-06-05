@@ -25,6 +25,8 @@ public class Post extends Model {
 	/** Field mapping. */
 	@Required
 	public String title;
+	@Reference
+	public User user;
 	/** Field mapping. */
 	@Reference
 	public List<Categorie> categories = new ArrayList<Categorie>();

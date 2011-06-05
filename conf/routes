@@ -1,10 +1,11 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
-
+*		/										module:secure
 # Home page
 
 GET     /                                       Consultation.index
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" media="screen"
 	href="@{'/public/stylesheets/main.css'}" />
 <script type="text/javascript"
@@ -12,37 +13,44 @@
 	<div id="container" style="top: 200px;">
 		<div id="top">
 			<div id="photo-geek" class="col-full">
-				<img src="@{'/public/images/ban.gif'}"
-					style="width: 960px; height: 100px;" />
+				<!--<img src="@{'/public/images/ban.gif'}"
+					style="width: 960px; height: 100px;" />-->
 			</div>
 			<br />
 			<div id="menu">
 				<div>
 					<div class="fb2">
-						<a href="#" onclick="load('/articles/1/cloud','#main');">Cloud</a>
-						<a href="#" onclick="load('/articles/1/java','#main');">Java</a> <a href="#">SOA</a>
-						<a href="#" onclick="load('/articles/1/humour','#main');">Humour</a>
-						<a href="#" style="float: right;">login</a>
+					#{list items:categories, as:'cat'}
+					<a href="/articles/1/${cat.id}">${cat.name}</a>
+					#{/list}
+					<a href="#">About</a>
+					<a href="/login" style="float: right;">login</a>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div id="content" class="col-full">
 
-			<div id="main" class="col-left" style="width: 70%;"></div>
+			<div id="main" class="col-left" style="width: 70%;">
+			#{doLayout /} 
+			</div>
 			<div id="side" class="col-right">
 
 				<div class="fbx">
-					<h3>Articles recents</h3>
-					AK is preparing a css post about Facebook. <br> AK is checking
-						his Facebook.<br>
+					<h3>Tags</h3>
+					#{list items:tags, as:'tag'}
+					<a href="/articles/2/${tag.id}">${tag.tag} (${tag.posts.size})</a><br>
+					#{/list}
 				</div>
+				#{secure.check 'admin'}
 				<div class="fbx">
 					<h3>Articles recents</h3>
 					<a>Ajouter un article</a><br>
 					<a>Tous les articles</a><br>
 					<a>Tous les commentaires</a><br>
 				</div>
+				#{/secure.check}
+				
 			</div>
 		</div>
 	</div>

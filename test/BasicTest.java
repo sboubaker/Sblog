@@ -7,12 +7,14 @@ import models.Categorie;
 import models.Comment;
 import models.Post;
 import models.Tag;
+import models.User;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import play.test.BaseTest;
 import play.test.UnitTest;
+import util.Constantes;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.Morphia;
@@ -24,28 +26,14 @@ public class BasicTest extends UnitTest {
 	Logger logger = Logger.getLogger(BaseTest.class);
 
 	@Test
+	public void cleardatabase() {
+		logger.info(Tag.deleteAll());
+		logger.info(Categorie.deleteAll());
+		logger.info(Post.deleteAll());
+		logger.info(User.deleteAll());
+	}
+	@Test
 	public void createAndSaveOnePost() {
-		// Create a Mongo instance that points to the MongoDB running on local
-		// host
-		Mongo mongo = null;
-		try {
-			mongo = new Mongo("localhost");
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MongoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// Create a Morphia object and map our model classes
-		Morphia morphia = new Morphia();
-		morphia.map(Post.class).map(Comment.class);
-
-		// Create a data store
-		Datastore ds = morphia.createDatastore(mongo, "sblog", "sblog",
-				"sblog".toCharArray());
-
 		Comment comments1 = new Comment();
 		comments1.username = "sabri";
 		comments1.usermail = "boubaker.sabri@gmail.com";
@@ -58,17 +46,14 @@ public class BasicTest extends UnitTest {
 		comments2.date = new Date();
 		comments2.content = "this is the second comment";
 		comments2.status = "OK";
-
 		Categorie categorie = new Categorie();
 		categorie.name = "Dev";
 		logger.info("Save one categorie");
-		ds.save(categorie);
-
+		categorie.save();
 		Tag tag = new Tag();
 		tag.tag = "java";
 		logger.info("Save one tag");
-		ds.save(tag);
-
+		tag.save();
 		Post post = new Post();
 		post.content = "blablabla<html><a/></html>";
 		post.lastchange = new Date();
@@ -84,6 +69,18 @@ public class BasicTest extends UnitTest {
 		post.tags = tags;
 		post.categories = categories;
 		logger.info("Save one post");
-		ds.save(post);
+		post.save();
+		// update tag and categorie
+		tag.posts.add(post);
+		tag.save();
+		categorie.posts.add(post);
+		categorie.save();
+		User user = new User();
+		user.usermail = "boubaker.sabri@gmail.com";
+		user.userpwd = "admin";
+		user.username = "sboubaker";
+		user.role = Constantes.ROLE_ADMIN;
+		user.posts.add(post);
+		user.save();
 	}
 }

@@ -1,15 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
 #{list items:list, as:'post'}
 <div class="postbox">
 	<div>
 		<a href="#"><h2>${post.title}</h2> </a>
-		<p style="font-size: 0.9em;">Date:${post.lastchange}.</p>
-		<p style="font-size: 0.9em;">Catégorie(s): 
-		#{list items:post.categories, as:'categorie'} ${categorie.name}&nbsp#{/list}
+		<p style="font-size: 0.9em;">
+		Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp Catégorie(s): 
+		#{list items:post.categories, as:'categorie'} ${categorie.name}&nbsp #{/list} Tag(s):
+		#{list items:post.tags, as:'tag'} ${tag.tag}&nbsp #{/list}
 		</p>
 	</div>
-	<div>${post.content}</div>
-	<a href="#" onclick="load('/article/${post.id}','#main');">&nbsp;
-		Lire la suite de cet article</a> <a href="#"
-		style="float: right;">Commenter&nbsp;</a>
+	<p>${post.content}</p>
+	<div>&nbsp;</div>
+	<a href="/article/${post.id}">Lire la suite de cet article</a> <a href="#"
+		style="float: right;">Commenter&nbsp;(${post.comments.size})</a>
+		<div>&nbsp;</div>
 </div>
 #{/list}

@@ -1,11 +1,16 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
 <div class="article">
 
 
 	<div>
 		<a href="#"><h2>${post.title}</h2> </a>
-		<p style="font-size: 0.9em;">Date:${post.lastchange}.</p>
-		<p style="font-size: 0.9em;">Catégorie(s):
-			#{list items:post.categories, as:'categorie'} ${categorie.name}&nbsp #{/list}
+		<p style="font-size: 0.9em;">Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp Catégorie(s): 
+		#{list items:post.categories, as:'categorie'} ${categorie.name}&nbsp #{/list} Tag(s):
+		#{list items:post.tags, as:'tag'} ${tag.tag}&nbsp #{/list}
+		</p>
+		<p style="font-size: 0.9em;">
 		</p>
 	</div>
 	<div>${post.content}</div>
@@ -15,7 +20,7 @@
 	#{list items:post.comments, as:'comment'}
 	<div class="comment">
 		<div style="float: left;">
-		<img onLoad ="setIt(this, '${comment.usermail}');" src="http://www.gravatar.com/avatar/110fa01bd2155b6ded6c4c07ada759d2.jpg?s=80">
+		<!-- #{gravatar.img comment.usermail/} -->
 		</div>
 		<div>
 		<cite><strong><a  href="${comment.usersite}">${comment.username}</a> 
