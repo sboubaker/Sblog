@@ -1,13 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" media="screen"
 	href="@{'/public/stylesheets/main.css'}" />
 <script type="text/javascript"
 	src="@{'/public/javascripts/jquery-1.5.2.min.js'}"></script>
 	<script type="text/javascript"
-	src="@{'/public/javascripts/md5.js'}"></script>
+	src="@{'/public/javascripts/jquery.validate.pack.js'}"></script>
 </head>
 <body>
 	<div id="container" style="top: 200px;">
@@ -24,7 +25,7 @@
 					<a href="/articles/1/${cat.id}">${cat.name}</a>
 					#{/list}
 					<a href="#">About</a>
-					<a href="/login" style="float: right;">login</a>
+					<a href="/admin/login" style="float: right;">login</a>
 					</div>
 				</div>
 			</div>
@@ -46,7 +47,7 @@
 				<div class="fbx">
 					<h3>Articles recents</h3>
 					<a>Ajouter un article</a><br>
-					<a>Tous les articles</a><br>
+					<a  href="/admin/articles">Tous les articles</a><br>
 					<a>Tous les commentaires</a><br>
 				</div>
 				#{/secure.check}
@@ -54,13 +55,6 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript">
-function load(arg1,arg2){
-$.get(arg1, function(data) {
-  $(arg2).html(data);
-});
-}
-</script>
 </body>
 
 </html>

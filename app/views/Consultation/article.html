@@ -5,28 +5,71 @@
 
 
 	<div>
-		<a href="#"><h2>${post.title}</h2> </a>
-		<p style="font-size: 0.9em;">Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp Catégorie(s): 
-		#{list items:post.categories, as:'categorie'} ${categorie.name}&nbsp #{/list} Tag(s):
-		#{list items:post.tags, as:'tag'} ${tag.tag}&nbsp #{/list}
-		</p>
-		<p style="font-size: 0.9em;">
-		</p>
+		<h2 class="titre">${post.title}</h2>
 	</div>
 	<div>${post.content}</div>
-	<a href="#">Commenter&nbsp;</a>
-</div>
-<div id="comments">
-	#{list items:post.comments, as:'comment'}
-	<div class="comment">
-		<div style="float: left;">
-		<!-- #{gravatar.img comment.usermail/} -->
-		</div>
-		<div>
-		<cite><strong><a  href="${comment.usersite}">${comment.username}</a> 
-			 </strong> a dit: </cite>
-			<p>${comment.content}</p>
-		</div>
+	<div class="articledate">Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp Catégorie(s): 
+		#{list items:post.categories, as:'categorie'} ${categorie.name}&nbsp #{/list} Tag(s):
+		#{list items:post.tags, as:'tag'} ${tag.tag}&nbsp #{/list}
+		<a href="#comment" style="float: right;">Commenter</a>
 	</div>
+	<br/>
+	
+</div>
+<div id="comments" name="comts">
+	#{list items:post.comments, as:'comment'}
+	#{if comment.status==true}
+	<div class="comment">
+		<div style="float: left; padding-top:5px; margin-right:10px;">
+		#{gravatar.img comment.usermail ,size:55/}
+		</div>
+		<cite><strong><a  href="#{if comment.usersite!=null}${comment.usersite}#{/if}#{else}##{/else}">${comment.username}</a> 
+			 </strong> a dit le ${comment.date.format('dd/MM/yyyy hh:mm')}:</cite>
+			<p>${comment.content}</p>
+		
+	</div>
+	#{/if}
 	#{/list}
 </div>
+<!-- Leave a comment -->
+<h3 class="leavcomment">Laisser un commentaire</h3>
+<div id="comment" class="comment" name="comment">
+#{form @Consultation.addComment(), id:'commentform'}
+		<input type="hidden" name="post_id" value="${post.id}">
+		<br/>
+		<div>
+			<label style="display:block;"> Nom (obligatoire)</label>
+			<input type="text" class="required" style="display:block;" name="comment.username"value="" />
+			
+		</div>
+		<br/>
+		<div>
+			<label style="display:block;"> E-mail (invisible mais obligatoire)</label>
+			<input type="text" class="required email" style="display:block;" name="comment.usermail" value="" />
+			
+		</div>
+		<br/>
+		<div>	<label style="display:block;"> Site Web</label>
+			<input type="text" name="comment.usersite" style="display:block;" value="" />
+			
+		</div>
+		<br/>
+		<div>
+
+		<textarea tabindex="4" rows="10" cols="75%" class="required" style="display:block;" name="comment.content"></textarea>
+		</div>
+		<p>
+		<input type="checkbox" style="width: auto;" value="true" name="comment.subscribe">
+		<label> s'inscrire au flux des commentaires pour cet article.</label>
+		</p>
+		<p id="signin-field">
+			<input type="submit" value="Envoyer" />
+		</p>
+#{/form} 
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#commentform").validate();
+});
+</script>
+

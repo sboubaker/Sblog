@@ -20,12 +20,7 @@ public class DataLayer {
 	 * @return
 	 */
 	public static List<Post> getAllPosts() {
-		List<Post> posts = (List<Post>) Cache.get("posts");
-		if (posts == null) {
-			posts = Post.findAll();
-			Cache.set("posts", posts, "30mn");
-		}
-		return posts;
+		return Post.findAll();
 	}
 
 	public static List<Tag> getAllTags() {
@@ -67,13 +62,7 @@ public class DataLayer {
 	 * @return
 	 */
 	public static Post getPostById(String id) {
-		Post post=(Post) Cache.get("post_"+id);
-		if(post==null){
-			post=Post.findById(MongoUtil.formatToId(id));
-			if(post!=null)
-			Cache.set("post_"+id,post);
-		}
-		return post;
+		return Post.findById(MongoUtil.formatToId(id));
 	}
 	/**
 	 * Get post by id

@@ -3,7 +3,6 @@ package models;
 import java.util.Date;
 
 import play.data.validation.Required;
-
 import com.google.code.morphia.annotations.Embedded;
 import com.google.code.morphia.annotations.Transient;
 
@@ -25,7 +24,10 @@ public class Comment{
 	/** Field mapping. */
 	@Required
 	public String username;
+	
 	public String usersite;
+	
+	public boolean subscribe;
 	public Comment() {
 		// Default constructor
 	}

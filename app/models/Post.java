@@ -36,7 +36,8 @@ public class Post extends Model {
 	/** Field mapping. */
 	@Embedded
 	public List<Comment> comments = new ArrayList<Comment>();
-
+	/** number of show **/
+	public int nshow;
 	/**
 	 * Default constructor
 	 */

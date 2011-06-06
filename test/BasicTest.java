@@ -24,7 +24,8 @@ import com.mongodb.MongoException;
 public class BasicTest extends UnitTest {
 
 	Logger logger = Logger.getLogger(BaseTest.class);
-
+	String postcontent="C’est vraiment un pas en avant vers une architecture où le client tient les informations d’état (appelez cela la session si vous voulez) et où le serveur est complètement sans état conversationnel. Il peut cependant très bien avoir un cache de données, mais il n’y a plus la notion de session utilisateur du côté serveur. Il y a la notion de session serveur du côté client. Que ce soit dès aujourd’hui avec un Cookie, ou demain avec HTML5,"+
+	"c’est une approche assez différente. <b>Je n’ai pas dit mieux ou moins bien, j’ai bien dit : une approche différente.</b>";
 	@Test
 	public void cleardatabase() {
 		logger.info(Tag.deleteAll());
@@ -55,7 +56,7 @@ public class BasicTest extends UnitTest {
 		logger.info("Save one tag");
 		tag.save();
 		Post post = new Post();
-		post.content = "blablabla<html><a/></html>";
+		post.content = postcontent;
 		post.lastchange = new Date();
 		post.status = "OK";
 		post.title = "Cloud";
