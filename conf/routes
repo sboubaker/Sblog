@@ -3,6 +3,7 @@
 # ~~~~
 *	/admin					module:secure
 GET	/admin/articles				Administration.articles
+GET	/admin/newpost				Administration.nouveauArticle
 # Home page
 
 GET     /                                       Consultation.index

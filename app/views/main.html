@@ -5,17 +5,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" media="screen"
 	href="@{'/public/stylesheets/main.css'}" />
+	<link rel="stylesheet" type="text/css" media="screen"
+	href="@{'/public/stylesheets/jquery.wysiwyg.css'}" />
 <script type="text/javascript"
 	src="@{'/public/javascripts/jquery-1.5.2.min.js'}"></script>
 	<script type="text/javascript"
 	src="@{'/public/javascripts/jquery.validate.pack.js'}"></script>
+	<script type="text/javascript"
+	src="@{'/public/javascripts/jquery.wysiwyg.js'}"></script>
 </head>
 <body>
 	<div id="container" style="top: 200px;">
 		<div id="top">
 			<div id="photo-geek" class="col-full">
-				<!--<img src="@{'/public/images/ban.gif'}"
-					style="width: 960px; height: 100px;" />-->
 			</div>
 			<br />
 			<div id="menu">
@@ -46,7 +48,7 @@
 				#{secure.check 'admin'}
 				<div class="fbx">
 					<h3>Articles recents</h3>
-					<a>Ajouter un article</a><br>
+					<a href="/admin/newpost">Ajouter un article</a><br>
 					<a  href="/admin/articles">Tous les articles</a><br>
 					<a>Tous les commentaires</a><br>
 				</div>

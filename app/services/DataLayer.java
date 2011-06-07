@@ -79,6 +79,15 @@ public class DataLayer {
 		}
 		return tag;
 	}
+	public static Tag getTagByName(String name) {
+		Tag tag=(Tag) Cache.get("tag_"+name);
+		if(tag==null){
+			tag=Tag.filter("tag", name).get();
+			if(tag!=null)
+			Cache.set("tag_"+name,tag);
+		}
+		return tag;
+	}
 	public static Categorie getCategorieById(String id) {
 		Categorie categorie=(Categorie) Cache.get("categorie_"+id);
 		if(categorie==null){

@@ -36,12 +36,14 @@ public class BasicTest extends UnitTest {
 	@Test
 	public void createAndSaveOnePost() {
 		Comment comments1 = new Comment();
+		comments1.numero=1;
 		comments1.username = "sabri";
 		comments1.usermail = "boubaker.sabri@gmail.com";
 		comments1.date = new Date();
 		comments1.content = "this is the first comment";
 		comments1.status = "OK";
 		Comment comments2 = new Comment();
+		comments1.numero=2;
 		comments2.username = "sabri";
 		comments2.usermail = "boubaker.sabri@gmail.com";
 		comments2.date = new Date();

@@ -46,6 +46,7 @@ public class Consultation extends Controller {
 		Post post = DataLayer.getPostById(post_id);
 		//TODO validation result
 		comment.date=new Date();
+		comment.numero=post.comments.size()+1;
 		comment.status="NOK";
 		post.comments.add(comment);
 		post.save();

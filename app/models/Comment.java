@@ -9,6 +9,8 @@ import com.google.code.morphia.annotations.Transient;
 @Embedded
 public class Comment{
 
+	/** Comment number **/
+	public int numero;
 	/** Field mapping. */
 	@Required
 	public String content;
