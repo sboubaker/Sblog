@@ -3,58 +3,102 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <meta name="author" content="Sabri Boubaker" />
+        <meta name="keywords" content="geek, java, spring, springmvc,nosql, cloud, mongodb, playframework" />
 <link rel="stylesheet" type="text/css" media="screen"
-	href="@{'/public/stylesheets/main.css'}" />
+	href="@{'/public/stylesheets/bluebox.css'}" />
 <script type="text/javascript"
 	src="@{'/public/javascripts/jquery-1.5.2.min.js'}"></script>
 	<script type="text/javascript"
 	src="@{'/public/javascripts/jquery.validate.pack.js'}"></script>
 </head>
 <body>
-	<div id="container" style="top: 200px;">
-		<div id="top">
-			<div id="photo-geek" class="col-full">
-				<!--<img src="@{'/public/images/ban.gif'}"
-					style="width: 960px; height: 100px;" />-->
-			</div>
-			<br />
-			<div id="menu">
-				<div>
-					<div class="fb2">
-					#{list items:categories, as:'cat'}
-					<a href="/articles/1/${cat.id}">${cat.name}</a>
-					#{/list}
-					<a href="#">About</a>
-					<a href="/admin/login" style="float: right;">login</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="content" class="col-full">
+	 <div id="header">
+            <div id="title">
+                <h1><a href="http://xavisys.com/">Sabri Boubaker</a></h1>
+                <p id="tagline">#Geek #2.0 #cloud #NoSQL #JEE #Spring</p>
+            </div>
+            <div id="nav">
+            	<a href="/" class="current">Acceuil</a>
+                <a href="/articles/1/web2.0" class="current">Web 2.0</a>
+                <a href="/articles/1/nosql">NoSQL</a>
+                <a href="/articles/1/cloud">Cloud</a>
+                <a href="/articles/1/divers">Divers</a>
+                <a href="#">Auteur</a>
+                <a href="/contact">Contact</a>
+            </div>
+        </div>
 
-			<div id="main" class="col-left" style="width: 70%;">
-			#{doLayout /} 
-			</div>
-			<div id="side" class="col-right">
+        <div id="sidebar">
+            <div class="box">
+                <h3>Articles récents</h3>
+                #{list items:uiObject.posts, as:'post'}
+                <p>
+                    <b>${post.title}</b>&nbsp;&nbsp;${post.content.substring(0,98)}
+                    <a href="/article/${post.id}" title="${post.title}" class="more">Savoir plus &raquo;</a>
+                </p>
+                #{/list}
+            </div>
+            <div class="box">
+                <h3>Nuage</h3>
+                <div id="#htmltagcloud">
+                 #{list items:uiObject.tags, as:'tag'}
+                <span class="tagcloud4" id="0">
+                <a href="#tagcloud">${tag.tag}&nbsp;
+                <span class="freq">${tag.posts.size}</span>
+                </a>
+                </span>
+                #{/list}
+                </div>
+            </div>
+            <div class="box">
+                <h3>Blog preferés</h3>
+                <ul>
+                    <li><a href="http://acholibeads.com">Acholi Beads</a></li>
+                    <li><a href="http://del.icio.us/aaroncampbell">del.icio.us</a></li>
+                    <li><a href="http://invisiblechildren.com">Invisible Children</a></li>
+                    <li><a href="http://www.opendesigns.org/profile/?user=aaroncampbell">Open Designs</a></li>
+                    <li><a href="http://jamestravels.com">Surviving America</a></li>
+                    <li><a href="http://xavisys.com" title="Freelance Web Programming and Design">Xavisys</a></li>
+                </ul>
+            </div>
+            <form action="" method="post">
+                <fieldset>
+    				<legend>Login</legend>
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" value=""/>
 
-				<div class="fbx">
-					<h3>Tags</h3>
-					#{list items:tags, as:'tag'}
-					<a href="/articles/2/${tag.id}">${tag.tag} (${tag.posts.size})</a><br>
-					#{/list}
-				</div>
-				#{secure.check 'admin'}
-				<div class="fbx">
-					<h3>Articles recents</h3>
-					<a>Ajouter un article</a><br>
-					<a  href="/admin/articles">Tous les articles</a><br>
-					<a>Tous les commentaires</a><br>
-				</div>
-				#{/secure.check}
-				
-			</div>
-		</div>
-	</div>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" value=""/>
+                    <div class="submit">
+                        <input type="submit" name="login" value="Login" />
+                    </div>
+                </fieldset>
+            </form>
+            <!-- <form id="searchform" method="get" action="http://xavisys.com/">
+    			<fieldset>
+    				<legend>Recherche</legend>
+    				<input name="s" type="text" id="s" value="" />
+    				<div class="submit">
+    					<input name="submit" type="submit" id="searchsubmit" value="Search" />
+    				</div>
+    			</fieldset>
+    		</form> -->
+        </div>
+        <div id="content">
+            #{doLayout/}
+           
+            <div style="clear:both">&nbsp;</div>
+        </div>
+        <div id="footer">
+            <p>
+                Copyright &copy; <a href="#">Sabri boubaker</a> 2011
+                <!-- While not required, I would appreciate this link being left in -->
+                | Created by <a href="#" title="Sabri boubaker">Sabri boubaker</a>
+                | <a href="http://www.opendesigns.org/" title="Download Free Web Design Templates">Open Designs</a>
+                | Valid <a href="http://jigsaw.w3.org/css-validator/">CSS</a> &amp; <a href="http://validator.w3.org/">XHTML</a>
+            </p>
+        </div>
 </body>
 
 </html>

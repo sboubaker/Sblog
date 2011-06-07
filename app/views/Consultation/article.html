@@ -1,23 +1,19 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-<div class="article">
 
-
-	<div>
-		<h2 class="titre">${post.title}</h2>
-	</div>
-	<div>${post.content}</div>
-	<div class="articledate">Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp Catégorie(s): 
+ <div class="box">
+                <h2>${post.title}</h2>
+                
+                <p id="tagline">
+		Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp Catégorie(s): 
 		#{list items:post.categories, as:'categorie'} ${categorie.name}&nbsp #{/list} Tag(s):
-		#{list items:post.tags, as:'tag'} ${tag.tag}&nbsp #{/list}
-		<a href="#comment" style="float: right;">Commenter</a>
-	</div>
-	<br/>
-	
-</div>
-<div id="comments" name="comts">
-	#{list items:post.comments, as:'comment'}
+		#{list items:post.tags, as:'tag'} ${tag.tag}&nbsp #{/list} vu: ${post.nshow}
+		</p>
+                <p>${post.content}</p>
+				<a href="#comts" style="float: right; font-size:11px;">Commenter&nbsp;(${post.comments.size})</a>
+ 
+ #{list items:post.comments, as:'comment'}
 	#{if comment.status==true}
 	<div class="comment">
 		<div style="float: left; padding-top:5px; margin-right:10px;">
@@ -30,10 +26,10 @@
 	</div>
 	#{/if}
 	#{/list}
-</div>
+ </div>
 <!-- Leave a comment -->
-<h3 class="leavcomment">Laisser un commentaire</h3>
-<div id="comment" class="comment" name="comment">
+<h3>Laisser un commentaire</h3>
+<div id="comment" name="comment">
 #{form @Consultation.addComment(), id:'commentform'}
 		<input type="hidden" name="post_id" value="${post.id}">
 		<br/>
@@ -62,9 +58,9 @@
 		<input type="checkbox" style="width: auto;" value="true" name="comment.subscribe">
 		<label> s'inscrire au flux des commentaires pour cet article.</label>
 		</p>
-		<p id="signin-field">
+		<div class="submit" style="float: left;">
 			<input type="submit" value="Envoyer" />
-		</p>
+		</div>
 #{/form} 
 </div>
 <script type="text/javascript">

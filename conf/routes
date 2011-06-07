@@ -3,10 +3,11 @@
 # ~~~~
 *	/admin					module:secure
 GET	/admin/articles				Administration.articles
+GET	/admin/comments/{postid}				Administration.comments
 # Home page
 
 GET     /                                       Consultation.index
-
+GET     /contact                                       Consultation.contact
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

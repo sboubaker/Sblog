@@ -17,7 +17,7 @@ public class Comment{
 	public Date date;
 	/** Field mapping. */
 	@Required
-	public String status;
+	public boolean status;
 	/** Field mapping. */
 	@Required
 	public String usermail;

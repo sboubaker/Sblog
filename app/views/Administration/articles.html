@@ -19,7 +19,7 @@
     background-color:#222;
     font-weight:normal;
     border-right:1px dotted #666;
-    border-top:3px solid #666;
+   
     -moz-box-shadow:0px -1px 4px #000;
     -webkit-box-shadow:0px -1px 4px #000;
     box-shadow:0px -1px 4px #000;
@@ -57,14 +57,14 @@
 
 #{list items:list, as:'post'}
 <tr>
-<td>${post.status}</td>
+<td>#{if post.status}Ouvert#{/if}#{else}Fermé#{/else}</td>
 <td>${post.lastchange.format('dd/MM/yyyy')}</td>
-<td>${post.comments.size}</td>
 <td>${post.title}</td>
+<td>${post.comments.size}</td>
 <td>${post.nshow}</td>
 <!--actions-->
 <td><a href="#" style="float: right; font-size:11px;">Modifier</a></td>
-<td><a href="#" style="float: right; font-size:11px;">Commentaires</a></td>
+<td><a href="/admin/comments/${post.id}" style="float: right; font-size:11px;">Commentaires</a></td>
 </tr>
 #{/list}
 </tbody>

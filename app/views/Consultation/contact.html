@@ -1,0 +1,45 @@
+#{extends 'main.html' /}
+#{set title:'Contact' /}
+
+ <form action="http://xavisys.com/contact-us/" method="post" id="contact">
+                <fieldset>
+                    <legend>Informations</legend>
+                    <p style="font-weight:bold;">
+                        Sabri Boubaker<br />
+                        Bardo Ave. Khaznadar<br />
+                        Tunis Tunisie<br />
+                        Tél: 00 216 97 876 212<br />
+                        E-Mail: <a href="mailto:boubaker.sabri@gmail.com">boubaker.sabri@gmail.com</a>
+                    </p>
+                </fieldset>
+                <fieldset>
+                    <legend>Me contacter</legend>
+                    <div>
+                        <label for="x_wpc_name">Nom:</label>
+                        <input name="x_wpc_name" type="text" id="x_wpc_name" class="required" value="" />
+                    </div>
+                    <div>
+                        <label for="x_wpc_email">E-Mail:</label>
+                        <input name="x_wpc_email" type="text" id="x_wpc_email" class="validate-email required" value="" />
+                    </div>
+                    <div>
+                        <label for="x_wpc_phone">N.Tel:</label>
+                        <input name="x_wpc_phone" type="text" id="x_wpc_phone" class="validate-phone" value="" />
+                    </div>
+                    <div>
+                        <label for="x_wpc_subject">Sujet:</label>
+                        <input name="x_wpc_subject" type="text" id="x_wpc_subject" class="required" value="" />
+                    </div>
+                    <div>
+                        <label for="x_wpc_message">Message:</label>
+                        <textarea name="x_wpc_message" rows="10" cols="50" id="x_wpc_message" class="required"></textarea>
+                    </div>
+                    <!--<div class="radio">
+                        <input type="checkbox" name="x_wpc_cc" id="x_wpc_cc" value="true" />
+                        <label for="x_wpc_cc">Send a copy to yourself?</label>
+                    </div>-->
+                    <div class="submit">
+                        <input type="submit" name="x_wpc_contact" value="Envoyer" class="button" />
+                    </div>
+                </fieldset>
+            </form>

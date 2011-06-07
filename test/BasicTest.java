@@ -24,8 +24,8 @@ import com.mongodb.MongoException;
 public class BasicTest extends UnitTest {
 
 	Logger logger = Logger.getLogger(BaseTest.class);
-	String postcontent="C’est vraiment un pas en avant vers une architecture où le client tient les informations d’état (appelez cela la session si vous voulez) et où le serveur est complètement sans état conversationnel. Il peut cependant très bien avoir un cache de données, mais il n’y a plus la notion de session utilisateur du côté serveur. Il y a la notion de session serveur du côté client. Que ce soit dès aujourd’hui avec un Cookie, ou demain avec HTML5,"+
-	"c’est une approche assez différente. <b>Je n’ai pas dit mieux ou moins bien, j’ai bien dit : une approche différente.</b>";
+	String postcontent="Cï¿½est vraiment un pas en avant vers une architecture oï¿½ le client tient les informations dï¿½ï¿½tat (appelez cela la session si vous voulez) et oï¿½ le serveur est complï¿½tement sans ï¿½tat conversationnel. Il peut cependant trï¿½s bien avoir un cache de donnï¿½es, mais il nï¿½y a plus la notion de session utilisateur du cï¿½tï¿½ serveur. Il y a la notion de session serveur du cï¿½tï¿½ client. Que ce soit dï¿½s aujourdï¿½hui avec un Cookie, ou demain avec HTML5,"+
+	"cï¿½est une approche assez diffï¿½rente. <b>Je nï¿½ai pas dit mieux ou moins bien, jï¿½ai bien dit : une approche diffï¿½rente.</b>";
 	@Test
 	public void cleardatabase() {
 		logger.info(Tag.deleteAll());
@@ -40,13 +40,13 @@ public class BasicTest extends UnitTest {
 		comments1.usermail = "boubaker.sabri@gmail.com";
 		comments1.date = new Date();
 		comments1.content = "this is the first comment";
-		comments1.status = "OK";
+		comments1.status = false;
 		Comment comments2 = new Comment();
 		comments2.username = "sabri";
 		comments2.usermail = "boubaker.sabri@gmail.com";
 		comments2.date = new Date();
 		comments2.content = "this is the second comment";
-		comments2.status = "OK";
+		comments2.status = false;
 		Categorie categorie = new Categorie();
 		categorie.name = "Dev";
 		logger.info("Save one categorie");
@@ -58,7 +58,7 @@ public class BasicTest extends UnitTest {
 		Post post = new Post();
 		post.content = postcontent;
 		post.lastchange = new Date();
-		post.status = "OK";
+		post.status = true;
 		post.title = "Cloud";
 		post.comments = new ArrayList<Comment>();
 		post.comments.add(comments1);

@@ -19,10 +19,15 @@ public class DataLayer {
 	 * 
 	 * @return
 	 */
-	public static List<Post> getAllPosts() {
+	public static List<Post> getPosts(boolean all) {
+		if(all)
 		return Post.findAll();
+		else
+		return Post.filter("status", true).asList();
 	}
-
+	public static List<Post> getnewPosts(int number) {
+		return Post.filter("status", true).order("-lastchange").fetch(number);
+	}
 	public static List<Tag> getAllTags() {
 		List<Tag> tags = (List<Tag>) Cache.get("tags");
 		if (tags == null) {
@@ -89,16 +94,28 @@ public class DataLayer {
 		return categorie;
 	}
 	public static List<Post> getPostsByTag(String tagId){
+		List<Post> list=null;
 		Tag tag=getTagById(tagId);
-		if(tag!=null)
-			return tag.posts;
-		return null;
+		if(tag!=null){
+			list=new ArrayList<Post>();
+			for(Post post:tag.posts){
+				if(post.status)
+					list.add(post);
+			}
+		}
+		return list;
 	}
 	public static List<Post> getPostsByCategorie(String categorieId){
+		List<Post> list=null;
 		Categorie categorie=getCategorieById(categorieId);
-		if(categorie!=null)
-			return categorie.posts;
-		return null;
+		if(categorie!=null){
+			list=new ArrayList<Post>();
+			for(Post post:categorie.posts){
+				if(post.status)
+					list.add(post);
+			}
+		}
+		return list;
 	}
 	/**
 	 * 

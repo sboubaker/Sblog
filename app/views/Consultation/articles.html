@@ -2,24 +2,24 @@
 #{set title:'Home' /}
 
 #{list items:list, as:'post'}
-<div class="article">
-	<div>
-		<a href="/article/${post.id}"><h2  class="titre" style="color: black;">${post.title}</h2> </a>
-		<p class="articledate">
+ <div class="box">
+                <h2>${post.title}</h2>
+                
+                <p id="tagline">
 		Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp Catégorie(s): 
 		#{list items:post.categories, as:'categorie'} ${categorie.name}&nbsp #{/list} Tag(s):
 		#{list items:post.tags, as:'tag'} ${tag.tag}&nbsp #{/list} vu: ${post.nshow}
 		</p>
-	</div>
-	#{if post.content.length() > 500}
-		<p>${post.content.substring(0, 500)} ...</p>
-		<a href="/article/${post.id}" style="font-size:11px;">Lire la suite de cet article</a> 
-	#{/if}
-	#{else}
-		<p>${post.content}</p>
+                <p>
+                  #{if post.content.length() > 500}
+						<p>${post.content.substring(0, 500)} ...</p>
+						<a href="/article/${post.id}" style="font-size:11px;">Lire la suite de cet article</a> 
+				  #{/if}
+					#{else}
+					<p>${post.content}</p>
 		
-	#{/else}
-	<a href="/article/${post.id}#comts" style="float: right; font-size:11px;">Commenter&nbsp;(${post.comments.size})</a>
-		<div>&nbsp;</div>
-</div>
+					#{/else}
+                </p>
+                <a href="/article/${post.id}#comts" style="float: right; font-size:11px;">Commenter&nbsp;(${post.comments.size})</a>
+ </div>
 #{/list}

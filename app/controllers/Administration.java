@@ -23,7 +23,11 @@ public class Administration extends Controller {
 	}
 
 	public static void articles() {
-		List<Post> list=DataLayer.getAllPosts();
+		List<Post> list=DataLayer.getPosts(true);
 		render(list);
+	}
+	public static void comments(String postid) {
+		Post post=DataLayer.getPostById(postid);
+		render(post);
 	}
 }

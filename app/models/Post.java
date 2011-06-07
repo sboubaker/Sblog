@@ -21,7 +21,7 @@ public class Post extends Model {
 	public Date lastchange;
 	/** Field mapping. */
 	@Required
-	public String status;
+	public boolean status;
 	/** Field mapping. */
 	@Required
 	public String title;
