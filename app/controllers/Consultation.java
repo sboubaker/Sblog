@@ -13,10 +13,11 @@ import play.mvc.Controller;
 import services.DataLayer;
 
 import java.util.Date;
+
 public class Consultation extends Controller {
 
 	@Before
-	static void setUiObject() {
+	static void setConnectedUser() {
 		UiObject uiObject=new UiObject();
 		uiObject.posts=DataLayer.getnewPosts(3);
 		uiObject.tags=DataLayer.getAllTags();
@@ -53,7 +54,6 @@ public class Consultation extends Controller {
 		//TODO validation result
 		comment.date=new Date();
 		comment.status=false;
-		comment.number=post.comments.size();
 		post.comments.add(comment);
 		post.save();
 		String message="Votre commentaire sera publi� apr�s sa validation. Merci";

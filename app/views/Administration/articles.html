@@ -2,95 +2,63 @@
 #{set title:'Home' /}
 
 <style>
-#box-table-a {
-border-collapse:collapse;
-font-family:"Lucida Sans Unicode","Lucida Grande",Sans-Serif;
-font-size:12px;
-margin:20px;
-text-align:left;
-
+.table1{
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: -1px;
+    line-height: 1.2em;
+    border-collapse:collapse;
+    text-align:center;
 }
-#box-table-a th {
--moz-background-clip:border;
--moz-background-inline-policy:continuous;
--moz-background-origin:padding;
-background:#B9C9FE none repeat scroll 0 0;
-border-bottom:1px solid #FFFFFF;
-border-top:4px solid #AABCFE;
-color:#003399;
-font-size:13px;
-font-weight:normal;
-padding:8px;
+.table1 thead th{
+    padding:20px 10px 0;
+    color:#fff;
+    font-size: 16px;
+    background-color:#222;
+    font-weight:normal;
+    border-right:1px dotted #666;
+   
+    -moz-box-shadow:0px -1px 4px #000;
+    -webkit-box-shadow:0px -1px 4px #000;
+    box-shadow:0px -1px 4px #000;
+    text-shadow:0px 0px 1px #fff;
+    text-shadow:1px 1px 1px #000;
 }
-#box-table-a td {
--moz-background-clip:border;
--moz-background-inline-policy:continuous;
--moz-background-origin:padding;
-background:#E8EDFF none repeat scroll 0 0;
-border-bottom:1px solid #FFFFFF;
-border-top:1px solid transparent;
-color:#666699;
-padding:8px;
+.table1 tbody th{
+    text-align:right;
+    padding:10px;
+    color:#333;
+    text-shadow:1px 1px 1px #ccc;
+    background-color:#f9f9f9;
 }
-#box-table-a tr:hover td {
--moz-background-clip:border;
--moz-background-inline-policy:continuous;
--moz-background-origin:padding;
-background:#D0DAFD none repeat scroll 0 0;
-color:#333399;
+.table1 tbody td{
+    padding:10px;
+    background-color:#f0f0f0;
+    border-right:1px dotted #999;
+    text-shadow:-1px 1px 1px #fff;
+    text-transform:uppercase;
+    color:#333;
 }
-#box-table-b {
-border-bottom:7px solid #9BAFF1;
-border-collapse:collapse;
-border-top:7px solid #9BAFF1;
-font-family:"Lucida Sans Unicode","Lucida Grande",Sans-Serif;
-font-size:12px;
-margin:20px;
-text-align:center;
-width:480px;
-}
-#box-table-b th {
--moz-background-clip:border;
--moz-background-inline-policy:continuous;
--moz-background-origin:padding;
-background:#E8EDFF none repeat scroll 0 0;
-border-left:1px solid #9BAFF1;
-border-right:1px solid #9BAFF1;
-color:#003399;
-font-size:13px;
-font-weight:normal;
-padding:8px;
-}
-#box-table-b td {
--moz-background-clip:border;
--moz-background-inline-policy:continuous;
--moz-background-origin:padding;
-background:#E8EDFF none repeat scroll 0 0;
-border-left:1px solid #AABCFE;
-border-right:1px solid #AABCFE;
-color:#666699;
-padding:8px;
- }
 </style>
-<h3>List des articles</h3>
-<hr/>
-<table id="box-table-a">
-<thead>
-<tr>
-<th scope="col">Statut</th>
-<th scope="col">Date modification</th>
-<th scope="col">Titre</th>
-<th scope="col">Commentaires</th>
-<th scope="col">Vu</th>
-<th scope="col">&nbsp;</th>
-<th scope="col">&nbsp;</th>
-</tr>
-</thead>
-<tbody>
+<h3 class="leavcomment">List des articles</h3>
+<table class="table1">
+	<thead>
+		<tr>
+			<th scope="col">Statut</th>
+			<th scope="col">Date modification</th>
+			<th scope="col">Titre</th>
+			<th scope="col">Commentaires</th>
+			<th scope="col">Vu</th>
+		</tr>
+	</thead>
+	<tbody>
+
 #{list items:list, as:'post'}
 <tr>
 <td>#{if post.status}Ouvert#{/if}#{else}Fermé#{/else}</td>
-<td>${post.lastchange.format('dd/MM/yyyy hh:mm')}</td>
+<td>${post.lastchange.format('dd/MM/yyyy')}</td>
 <td>${post.title}</td>
 <td>${post.comments.size}</td>
 <td>${post.nshow}</td>
