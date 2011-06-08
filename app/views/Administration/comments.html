@@ -3,7 +3,7 @@
 
 
 #{list items:post.comments, as:'comment'}
-<div style="padding-top: 20px; border-bottom:1px solid #DDDDDD; background:#EAF2F5;">
+<div style="padding-top: 20px; border-bottom:1px solid #DDDDDD; background:#EAF2F5; width:60%;">
 Status: #{if comment.status}Ouvert#{/if}#{else}Fermé#{/else}<br>
 Date création: ${comment.date.format('dd/MM/yyyy hh:mm')}<br>
 Nom: ${comment.username}<br>
@@ -12,7 +12,8 @@ Site: ${comment.usersite}<br>
 Inscrit: ${comment.subscribe}<br>
 <p>${comment.content}<p/>
 <!--actions-->
-#{if comment.status}<a href="#" style=" font-size:11px;">Dévalider</a>#{/if}
-#{else}<a href="#" style=" font-size:11px;">Valider</a>#{/else}
+#{if comment.status}<a href="/admin/comments/valid/${post.id}/${comment.number}" style=" font-size:11px;">Dévalider</a>#{/if}
+#{else}<a href="/admin/comments/valid/${post.id}/${comment.number}" style=" font-size:11px;">Valider</a>#{/else}
 </div>
+<br/>
 #{/list}

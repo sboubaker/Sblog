@@ -5,30 +5,33 @@
  <div class="box">
                 <h2>${post.title}</h2>
                 
-                <p id="tagline">
+                <p id="tagline" style="font-size:9px;">
 		Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp Catégorie(s): 
 		#{list items:post.categories, as:'categorie'} ${categorie.name}&nbsp #{/list} Tag(s):
 		#{list items:post.tags, as:'tag'} ${tag.tag}&nbsp #{/list} vu: ${post.nshow}
 		</p>
                 <p>${post.content}</p>
-				<a href="#comts" style="float: right; font-size:11px;">Commenter&nbsp;(${post.comments.size})</a>
+		&nbsp;&nbsp;<a href="http://twitter.com/share" class="twitter-share-button" data-text="${post.title}" data-count="horizontal" data-via="sabri_boubaker" data-lang="fr">Tweeter</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+		<a href="#comts" style="float: right; font-size:11px;">Commenter&nbsp;(${post.comments.size})</a>
  
- #{list items:post.comments, as:'comment'}
+
+ </div>
+ <h3>Commentaires:</h3><br/>
+  #{list items:post.comments, as:'comment'}
 	#{if comment.status==true}
-	<div class="comment">
-		<div style="float: left; padding-top:5px; margin-right:10px;">
-		#{gravatar.img comment.usermail ,size:55/}
+	<div class="box" style="width:50%;">
+		<div style="background-color:#F2F2F2;font-family:Arial;font-size:8pt;height:auto;padding:2px;">
+		#{gravatar.img comment.usermail ,size:55/}&nbsp;<cite><strong><a  href="#{if comment.usersite!=null}${comment.usersite}#{/if}#{else}##{/else}">${comment.username}</a> 
+		</strong> a dit le ${comment.date.format('dd/MM/yyyy hh:mm')}:</cite>
 		</div>
-		<cite><strong><a  href="#{if comment.usersite!=null}${comment.usersite}#{/if}#{else}##{/else}">${comment.username}</a> 
-			 </strong> a dit le ${comment.date.format('dd/MM/yyyy hh:mm')}:</cite>
-			<p>${comment.content}</p>
-		
+		<div style="font-family:Arial;font-size:9pt;padding:5px;">${comment.content}</div>
 	</div>
 	#{/if}
 	#{/list}
- </div>
+
 <!-- Leave a comment -->
-<h3>Laisser un commentaire</h3>
+<br/>
+<h3>Laisser un commentaire:</h3>
 <div id="comment" name="comment">
 #{form @Consultation.addComment(), id:'commentform'}
 		<input type="hidden" name="post_id" value="${post.id}">
