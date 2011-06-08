@@ -1,24 +1,28 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
-*	/admin					module:secure
-GET	/admin/articles				Administration.articles
-GET	/admin/comments/{postid}				Administration.comments
+
+*	/admin						module:secure
+GET	/admin/articles					Administration.articles
+GET	/admin/comments/{postid}			Administration.comments
+GET	/admin/comments/valid/{postid}/{commentnumber}	Administration.valider
+
 # Home page
 
-GET     /                                       Consultation.index
-GET     /contact                                       Consultation.contact
+GET     /                                       	Consultation.index
+GET     /contact                                	Consultation.contact
 
 # Ignore favicon requests
-GET     /favicon.ico                            404
+
+GET     /favicon.ico                            	404
 
 # Map static resources from the /app/public folder to the /public path
 
-GET     /public/                                staticDir:public
+GET     /public/                                	staticDir:public
 
-GET     /articles/{type}/{value}            	Consultation.articles
+GET     /articles/{type}/{value}            		Consultation.articles
 
-GET     /article/{id}            		Consultation.article
+GET     /article/{id}            			Consultation.article
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+*       /{controller}/{action}                  	{controller}.{action}

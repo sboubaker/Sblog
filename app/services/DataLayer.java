@@ -95,7 +95,7 @@ public class DataLayer {
 	}
 	public static List<Post> getPostsByTag(String tagId){
 		List<Post> list=null;
-		Tag tag=getTagById(tagId);
+		Tag tag=(Tag)Tag.filter("tag", tagId).asList().get(0);
 		if(tag!=null){
 			list=new ArrayList<Post>();
 			for(Post post:tag.posts){
@@ -107,7 +107,7 @@ public class DataLayer {
 	}
 	public static List<Post> getPostsByCategorie(String categorieId){
 		List<Post> list=null;
-		Categorie categorie=getCategorieById(categorieId);
+		Categorie categorie=(Categorie)Categorie.filter("name", categorieId).asList().get(0);
 		if(categorie!=null){
 			list=new ArrayList<Post>();
 			for(Post post:categorie.posts){

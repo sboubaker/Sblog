@@ -5,7 +5,7 @@
  <div class="box">
                 <h2>${post.title}</h2>
                 
-                <p id="tagline">
+                <p id="tagline" style="font-size:9px;">
 		Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp Catégorie(s): 
 		#{list items:post.categories, as:'categorie'} ${categorie.name}&nbsp #{/list} Tag(s):
 		#{list items:post.tags, as:'tag'} ${tag.tag}&nbsp #{/list} vu: ${post.nshow}
