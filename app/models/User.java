@@ -3,13 +3,16 @@ package models;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import play.data.validation.Required;
-import play.modules.morphia.Model;
+import play.db.jpa.Model;
 
-import com.google.code.morphia.annotations.Entity;
-import com.google.code.morphia.annotations.Reference;
-
-@Entity("users")
+@Entity
+@Table(name="user")
 public class User extends Model {
 
 	@Required
@@ -21,6 +24,6 @@ public class User extends Model {
 	public Date dtCreate;
 	@Required
 	public String role;
-	@Reference
+	@OneToMany
 	public List<Post> posts = new ArrayList<Post>();
 }

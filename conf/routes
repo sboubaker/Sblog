@@ -1,13 +1,6 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
-<<<<<<< HEAD
-=======
-*	/admin					module:secure
-GET	/admin/articles				Administration.articles
-GET	/admin/newpost				Administration.nouveauArticle
-# Home page
->>>>>>> b8caaa16909cfc02e7c669644347b8837a2defe0
 
 *	/admin						module:secure
 GET	/admin/articles					Administration.articles

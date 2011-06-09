@@ -3,12 +3,15 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import play.modules.morphia.Model;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-import com.google.code.morphia.annotations.Entity;
-import com.google.code.morphia.annotations.Reference;
+import play.db.jpa.Model;
 
-@Entity("categories")
+
+@Entity
+@Table(name="categorie")
 public class Categorie extends Model {
 
 	/** Field mapping. */
@@ -16,9 +19,8 @@ public class Categorie extends Model {
 	/** Field mapping. */
 	public Integer parentId;
 	/** Field mapping. */
-	@Reference
+	@OneToMany
 	public List<Post> posts = new ArrayList<Post>();
-
 	/**
 	 * Default constructor, mainly for hibernate use.
 	 */

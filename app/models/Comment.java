@@ -2,12 +2,17 @@ package models;
 
 import java.util.Date;
 
-import play.data.validation.Required;
-import com.google.code.morphia.annotations.Embedded;
-import com.google.code.morphia.annotations.Transient;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-@Embedded
-public class Comment{
+import play.data.validation.Required;
+import play.db.jpa.Model;
+
+@Entity
+@Table(name="comment")
+public class Comment extends Model{
 
 	@Required
 	public int number;
@@ -28,6 +33,10 @@ public class Comment{
 	public String username;
 	
 	public String usersite;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_post")
+	public Post post;
 	
 	public boolean subscribe;
 	public Comment() {

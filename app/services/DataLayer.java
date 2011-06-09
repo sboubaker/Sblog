@@ -10,7 +10,7 @@ import models.Post;
 import models.Tag;
 import models.User;
 import play.cache.Cache;
-import util.MongoUtil;
+import util.DbUtil;
 
 public class DataLayer {
 
@@ -23,10 +23,10 @@ public class DataLayer {
 		if(all)
 		return Post.findAll();
 		else
-		return Post.filter("status", true).asList();
+		return Post.find("status", true).fetch();
 	}
 	public static List<Post> getnewPosts(int number) {
-		return Post.filter("status", true).order("-lastchange").fetch(number);
+		return Post.find("status", true).fetch(number);
 	}
 	public static List<Tag> getAllTags() {
 		List<Tag> tags = (List<Tag>) Cache.get("tags");
@@ -67,7 +67,7 @@ public class DataLayer {
 	 * @return
 	 */
 	public static Post getPostById(String id) {
-		return Post.findById(MongoUtil.formatToId(id));
+		return Post.findById(id);
 	}
 	/**
 	 * Get post by id
@@ -78,7 +78,7 @@ public class DataLayer {
 	public static Tag getTagById(String id) {
 		Tag tag=(Tag) Cache.get("tag_"+id);
 		if(tag==null){
-			tag=Tag.findById(MongoUtil.formatToId(id));
+			tag=Tag.findById(id);
 			if(tag!=null)
 			Cache.set("tag_"+id,tag);
 		}
@@ -87,7 +87,7 @@ public class DataLayer {
 	public static Tag getTagByName(String name) {
 		Tag tag=(Tag) Cache.get("tag_"+name);
 		if(tag==null){
-			tag=Tag.filter("tag", name).get();
+			tag=Tag.find("tag", name).first();
 			if(tag!=null)
 			Cache.set("tag_"+name,tag);
 		}
@@ -96,7 +96,7 @@ public class DataLayer {
 	public static Categorie getCategorieById(String id) {
 		Categorie categorie=(Categorie) Cache.get("categorie_"+id);
 		if(categorie==null){
-			categorie=Categorie.findById(MongoUtil.formatToId(id));
+			categorie=Categorie.findById(id);
 			if(categorie!=null)
 			Cache.set("categorie_"+id,categorie);
 		}
@@ -104,7 +104,7 @@ public class DataLayer {
 	}
 	public static List<Post> getPostsByTag(String tagId){
 		List<Post> list=null;
-		Tag tag=(Tag)Tag.filter("tag", tagId).asList().get(0);
+		Tag tag=(Tag)Tag.find("tag", tagId).fetch().get(0);
 		if(tag!=null){
 			list=new ArrayList<Post>();
 			for(Post post:tag.posts){
@@ -116,7 +116,7 @@ public class DataLayer {
 	}
 	public static List<Post> getPostsByCategorie(String categorieId){
 		List<Post> list=null;
-		Categorie categorie=(Categorie)Categorie.filter("name", categorieId).asList().get(0);
+		Categorie categorie=(Categorie)Categorie.find("name", categorieId).fetch().get(0);
 		if(categorie!=null){
 			list=new ArrayList<Post>();
 			for(Post post:categorie.posts){
@@ -130,6 +130,6 @@ public class DataLayer {
 	 * 
 	 */
 	public static User getUserByEmail(String email) {
-		return User.filter("usermail", email).get();
+		return (User)User.find("usermail", email).fetch().get(0);
 	}
 }

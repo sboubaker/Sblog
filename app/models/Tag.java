@@ -3,15 +3,30 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import play.modules.morphia.Model;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
-import com.google.code.morphia.annotations.Entity;
-import com.google.code.morphia.annotations.Reference;
+import play.db.jpa.Model;
 
-@Entity("tags")
+@Entity
+@Table(name="tag")
 public class Tag extends Model {
 	
-	@Reference
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(
+		name = "post_tag", 
+		joinColumns = { 
+			@JoinColumn(name = "id_tag") 
+		}, 
+		inverseJoinColumns = { 
+			@JoinColumn(name = "id_post") 
+		}
+	)
 	public List<Post> posts = new ArrayList<Post>();
 	public String tag;
 

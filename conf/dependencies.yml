@@ -2,6 +2,6 @@
 
 require:
     - play
-    - play -> morphia 1.2.1beta4
+    - play -> db 1.1.1
     - play -> secure
     - play -> gravatar 1.0

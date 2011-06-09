@@ -4,14 +4,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import play.data.validation.Required;
-import play.modules.morphia.Model;
+import play.db.jpa.Model;
 
-import com.google.code.morphia.annotations.Embedded;
-import com.google.code.morphia.annotations.Entity;
-import com.google.code.morphia.annotations.Reference;
-
-@Entity("posts")
+@Entity
+@Table(name="post")
 public class Post extends Model {
 
 	/** Field mapping. */
@@ -25,16 +32,27 @@ public class Post extends Model {
 	/** Field mapping. */
 	@Required
 	public String title;
-	@Reference
+	@ManyToOne
+	@JoinColumn(name = "id_user")
 	public User user;
 	/** Field mapping. */
-	@Reference
-	public List<Categorie> categories = new ArrayList<Categorie>();
+	@ManyToOne
+	@JoinColumn(name = "id_categorie")
+	public Categorie categorie = new Categorie();
 	/** Field mapping. */
-	@Reference
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(
+		name = "post_tag", 
+		joinColumns = { 
+			@JoinColumn(name = "id_post") 
+		}, 
+		inverseJoinColumns = { 
+			@JoinColumn(name = "id_tag") 
+		}
+	)
 	public List<Tag> tags = new ArrayList<Tag>();
 	/** Field mapping. */
-	@Embedded
+	@OneToMany
 	public List<Comment> comments = new ArrayList<Comment>();
 	/** number of show **/
 	public int nshow;
