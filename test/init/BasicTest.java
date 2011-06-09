@@ -1,8 +1,7 @@
-ï»¿package init;
+package init;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import models.Categorie;
 import models.Comment;
 import models.Post;
@@ -19,7 +18,9 @@ import util.Constantes;
 public class BasicTest extends UnitTest {
 
 	Logger logger = Logger.getLogger(BaseTest.class);
-	String postcontent="";
+	String postcontent="Concernant ce site, qui fabrique la C3 - la voiture la plus vendue par Citroën -,"
+		+" le «plan social» est prévu pour 2013, et «l’arrêt», «courant 2014». " +
+				"«Ce planning est cohérent avec les orient";
 	@Test
 	public void cleardatabase() {
 		logger.info(Tag.deleteAll());
@@ -54,7 +55,7 @@ public class BasicTest extends UnitTest {
 		logger.info("Save one tag");
 		tag.save();
 		Post post = new Post();
-		post.content = "lksndfvz";
+		post.content = postcontent;
 		post.lastchange = new Date();
 		post.status = true;
 		post.title = "Cloud";

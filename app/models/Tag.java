@@ -17,7 +17,7 @@ import play.db.jpa.Model;
 @Table(name="tag")
 public class Tag extends Model {
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(
 		name = "post_tag", 
 		joinColumns = { 

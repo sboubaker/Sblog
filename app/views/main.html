@@ -1,8 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
  <meta name="author" content="Sabri Boubaker" />
         <meta name="keywords" content="geek, java, spring, springmvc,nosql, cloud, mongodb, playframework" />
 <link rel="stylesheet" type="text/css" media="screen"
@@ -39,7 +39,7 @@
         <div id="sidebar">
 	
 	    <div class="box">
-                <h3>Articles rÃ©cents</h3>
+                <h3>Articles récents</h3>
                 #{list items:uiObject.posts, as:'post'}
                 <p>
                     <b>${post.title}</b>&nbsp;&nbsp;${post.content.substring(0,50)}
@@ -52,14 +52,14 @@
                 <div id="#htmltagcloud">
                  #{list items:uiObject.tags, as:'tag'}
                 <span class="tagcloud4" id="0">
-                <a href="/articles/2/${tag.tag}">${tag.tag}(<span class="freq">${tag.posts.size}</span>)
+                <a href="/articles/2/${tag.tag}">${tag.tag}(<span class="freq">${tag.posts.size()}</span>)
                 </a>
                 </span>
                 #{/list}
                 </div>
             </div>
             <div class="box">
-                <h3>Blog preferÃ©s</h3>
+                <h3>Blog preferés</h3>
                 <ul>
                     <li><a href="http://desgeeksetdeslettres.com/">Des Geeks et des lettres</a></li>
                     <li><a href="http://www.touilleur-express.fr">Le Touilleur Express </a></li>

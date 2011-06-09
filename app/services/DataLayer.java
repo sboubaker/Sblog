@@ -66,7 +66,7 @@ public class DataLayer {
 	 * @param id
 	 * @return
 	 */
-	public static Post getPostById(String id) {
+	public static Post getPostById(long id) {
 		return Post.findById(id);
 	}
 	/**
@@ -75,7 +75,7 @@ public class DataLayer {
 	 * @param id
 	 * @return
 	 */
-	public static Tag getTagById(String id) {
+	public static Tag getTagById(long id) {
 		Tag tag=(Tag) Cache.get("tag_"+id);
 		if(tag==null){
 			tag=Tag.findById(id);
@@ -93,7 +93,7 @@ public class DataLayer {
 		}
 		return tag;
 	}
-	public static Categorie getCategorieById(String id) {
+	public static Categorie getCategorieById(long id) {
 		Categorie categorie=(Categorie) Cache.get("categorie_"+id);
 		if(categorie==null){
 			categorie=Categorie.findById(id);
@@ -102,9 +102,9 @@ public class DataLayer {
 		}
 		return categorie;
 	}
-	public static List<Post> getPostsByTag(String tagId){
+	public static List<Post> getPostsByTag(String tagname){
 		List<Post> list=null;
-		Tag tag=(Tag)Tag.find("tag", tagId).fetch().get(0);
+		Tag tag=(Tag)Tag.find("tag", tagname).fetch().get(0);
 		if(tag!=null){
 			list=new ArrayList<Post>();
 			for(Post post:tag.posts){
@@ -114,9 +114,9 @@ public class DataLayer {
 		}
 		return list;
 	}
-	public static List<Post> getPostsByCategorie(String categorieId){
+	public static List<Post> getPostsByCategorie(String categoriename){
 		List<Post> list=null;
-		Categorie categorie=(Categorie)Categorie.find("name", categorieId).fetch().get(0);
+		Categorie categorie=(Categorie)Categorie.find("name", categoriename).fetch().get(0);
 		if(categorie!=null){
 			list=new ArrayList<Post>();
 			for(Post post:categorie.posts){

@@ -35,13 +35,14 @@ public class Administration extends Controller {
 		List<Post> list=DataLayer.getPosts(true);
 		render(list);
 	}
-	public static void comments(String postid) {
+	public static void comments(long postid) {
 		Post post=DataLayer.getPostById(postid);
 		render(post);
 	}
-	public static void valider(String postid,int commentnumber) {
+	public static void valider(long postid,int commentnumber) {
 		Post post=DataLayer.getPostById(postid);
 		post.comments.get(commentnumber).status= !post.comments.get(commentnumber).status;
+		post.comments.get(commentnumber).save();
 		post.save();
 		comments(postid);
 	}

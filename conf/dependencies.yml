@@ -2,6 +2,5 @@
 
 require:
     - play
-    - play -> db 1.1.1
     - play -> secure
     - play -> gravatar 1.0

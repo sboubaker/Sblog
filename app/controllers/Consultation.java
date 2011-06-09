@@ -42,18 +42,19 @@ public class Consultation extends Controller {
 		render(list);
 	}
 
-	public static void article(String id) {
+	public static void article(long id) {
 		Post post = DataLayer.getPostById(id);
 		post.nshow++;
 		post.save();
 		render(post);
 	}
-	public static void addComment(@Valid models.Comment comment,String post_id) {
+	public static void addComment(@Valid models.Comment comment,long post_id) {
 		Post post = DataLayer.getPostById(post_id);
 		//TODO validation result
 		comment.date=new Date();
 		comment.status=false;
 		comment.number=post.comments.size();
+		comment.save();
 		post.comments.add(comment);
 		post.save();
 		String message="Votre commentaire sera publi� apr�s sa validation. Merci";

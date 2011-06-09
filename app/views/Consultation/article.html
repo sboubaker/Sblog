@@ -6,13 +6,13 @@
                 <h2>${post.title}</h2>
                 
                 <p id="tagline" style="font-size:9px;">
-		Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp Catégorie(s): 
-		#{list items:post.categories, as:'categorie'} ${categorie.name}&nbsp #{/list} Tag(s):
+		Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp Catégorie: 
+		${post.categorie.name}&nbsp Tag(s):
 		#{list items:post.tags, as:'tag'} ${tag.tag}&nbsp #{/list} vu: ${post.nshow}
 		</p>
                 <p>${post.content}</p>
 		&nbsp;&nbsp;<a href="http://twitter.com/share" class="twitter-share-button" data-text="${post.title}" data-count="horizontal" data-via="sabri_boubaker" data-lang="fr">Tweeter</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-		<a href="#comts" style="float: right; font-size:11px;">Commenter&nbsp;(${post.comments.size})</a>
+		<a href="#comts" style="float: right; font-size:11px;">Commenter&nbsp;(${post.comments.size()})</a>
  
 
  </div>
