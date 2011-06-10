@@ -84,18 +84,21 @@ padding:8px;
 <th scope="col">Vu</th>
 <th scope="col">&nbsp;</th>
 <th scope="col">&nbsp;</th>
+<th scope="col">&nbsp;</th>
 </tr>
 </thead>
 <tbody>
 #{list items:list, as:'post'}
 <tr>
-<td>#{if post.status}Ouvert#{/if}#{else}Ferm�#{/else}</td>
+<td>#{if post.status}<a href="/admin/posts/validp/${post.id}" style=" font-size:11px;">Dévalider</a>#{/if}
+#{else}<a href="/admin/posts/validp/${post.id}" style=" font-size:11px;">Valider</a>#{/else}</td>
 <td>${post.lastchange.format('dd/MM/yyyy hh:mm')}</td>
 <td>${post.title}</td>
 <td>${post.comments.size()}</td>
 <td>${post.nshow}</td>
 <!--actions-->
 <td><a href="#" style="float: right; font-size:11px;">Modifier</a></td>
+<td><a href="/admin/posts/delete/${post.id}" onclick="return confirm('Etes vous sûre de vouloir supprimer cet article ?');" style="float: right; font-size:11px;">Supprimer</a></td>
 <td><a href="/admin/comments/${post.id}" style="float: right; font-size:11px;">Commentaires</a></td>
 </tr>
 #{/list}

@@ -18,15 +18,17 @@ import util.Constantes;
 public class BasicTest extends UnitTest {
 
 	Logger logger = Logger.getLogger(BaseTest.class);
-	String postcontent="Concernant ce site, qui fabrique la C3 - la voiture la plus vendue par Citroën -,"
-		+" le «plan social» est prévu pour 2013, et «l’arrêt», «courant 2014». " +
-				"«Ce planning est cohérent avec les orient";
-	@Test
+	String postcontent="Concernant ce site, qui fabrique la C3 - la voiture la plus vendue par Citron -,"
+		+" le plan social est prvu pour 2013, et larrt, courant 2014. " +
+				"Ce planning est cohrent avec les orient";
+	//@Test
 	public void cleardatabase() {
-		logger.info(Tag.deleteAll());
+        logger.info(User.deleteAll());
+         logger.info(Comment.deleteAll());
+        logger.info(Post.deleteAll());
+        logger.info(Tag.deleteAll());
 		logger.info(Categorie.deleteAll());
-		logger.info(Post.deleteAll());
-		logger.info(User.deleteAll());
+
 	}
 	@Test
 	public void createAndSaveOnePost() {

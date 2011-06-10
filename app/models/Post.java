@@ -40,7 +40,7 @@ public class Post extends Model {
 	@JoinColumn(name = "id_categorie")
 	public Categorie categorie = new Categorie();
 	/** Field mapping. */
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 		name = "post_tag", 
 		joinColumns = { 
@@ -52,7 +52,7 @@ public class Post extends Model {
 	)
 	public List<Tag> tags = new ArrayList<Tag>();
 	/** Field mapping. */
-	@OneToMany
+	@OneToMany(cascade = CascadeType.REMOVE)
 	public List<Comment> comments = new ArrayList<Comment>();
 	/** number of show **/
 	public int nshow;

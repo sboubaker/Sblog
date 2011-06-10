@@ -5,19 +5,23 @@
 <div>
       
 </div>
-<form action="@{Administration.addPost()}" method="POST">
+<form action="@{Administration.ajouterArticle()}" method="POST">
     <label for="title">Titre:</label><br>
     <input type="text" name="title"/><br>
+    <span class="error">#{error 'post.title' /}</span>
     <label for="title">Categorie:</label><br>
     <select size="1" name="categorieid">
             #{list items:categories, as:'categorie'}
                 <option value="${categorie.id}">${categorie.name}</option>
             #{/list}
     </select><br>
+    <span class="error">#{error 'categorieid' /}</span>
     <label for="content">Text:</label><br>
     <textarea name="content" id="wysiwyg" rows="25" cols="85"></textarea><br>
+    <span class="error">#{error 'post.content' /}</span>
     <label for="title">Tags:</label><br>
     <input type="text" name="strtags" /><br>
+    <span class="error">#{error 'strtags' /}</span>
     <input type="submit" value="Submit" />
 </form>
 

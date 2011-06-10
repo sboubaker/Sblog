@@ -77,7 +77,7 @@ p {
 }
 #header #tagline {
     color:#DDD;
-    font-size:0.9em;
+    font-size:7px;
     font-style:italic;
     margin:0;
     text-align:right;
@@ -192,28 +192,7 @@ code {
     white-space:pre;
 }
 
-.box{
-	border:1px solid #999;
-	margin:0 0 1em 0;
-    overflow:hidden;
-}
-.box p,
-.box ul,
-.box ol,
-.box div.cont,
-.box form {
-	margin:.5em;
-}
-.box h1,
-.box h2,
-.box h3,
-.box h4,
-.box h5,
-.box h6 {
-	background-color:#73A0C5;
-	display:block;
-	padding:0 5px;
-}
+
 .more {
     display:block;
     font-size:.8em;
@@ -333,5 +312,221 @@ fieldset p.label {
     height:auto;
     margin-bottom:0;
     width:auto;
+}
+/** article **/
+.article {
+    border:1px solid #999;
+	margin:0 0 1em 0;
+    overflow:hidden;
+    padding: 5px 10px 10px;
+}
+.article h2{
+	background-color:#73A0C5;
+	color:white;
+	display:block;
+	padding:0 5px;
+}
+/** lien commenter**/
+.liencom{
+    float: right;
+    font-size:11px;
+}
+/** commentaire style**/
+.commentaire{
+	border:1px solid #999;
+	margin:0 0 1em 0;
+    overflow:hidden;
+    width:50%;
+}
+.commentaire div{
+    background-color:#F2F2F2;
+    font-family:Arial;
+    font-size:10pt;
+    height:auto;
+    padding:2px;
+}
+.commentaire p {
+    font-family:Arial;
+    font-size:10pt;
+    padding:5px;
+}
+/** sidebar box**/
+.box{
+	border:1px solid #999;
+	margin:0 0 1em 0;
+    overflow:hidden;
+}
+.box p,
+.box ul,
+.box ol,
+.box div.cont,
+.box form {
+	margin:.5em;
+}
+.box h1,
+.box h2,
+.box h3,
+.box h4,
+.box h5,
+.box h6 {
+	background-color:#73A0C5;
+	color: white;
+	display:block;
+	padding:0 5px;
+}
+#htmltagcloud {
+background-color:#FFFFFF;
+border:2px dotted #DDDDDD;
+font-family:'lucida grande',trebuchet,'trebuchet ms',verdana,arial,helvetica,sans-serif;
+letter-spacing:normal;
+line-height:2.4em;
+margin:0 0 2em;
+padding:2em ;
+text-align:justify;
+text-decoration:none;
+text-indent:0;
+text-transform:none;
+word-spacing:normal;
+}
+#htmltagcloud a:link {
+text-decoration:none;
+}
+#htmltagcloud a:visited {
+text-decoration:none;
+}
+#htmltagcloud a:hover {
+background-color:#0055FF;
+color:white;
+text-decoration:none;
+}
+#htmltagcloud a:active {
+background-color:#0033DD;
+color:white;
+text-decoration:none;
+}
+span.tagcloud0 {
+color:#ACC1F3;
+font-size:1em;
+padding:0;
+position:relative;
+z-index:10;
+}
+span.tagcloud0 a {
+color:#ACC1F3;
+text-decoration:none;
+}
+span.tagcloud1 {
+color:#ACC1F3;
+font-size:1.4em;
+padding:0;
+position:relative;
+z-index:9;
+}
+span.tagcloud1 a {
+color:#ACC1F3;
+text-decoration:none;
+}
+span.tagcloud2 {
+color:#86A0DC;
+font-size:1.8em;
+padding:0;
+position:relative;
+z-index:8;
+}
+span.tagcloud2 a {
+color:#86A0DC;
+text-decoration:none;
+}
+span.tagcloud3 {
+color:#86A0DC;
+font-size:2.2em;
+padding:0;
+position:relative;
+z-index:7;
+}
+span.tagcloud3 a {
+color:#86A0DC;
+text-decoration:none;
+}
+span.tagcloud4 {
+color:#607EC5;
+font-size:2.6em;
+padding:0;
+position:relative;
+z-index:6;
+}
+span.tagcloud4 a {
+color:#607EC5;
+text-decoration:none;
+}
+span.tagcloud5 {
+color:#607EC5;
+font-size:3em;
+padding:0;
+position:relative;
+z-index:5;
+}
+span.tagcloud5 a {
+color:#607EC5;
+text-decoration:none;
+}
+span.tagcloud6 {
+color:#4C6DB9;
+font-size:3.3em;
+padding:0;
+position:relative;
+z-index:4;
+}
+span.tagcloud6 a {
+color:#4C6DB9;
+text-decoration:none;
+}
+span.tagcloud7 {
+color:#395CAE;
+font-size:3.6em;
+padding:0;
+position:relative;
+z-index:3;
+}
+span.tagcloud7 a {
+color:#395CAE;
+text-decoration:none;
+}
+span.tagcloud8 {
+color:#264CA2;
+font-size:3.9em;
+padding:0;
+position:relative;
+z-index:2;
+}
+span.tagcloud8 a {
+color:#264CA2;
+text-decoration:none;
+}
+span.tagcloud9 {
+color:#133B97;
+font-size:4.2em;
+padding:0;
+position:relative;
+z-index:1;
+}
+span.tagcloud9 a {
+color:#133B97;
+text-decoration:none;
+}
+span.tagcloud10 {
+color:#002A8B;
+font-size:4.5em;
+padding:0;
+position:relative;
+z-index:0;
+}
+span.tagcloud10 a {
+color:#002A8B;
+text-decoration:none;
+}
+span.freq {
+color:#BBBBBB;
+font-size:10pt !important;
 }
 /*****************************/

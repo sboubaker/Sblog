@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import jobs.Commentnotifyer;
 import models.Categorie;
 import models.Post;
 import models.Tag;
@@ -13,16 +14,8 @@ import play.mvc.Controller;
 import services.DataLayer;
 
 import java.util.Date;
-public class Consultation extends Controller {
+public class Consultation extends GenericController {
 
-	@Before
-	static void setUiObject() {
-		UiObject uiObject=new UiObject();
-		uiObject.posts=DataLayer.getnewPosts(3);
-		uiObject.tags=DataLayer.getAllTags();
-		uiObject.categories=DataLayer.getAllCategories();
-		renderArgs.put("uiObject", uiObject);
-	} 
 	public static void index() {
 		List<Post> list=DataLayer.getPosts(false);
 		renderTemplate("Consultation/articles.html",list);
@@ -37,7 +30,7 @@ public class Consultation extends Controller {
 		case 2: list= DataLayer.getPostsByTag(value);break;
 		default: break;
 		}
-		if(list!=null)
+		if(list==null)
 			list=DataLayer.getPosts(false);
 		render(list);
 	}
@@ -45,7 +38,7 @@ public class Consultation extends Controller {
 	public static void article(long id) {
 		Post post = DataLayer.getPostById(id);
 		post.nshow++;
-		post.save();
+        post.save();
 		render(post);
 	}
 	public static void addComment(@Valid models.Comment comment,long post_id) {
@@ -57,7 +50,7 @@ public class Consultation extends Controller {
 		comment.save();
 		post.comments.add(comment);
 		post.save();
-		String message="Votre commentaire sera publi� apr�s sa validation. Merci";
+		new Commentnotifyer(comment,post_id).now();
 		article(post_id);
 	}
 

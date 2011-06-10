@@ -2,24 +2,21 @@
 #{set title:'Home' /}
 
 #{list items:list, as:'post'}
- <div class="box">
+ <div class="article">
                 <h2>${post.title}</h2>
                 
-                <p id="tagline" style="font-size:9px;">
-		Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp Catégorie: 
+                <p id="tagline">
+		Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp CatÃ©gorie:
 		${post.categorie.name} Tag(s):
 		#{list items:post.tags, as:'tag'} ${tag.tag}&nbsp #{/list} vu: ${post.nshow}
 		</p>
                 <p>
-                  #{if post.content.length() > 500}
-						<p>${post.content.substring(0, 500)} ...</p>
-						<a href="/article/${post.id}" style="font-size:11px;">Lire la suite de cet article</a> 
-				  #{/if}
-					#{else}
-					<p>${post.content}</p>
-		
-					#{/else}
+                #{if post.content.length()>500}
+                <p>${post.content.substring(0, 500).raw()} ...</p>
+                #{/if}
+                #{else}<p>${post.content.raw()} ...</p>#{/else}
+				<a href="/article/${post.id}"  class="liencom"  style="float: left;">Lire la suite de cet article</a>
+				<a href="/article/${post.id}#comment"  class="liencom">Commenter&nbsp;(${post.comments.size()})</a>
                 </p>
-                <a href="/article/${post.id}#comts" style="float: right; font-size:11px;">Commenter&nbsp;(${post.comments.size()})</a>
  </div>
 #{/list}

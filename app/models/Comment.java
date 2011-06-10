@@ -12,7 +12,7 @@ import play.db.jpa.Model;
 
 @Entity
 @Table(name="comment")
-public class Comment extends Model{
+public class  Comment extends Model{
 
 	@Required
 	public int number;
