@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import play.data.validation.Required;
 import play.db.jpa.Model;
@@ -40,7 +41,7 @@ public class Post extends Model {
 	@JoinColumn(name = "id_categorie")
 	public Categorie categorie = new Categorie();
 	/** Field mapping. */
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
 	@JoinTable(
 		name = "post_tag", 
 		joinColumns = { 
@@ -56,6 +57,9 @@ public class Post extends Model {
 	public List<Comment> comments = new ArrayList<Comment>();
 	/** number of show **/
 	public int nshow;
+    /** nuber of valid comments **/
+    @Transient
+    public int vcomments;
 	/**
 	 * Default constructor
 	 */
@@ -71,5 +75,10 @@ public class Post extends Model {
 		this.lastchange = lastchange;
 		this.title = title;
 	}
-
+    public void init(){
+        for(Comment comment:comments){
+              if(comment.status)
+                  vcomments++;
+        }
+    }
 }

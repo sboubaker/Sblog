@@ -18,6 +18,8 @@ public class Consultation extends GenericController {
 
 	public static void index() {
 		List<Post> list=DataLayer.getPosts(false);
+        for(Post post:list)
+            post.init();
 		renderTemplate("Consultation/articles.html",list);
 	}
 	public static void contact() {
@@ -32,6 +34,8 @@ public class Consultation extends GenericController {
 		}
 		if(list==null)
 			list=DataLayer.getPosts(false);
+        for(Post post:list)
+            post.init();
 		render(list);
 	}
 
@@ -39,6 +43,7 @@ public class Consultation extends GenericController {
 		Post post = DataLayer.getPostById(id);
 		post.nshow++;
         post.save();
+        post.init();
 		render(post);
 	}
 	public static void addComment(@Valid models.Comment comment,long post_id) {
@@ -50,7 +55,6 @@ public class Consultation extends GenericController {
 		comment.save();
 		post.comments.add(comment);
 		post.save();
-		new Commentnotifyer(comment,post_id).now();
 		article(post_id);
 	}
 

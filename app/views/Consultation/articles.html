@@ -16,7 +16,7 @@
                 #{/if}
                 #{else}<p>${post.content.raw()} ...</p>#{/else}
 				<a href="/article/${post.id}"  class="liencom"  style="float: left;">Lire la suite de cet article</a>
-				<a href="/article/${post.id}#comment"  class="liencom">Commenter&nbsp;(${post.comments.size()})</a>
+				<a href="/article/${post.id}#comment"  class="liencom">Commenter&nbsp;(${post.vcomments})</a>
                 </p>
  </div>
 #{/list}

@@ -1,9 +1,12 @@
 package controllers;
 
+import jobs.Commentnotifyer;
+import play.Play;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.With;
 
+import java.io.File;
 import java.io.PipedOutputStream;
 import java.util.List;
 import java.util.ArrayList;
@@ -29,18 +32,24 @@ public class Administration extends GenericController {
 	}
 	public static void articles() {
 		List<Post> list=DataLayer.getPosts(true);
+        for(Post post:list)
+            post.init();
 		render(list);
 	}
 	public static void commentaires(long postid) {
 		Post post=DataLayer.getPostById(postid);
+        post.init();
 		render(post);
 	}
 	public static void validerCommentaire(long postid,int commentnumber) {
 		Post post=DataLayer.getPostById(postid);
-		post.comments.get(commentnumber).status= !post.comments.get(commentnumber).status;
+        post.comments.get(commentnumber).status= !post.comments.get(commentnumber).status;
 		post.comments.get(commentnumber).save();
+        if(post.comments.get(commentnumber).status){
+            new Commentnotifyer(post.comments.get(commentnumber),postid).now();
+        }
 		post.save();
-		articles();
+		commentaires(postid);
 	}
     public static void validerPost(long postid) {
 		Post post=DataLayer.getPostById(postid);
@@ -52,7 +61,27 @@ public class Administration extends GenericController {
         List<Categorie> categories=DataLayer.getAllCategories();
         render(categories);
     }
-    public static void supprimerPost(long postid){
+    public static void nouvelleImage(){
+        File images=Play.getFile("/public/images/blog");
+        render(images);
+    }
+    public static void supprimerImage(String file){
+        notFoundIfNull(file);
+        File photo= Play.getFile("/public/images/blog/"+file);
+        photo.delete();
+        nouvelleImage();
+
+    }
+    public static void ajouterImage(File photo){
+
+        notFoundIfNull(photo);
+        File newFile= Play.getFile("/public/images/blog/"+photo.getName());
+        photo.renameTo(newFile);
+        photo.delete();
+        nouvelleImage();
+
+    }
+    public static void supprimerArticle(long postid){
         Post post=DataLayer.getPostById(postid);
         post.delete();
         articles();

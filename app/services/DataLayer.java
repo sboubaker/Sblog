@@ -109,7 +109,10 @@ public class DataLayer {
 			list=new ArrayList<Post>();
 			for(Post post:tag.posts){
 				if(post.status)
-					list.add(post);
+                {
+                    post.init();
+                    list.add(post);
+                }
 			}
 		}
 		return list;
@@ -121,7 +124,10 @@ public class DataLayer {
 			list=new ArrayList<Post>();
 			for(Post post:categorie.posts){
 				if(post.status)
-					list.add(post);
+				{
+                    post.init();
+                    list.add(post);
+                }
 			}
 		}
 		return list;

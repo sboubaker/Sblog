@@ -23,9 +23,12 @@ GET	    /admin/articles					                Administration.articles
 GET	    /admin/comments/{postid}			            Administration.commentaires
 GET	    /admin/comments/validc/{postid}/{commentnumber}	Administration.validerCommentaire
 GET	    /admin/posts/validp/{postid}             	    Administration.validerPost
-GET     /admin/posts/delete/{postid}                    Administration.supprimerPost
+GET     /admin/posts/delete/{postid}                    Administration.supprimerArticle
 GET     /admin/newpost                                  Administration.nouveauArticle
 POST    /admin/newpost                                  Administration.ajouterArticle
+GET     /admin/newpic                                   Administration.nouvelleImage
+POST    /admin/newpic                                   Administration.ajouterImage
+GET     /admin/delpic/{file}                            Administration.supprimerImage
 
 # Catch all
 *       /{controller}/{action}                  	    {controller}.{action}

@@ -1,12 +1,13 @@
 package controllers;
 
+import models.Post;
 import models.UiObject;
+import play.cache.Cache;
 import play.mvc.Before;
 import play.mvc.Controller;
 import services.DataLayer;
 
 /**
- * Created by IntelliJ IDEA.
  * User: boubaker
  * Date: 10/06/11
  * Time: 13:37
@@ -16,10 +17,17 @@ public class GenericController extends Controller{
 
     @Before
 	static void intiIHM() {
-		UiObject uiObject=new UiObject();
+        UiObject uiObject=null;
+        uiObject=(UiObject)Cache.get("uiobject");
+		if(uiObject==null){
+        uiObject=new UiObject();
 		uiObject.posts= DataLayer.getnewPosts(3);
+            for(Post post:uiObject.posts)
+            post.init();
 		uiObject.tags=DataLayer.getAllTags();
 		uiObject.categories=DataLayer.getAllCategories();
+        Cache.add("uiobject",uiObject);
+        }
 		renderArgs.put("uiObject", uiObject);
     }
 }
