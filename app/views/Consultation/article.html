@@ -3,23 +3,25 @@
 
 
  <div class="article">
-                <h2>${post.title}</h2>
-                
-                <p id="tagline">
-		Date:${post.lastchange.format('dd/MM/yyyy')}&nbsp Catégorie:
-		${post.categorie.name}&nbsp Tag(s):
-		#{list items:post.tags, as:'tag'} ${tag.tag}&nbsp #{/list} vu: ${post.nshow}
-		</p>
-                <p>${post.content.raw()}</p>
-		&nbsp;&nbsp;<a href="http://twitter.com/share" class="twitter-share-button" data-text="${post.title}" data-count="horizontal" data-via="sabri_boubaker" data-lang="fr">Tweeter</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-		<a href="#comment" class="liencom">Commenter&nbsp;(${post.vcomments})</a>
- 
+                <h2><span><a href="#">${post.title}</a></span></h2>
+                <p class="info noprint">
+                    <span class="date">${post.lastchange.format('dd/MM/yyyy')}</span><span class="noscreen">,</span>
+                    <span class="cat"><a href="#">${post.categorie.name}</a></span><span class="noscreen">,</span>
+                    <!--<span class="user"><a href="#">My name</a></span><span class="noscreen">,</span>-->
+                    <span class="comments"><a href="#comment">${post.vcomments}</a></span>
+                </p>
 
- </div>
+                <p>${post.content.raw()} ...</p>
+     <hr/>
+                &nbsp;&nbsp;<a href="http://twitter.com/share" class="twitter-share-button" data-text="${post.title}" data-count="horizontal" data-via="sabri_boubaker" data-lang="fr">Tweeter</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+                <p class="btn-more box noprint"><strong><a href="#comment">Réagir</a></strong></p>
+            </div> <!-- /article -->
+
+            <hr class="noscreen" />
  <h3>Commentaires:</h3><br/>
   #{list items:post.comments, as:'comment'}
 	#{if comment.status==true}
-	<div class="commentaire">
+	<div >
 		<div>
 		#{gravatar.img comment.usermail ,size:55/}&nbsp;<cite><strong><a  href="#{if comment.usersite!=null}${comment.usersite}#{/if}#{else}##{/else}">${comment.username}</a> 
 		</strong> a dit le ${comment.date.format('dd/MM/yyyy hh:mm')}</cite>
@@ -32,7 +34,7 @@
 <!-- Leave a comment -->
 <br/>
 <h3>Laisser un commentaire:</h3>
-<div id="comment" name="comment">
+<div name="comment">
 #{form @Consultation.addComment(), id:'commentform'}
 		<input type="hidden" name="post_id" value="${post.id}">
 		<br/>
@@ -55,7 +57,7 @@
 		<br/>
 		<div>
 
-		<textarea tabindex="4" rows="10" cols="75%" class="required" style="display:block;" name="comment.content"></textarea>
+		<textarea tabindex="4" rows="10" cols="50%" class="required" style="display:block;" name="comment.content"></textarea>
 		</div>
 		<p>
 		<input type="checkbox" style="width: auto;" value="true" name="comment.subscribe">

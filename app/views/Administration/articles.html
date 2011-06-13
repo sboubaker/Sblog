@@ -13,7 +13,6 @@
 <th scope="col">Vu</th>
 <th scope="col">&nbsp;</th>
 <th scope="col">&nbsp;</th>
-<th scope="col">&nbsp;</th>
 </tr>
 </thead>
 <tbody>
@@ -27,7 +26,6 @@
 <td>${post.nshow}</td>
 <!--actions-->
 <td><a href="#" style="float: right; font-size:11px;">Modifier</a></td>
-<td><a href="/admin/posts/delete/${post.id}" onclick="return confirm('Etes vous sûre de vouloir supprimer cet article ?');" style="float: right; font-size:11px;">Supprimer</a></td>
 <td><a href="/admin/comments/${post.id}" style="float: right; font-size:11px;">Commentaires</a></td>
 </tr>
 #{/list}

@@ -32,10 +32,8 @@ public class Consultation extends GenericController {
 		case 2: list= DataLayer.getPostsByTag(value);break;
 		default: break;
 		}
-		if(list==null)
+		if(list==null && (list.size()==0))
 			list=DataLayer.getPosts(false);
-        for(Post post:list)
-            post.init();
 		render(list);
 	}
 

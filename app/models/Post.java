@@ -38,10 +38,10 @@ public class Post extends Model {
 	public User user;
 	/** Field mapping. */
 	@ManyToOne
-	@JoinColumn(name = "id_categorie")
+    @JoinColumn(name = "id_categorie")
 	public Categorie categorie = new Categorie();
 	/** Field mapping. */
-	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 		name = "post_tag", 
 		joinColumns = { 
@@ -76,6 +76,7 @@ public class Post extends Model {
 		this.title = title;
 	}
     public void init(){
+        vcomments=0;
         for(Comment comment:comments){
               if(comment.status)
                   vcomments++;

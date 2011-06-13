@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'Categories' /}
+
+ <h3>Nouvelle Image</h3>
+<form  action="/admin/nouvelleCategorie" method="POST">
+    <label for="photo">Ajouter une catégorie</label><br>
+    <input type="text" name="name" />
+    <div class="submit">
+    <input type="submit" value="Envoyer"/>
+    </div>
+</form>
+<hr/>
+<h3>List des catégories</h3>
+
+        #{list items:categories, as:'categorie'}
+            *&nbsp;&nbsp;${categorie.name}&nbsp;&nbsp;&nbsp;<a href="#">Supprimer</a> <br/>
+        #{/list}

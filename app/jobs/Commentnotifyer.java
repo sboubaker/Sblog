@@ -17,7 +17,7 @@ import play.libs.Mail;
 public class Commentnotifyer extends Job {
     Email email = new SimpleEmail();
     public void doJob() {
-            // execute some application logic here ...
+             Mail.send(email);
         }
     public Commentnotifyer(Comment comment,long postId){
 
@@ -30,9 +30,8 @@ public class Commentnotifyer extends Job {
                 email.setSubject("Nouveau commentaire sur: "+post.title);
                 email.setMsg(comment.username+" a ajouté un nouveau commentaire");
                 }catch(Exception e){
-
                 }
-                Mail.send(email);
+
                }
         }
     }

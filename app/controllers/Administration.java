@@ -81,11 +81,6 @@ public class Administration extends GenericController {
         nouvelleImage();
 
     }
-    public static void supprimerArticle(long postid){
-        Post post=DataLayer.getPostById(postid);
-        post.delete();
-        articles();
-    }
     public static void ajouterArticle(@Required String title,@Required String content,@Required String strtags,@Required String categorieid){
         if(validation.hasErrors()) {
             params.flash(); // add http parameters to the flash scope
@@ -114,6 +109,19 @@ public class Administration extends GenericController {
             post.tags.add(tag);
         }
         post.save();
+        categorie.posts.add(post);
+        categorie.save();
         articles();
+    }
+    public static void ajouterCategorie(String name){
+           Categorie categorie=new Categorie();
+           categorie.name=name.trim();
+           categorie.save();
+           nouvelleCategorie();
+    }
+    public static void nouvelleCategorie(){
+           List<Categorie> categories=null;
+           categories=Categorie.findAll();
+           render(categories);
     }
 }

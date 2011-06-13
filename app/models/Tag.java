@@ -3,13 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import play.db.jpa.Model;
 
@@ -29,6 +23,8 @@ public class Tag extends Model {
 	)
 	public List<Post> posts = new ArrayList<Post>();
 	public String tag;
+    @Transient
+    public int vposts;
 
 	/**
 	 * Default constructor
@@ -36,4 +32,9 @@ public class Tag extends Model {
 	public Tag() {
 		// Default constructor
 	}
+    public void init(){
+         vposts=0;
+        for(Post post:posts)
+            vposts++;
+    }
 }

@@ -18,7 +18,7 @@ public class GenericController extends Controller{
     @Before
 	static void intiIHM() {
         UiObject uiObject=null;
-        uiObject=(UiObject)Cache.get("uiobject");
+        //uiObject=(UiObject)Cache.get("uiobject");
 		if(uiObject==null){
         uiObject=new UiObject();
 		uiObject.posts= DataLayer.getnewPosts(3);
@@ -26,7 +26,7 @@ public class GenericController extends Controller{
             post.init();
 		uiObject.tags=DataLayer.getAllTags();
 		uiObject.categories=DataLayer.getAllCategories();
-        Cache.add("uiobject",uiObject);
+        //Cache.add("uiobject",uiObject);
         }
 		renderArgs.put("uiObject", uiObject);
     }
