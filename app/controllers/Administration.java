@@ -113,6 +113,17 @@ public class Administration extends GenericController {
         categorie.save();
         articles();
     }
+    public static void supprimerArticle(long postid){
+        Post post=DataLayer.getPostById(postid);
+        Categorie categorie=post.categorie;
+        int i=categorie.posts.indexOf(post);
+        categorie.posts.remove(i);
+        categorie.save();
+        post.categorie=null;
+        post.save();
+        post.delete();
+        articles();
+    }
     public static void ajouterCategorie(String name){
            Categorie categorie=new Categorie();
            categorie.name=name.trim();
