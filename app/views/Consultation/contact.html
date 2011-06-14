@@ -2,7 +2,7 @@
 #{set title:'Contact' /}
 
 <div>
-   <form action="" method="post" id="contact">
+   <form action="/contact/sendmail" method="post" id="contact">
                 <fieldset style="width:50%;">
                     <legend>Informations</legend>
                     <p style="font-weight:bold;">
@@ -16,24 +16,20 @@
                 <fieldset style="width:80%;">
                     <legend>Me contacter</legend>
                     <div>
-                        <label for="x_wpc_name" style="display:block;">Nom:</label>
-                        <input name="x_wpc_name" type="text" id="x_wpc_name" class="required" value="" style="display:block;" />
+                        <label for="name" style="display:block;">Nom:</label>
+                        <input name="name" type="text" id="name" class="required" value="" style="display:block;" />
                     </div>
                     <div>
-                        <label for="x_wpc_email" style="display:block;">E-Mail:</label>
-                        <input name="x_wpc_email" type="text" id="x_wpc_email" style="display:block;" class="validate-email required" value="" />
+                        <label for="email" style="display:block;">E-Mail:</label>
+                        <input name="email" type="text" id="email" style="display:block;" class="email required" value="" />
                     </div>
                     <div>
-                        <label for="x_wpc_phone" style="display:block;">N.Tel:</label>
-                        <input name="x_wpc_phone" style="display:block;" type="text" id="x_wpc_phone" class="validate-phone" value="" />
+                        <label for="subject" style="display:block;">Sujet:</label>
+                        <input name="subject"  style="display:block;"type="text" id="subject" class="required" value="" />
                     </div>
                     <div>
-                        <label for="x_wpc_subject" style="display:block;">Sujet:</label>
-                        <input name="x_wpc_subject"  style="display:block;"type="text" id="x_wpc_subject" class="required" value="" />
-                    </div>
-                    <div>
-                        <label for="x_wpc_message" style="display:block;">Message:</label>
-                        <textarea name="x_wpc_message" style="display:block;" rows="10" cols="50" id="x_wpc_message" class="required"></textarea>
+                        <label for="message" style="display:block;">Message:</label>
+                        <textarea name="message" style="display:block;" rows="10" cols="50" id="message" class="required"></textarea>
                     </div>
                     <!--<div class="radio">
                         <input type="checkbox" name="x_wpc_cc" id="x_wpc_cc" value="true" />
@@ -45,3 +41,8 @@
                 </fieldset>
             </form>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#contact").validate();
+});
+</script>

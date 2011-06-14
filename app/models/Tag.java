@@ -25,13 +25,6 @@ public class Tag extends Model {
 	public String tag;
     @Transient
     public int vposts;
-
-	/**
-	 * Default constructor
-	 */
-	public Tag() {
-		// Default constructor
-	}
     public void init(){
          vposts=0;
         for(Post post:posts)

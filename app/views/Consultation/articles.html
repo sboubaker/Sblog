@@ -2,24 +2,19 @@
 #{set title:'Home' /}
 
 #{list items:list, as:'post'}
- <!-- Article -->
-            <div class="article">
-                <h2><span><a href="/article/${post.id}">${post.title}</a></span></h2>
-                <p class="info noprint">
-                    <span class="date">${post.lastchange.format('dd/MM/yyyy')}</span><span class="noscreen">,</span>
-                    <span class="cat"><a href="/articles/1/${post.categorie.name}">${post.categorie.name}</a></span><span class="noscreen">,</span>
-                    <!--<span class="user"><a href="#">My name</a></span><span class="noscreen">,</span>-->
-                    <span class="comments"><a href="/article/${post.id}#comment">${post.vcomments}</a></span>
-                </p>
-
-                <p>
-                #{if post.content.length()>500}
-                <p>${post.content.substring(0, 500).raw()} ...</p>
-                #{/if}
-                #{else}<p>${post.content.raw()} ...</p>#{/else}
-
-                <p class="btn-more box noprint"><strong><a href="/article/${post.id}">Suite...</a></strong></p>
-            </div> <!-- /article -->
-
-            <hr class="noscreen" />
+ <!-- Articles -->
+        <div class="post">
+				<h2 class="title"><a href="/article/${post.id}">${post.title}</a></h2>
+				<p class="meta">Date:${post.lastchange.format('dd/MM/yyyy hh:mm')}
+                    Catégorie:${post.categorie.name}
+                     Tags:#{list items:post.tags, as:'tag'}<a href="/articles/2/${tag.tag}"> ${tag.tag}</a>#{/list}
+                 Commentaires: ${post.vcomments}</p>
+				<div class="entry">
+					#{if post.content.length()>500}
+                    <p>${post.content.substring(0, 500).raw()} ...</p>
+                    #{/if}
+                    #{else}<p>${post.content.raw()} ...</p>#{/else}
+			    </div>
+            <a href="/article/${post.id}">plus...</a>
+		  </div>
 #{/list}

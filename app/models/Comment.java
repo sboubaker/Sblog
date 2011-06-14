@@ -33,18 +33,6 @@ public class  Comment extends Model{
 	public String username;
 	
 	public String usersite;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_post")
-	public Post post;
-	
-	public boolean subscribe;
-	public Comment() {
-		// Default constructor
-	}
 
-	public Comment(String content, Date date) {
-		this.content = content;
-		this.date = date;
-	}
+	public boolean subscribe;
 }

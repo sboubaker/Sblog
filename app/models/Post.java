@@ -4,17 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
 import play.data.validation.Required;
 import play.db.jpa.Model;
 
@@ -24,6 +16,7 @@ public class Post extends Model {
 
 	/** Field mapping. */
 	@Required
+    @Column(length = 65535)
 	public String content;
 	/** Field mapping. */
 	public Date lastchange;
@@ -60,22 +53,7 @@ public class Post extends Model {
     /** nuber of valid comments **/
     @Transient
     public int vcomments;
-	/**
-	 * Default constructor
-	 */
-	public Post() {
-		// Default constructor
-	}
-
-	/**
-	 * constructor
-	 */
-	public Post(String content, Date lastchange, String title) {
-		this.content = content;
-		this.lastchange = lastchange;
-		this.title = title;
-	}
-    public void init(){
+	public void init(){
         vcomments=0;
         for(Comment comment:comments){
               if(comment.status)

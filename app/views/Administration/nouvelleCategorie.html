@@ -13,5 +13,6 @@
 <h3>List des catégories</h3>
 
         #{list items:categories, as:'categorie'}
-            *&nbsp;&nbsp;${categorie.name}&nbsp;&nbsp;&nbsp;<a href="#">Supprimer</a> <br/>
+            *&nbsp;&nbsp;${categorie.name}&nbsp;&nbsp;&nbsp;<a href="/admin/delcat/${categorie.id}">Supprimer</a>
+            <br/><br/>
         #{/list}

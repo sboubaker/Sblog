@@ -8,19 +8,17 @@ import play.jobs.Job;
 import services.DataLayer;
 import play.libs.Mail;
 /**
- * Created by IntelliJ IDEA.
  * User: boubaker
  * Date: 10/06/11
  * Time: 16:57
  * To change this template use File | Settings | File Templates.
  */
 public class Commentnotifyer extends Job {
-    Email email = new SimpleEmail();
-    public void doJob() {
-             Mail.send(email);
-        }
-    public Commentnotifyer(Comment comment,long postId){
+    private Comment comment;
+    private long postId;
 
+    public void doJob() {
+        SimpleEmail email = new SimpleEmail();
         Post post= DataLayer.getPostById(postId);
         for(Comment cmt:post.comments){
                if(cmt.subscribe && !cmt.getId().equals(comment.getId())){
@@ -29,10 +27,16 @@ public class Commentnotifyer extends Job {
                 email.addTo(cmt.usermail);
                 email.setSubject("Nouveau commentaire sur: "+post.title);
                 email.setMsg(comment.username+" a ajouté un nouveau commentaire");
+                Mail.send(email);
                 }catch(Exception e){
+                    e.printStackTrace();
                 }
 
                }
         }
+        }
+    public Commentnotifyer(Comment comment,long postId){
+              this.comment=comment;
+              this.postId=postId;
     }
 }

@@ -21,10 +21,4 @@ public class Categorie extends Model {
 	/** Field mapping. */
 	@OneToMany
 	public List<Post> posts = new ArrayList<Post>();
-	/**
-	 * Default constructor, mainly for hibernate use.
-	 */
-	public Categorie() {
-		// Default constructor
-	}
 }

@@ -18,10 +18,8 @@ import util.Constantes;
 public class BasicTest extends UnitTest {
 
 	Logger logger = Logger.getLogger(BaseTest.class);
-	String postcontent="Concernant ce site, qui fabrique la C3 - la voiture la plus vendue par Citron -,"
-		+" le plan social est prvu pour 2013, et larrt, courant 2014. " +
-				"Ce planning est cohrent avec les orient";
-	//@Test
+
+    //@Test
 	public void cleardatabase() {
         logger.info(User.deleteAll());
         logger.info(Comment.deleteAll());
@@ -38,7 +36,6 @@ public class BasicTest extends UnitTest {
 		user.userpwd = "admin";
 		user.username = "sboubaker";
 		user.role = Constantes.ROLE_ADMIN;
-		//user.posts.add(post);
 		user.save();
 	}
 }

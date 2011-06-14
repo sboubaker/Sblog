@@ -1,6 +1,8 @@
 package controllers;
 
 import jobs.Commentnotifyer;
+import models.*;
+import play.Logger;
 import play.Play;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -12,16 +14,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 
-import models.Categorie;
-import models.Post;
-import models.Tag;
-import models.UiObject;
 import play.data.validation.Required;
 import play.data.validation .Valid;
 import play.mvc.Controller;
 import services.DataLayer;
-
-import models.User;
 
 @With(Security.class)
 public class Administration extends GenericController {
@@ -36,30 +32,45 @@ public class Administration extends GenericController {
             post.init();
 		render(list);
 	}
-	public static void commentaires(long postid) {
-		Post post=DataLayer.getPostById(postid);
+	public static void getCommentaires(long postId) {
+		Post post=DataLayer.getPostById(postId);
         post.init();
-		render(post);
+		renderTemplate("Administration/commentaires.html", post);
 	}
-	public static void validerCommentaire(long postid,int commentnumber) {
-		Post post=DataLayer.getPostById(postid);
-        post.comments.get(commentnumber).status= !post.comments.get(commentnumber).status;
-		post.comments.get(commentnumber).save();
-        if(post.comments.get(commentnumber).status){
-            new Commentnotifyer(post.comments.get(commentnumber),postid).now();
+	public static void validerCommentaire(long postId,int commentNumber) {
+		Post post=DataLayer.getPostById(postId);
+        post.comments.get(commentNumber).status= !post.comments.get(commentNumber).status;
+		post.comments.get(commentNumber).save();
+        if(post.comments.get(commentNumber).status){
+            new Commentnotifyer(post.comments.get(commentNumber),postId).now();
         }
 		post.save();
-		commentaires(postid);
+		getCommentaires(postId);
 	}
-    public static void validerPost(long postid) {
-		Post post=DataLayer.getPostById(postid);
+    public static void supprimerCommentaire(long postId,int commentNumber) {
+		Post post=DataLayer.getPostById(postId);
+        Comment comment=post.comments.get(commentNumber);
+        post.comments.set(commentNumber,null);
+        post.save();
+        comment.delete();
+		getCommentaires(postId);
+	}
+    public static void validerArticle(long postId) {
+		Post post=DataLayer.getPostById(postId);
 		post.status= !post.status;
 		post.save();
 		articles();
 	}
-    public static void nouveauArticle(){
+    public static void nouveauArticle(long postId){
+        Post post;
+        if(postId!=-1){
+            post = DataLayer.getPostById(postId);
+        }else{
+            post=new Post();
+            post.id=(long)-1;
+        }
         List<Categorie> categories=DataLayer.getAllCategories();
-        render(categories);
+        render(categories,post);
     }
     public static void nouvelleImage(){
         File images=Play.getFile("/public/images/blog");
@@ -68,29 +79,30 @@ public class Administration extends GenericController {
     public static void supprimerImage(String file){
         notFoundIfNull(file);
         File photo= Play.getFile("/public/images/blog/"+file);
-        photo.delete();
+        if(!photo.delete())
+            Logger.info(file+" can't be deleted");
         nouvelleImage();
-
     }
     public static void ajouterImage(File photo){
-
         notFoundIfNull(photo);
         File newFile= Play.getFile("/public/images/blog/"+photo.getName());
-        photo.renameTo(newFile);
-        photo.delete();
+        if(!photo.renameTo(newFile))
+             Logger.info(photo.getName()+" can't be renamed");
+        if(!photo.delete())
+            Logger.info(photo.getName()+" can't be deleted");
         nouvelleImage();
-
     }
-    public static void ajouterArticle(@Required String title,@Required String content,@Required String strtags,@Required String categorieid){
+    public static void ajouterArticle(@Required String title,@Required String content,@Required String strtags,@Required long categorieId,@Required  long postId){
         if(validation.hasErrors()) {
             params.flash(); // add http parameters to the flash scope
             validation.keep(); // keep the errors for the next request
-            nouveauArticle();
+            nouveauArticle(-1);
         }
-        Post post=new Post();
-        Categorie categorie=DataLayer.getCategorieById(Long.parseLong(categorieid));
-        if(categorie != null){
-           post.categorie=categorie;
+        Post post;
+        if(postId!=-1){
+             post = DataLayer.getPostById(postId) ;
+        }else{
+            post = new Post();
         }
         //setting the date
         post.lastchange=new Date();
@@ -106,22 +118,46 @@ public class Administration extends GenericController {
                    tag.tag=strtag.trim();
                    tag.save();
               }
+            tag.init();
             post.tags.add(tag);
         }
-        post.save();
-        categorie.posts.add(post);
-        categorie.save();
+        Categorie categorie=DataLayer.getCategorieById(categorieId);
+        if(categorie != null){
+           if(post.categorie==null){
+             post.categorie=categorie;
+             post.save();
+             categorie.posts.add(post);
+             categorie.save();
+           }else{
+           if((post.categorie !=null) && categorie.getId().equals(post.categorie.getId())){
+               post.save();
+           }else{
+              Categorie cat=post.categorie;
+              int i=post.categorie.posts.indexOf(post);
+              cat.posts.remove(i);
+              cat.save();
+              post.categorie=categorie;
+              post.save();
+              categorie.posts.add(post);
+              categorie.save();
+           }
+           }
+        }
         articles();
     }
-    public static void supprimerArticle(long postid){
-        Post post=DataLayer.getPostById(postid);
+    public static void supprimerArticle(long postId){
+        Post post=DataLayer.getPostById(postId);
+        if(post!=null){
         Categorie categorie=post.categorie;
+        if(categorie!=null){
         int i=categorie.posts.indexOf(post);
         categorie.posts.remove(i);
         categorie.save();
+        }
         post.categorie=null;
         post.save();
         post.delete();
+        }
         articles();
     }
     public static void ajouterCategorie(String name){
@@ -131,8 +167,15 @@ public class Administration extends GenericController {
            nouvelleCategorie();
     }
     public static void nouvelleCategorie(){
-           List<Categorie> categories=null;
+           List<Categorie> categories;
            categories=Categorie.findAll();
            render(categories);
+    }
+    public static void supprimerCategorie(long catId){
+           Categorie categorie=DataLayer.getCategorieById(catId);
+           if(categorie!=null){
+              categorie.delete();
+           }
+           nouvelleCategorie();
     }
 }

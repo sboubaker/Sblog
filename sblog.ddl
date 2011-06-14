@@ -90,7 +90,7 @@
 
     create table post (
         id bigint not null auto_increment,
-        content varchar(255),
+        content text,
         lastchange datetime,
         nshow integer not null,
         status bit not null,

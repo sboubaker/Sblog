@@ -2,26 +2,24 @@
 #{set title:'Home' /}
 
 
- <div class="article">
-                <h2><span><a href="#">${post.title}</a></span></h2>
-                <p class="info noprint">
-                    <span class="date">${post.lastchange.format('dd/MM/yyyy')}</span><span class="noscreen">,</span>
-                    <span class="cat"><a href="#">${post.categorie.name}</a></span><span class="noscreen">,</span>
-                    <!--<span class="user"><a href="#">My name</a></span><span class="noscreen">,</span>-->
-                    <span class="comments"><a href="#comment">${post.vcomments}</a></span>
-                </p>
+ <div class="post">
+				<h2 class="title"><a href="/article/${post.id}">${post.title}</a></h2>
+				<p class="meta">Date:${post.lastchange.format('dd/MM/yyyy hh:mm')}
+                    Catégorie:${post.categorie.name}
+                     Tags:#{list items:post.tags, as:'tag'}<a href="/articles/2/${tag.tag}"> ${tag.tag}</a>#{/list}
+                 Commentaires: ${post.vcomments}</p>
+				<div class="entry">
+					<p>${post.content.raw()}</p>
+			    </div>
 
-                <p>${post.content.raw()} ...</p>
-     <hr/>
                 &nbsp;&nbsp;<a href="http://twitter.com/share" class="twitter-share-button" data-text="${post.title}" data-count="horizontal" data-via="sabri_boubaker" data-lang="fr">Tweeter</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-                <p class="btn-more box noprint"><strong><a href="#comment">Réagir</a></strong></p>
-            </div> <!-- /article -->
-
-            <hr class="noscreen" />
- <h3>Commentaires:</h3><br/>
+                <p><strong><a style="float: right;" href="#comment">Commenter</a></strong></p>
+  <hr/>
+  #{if post.vcomments>0}
+  <h3>Commentaires:</h3><br/>
   #{list items:post.comments, as:'comment'}
 	#{if comment.status==true}
-	<div >
+	<div class="commentaire">
 		<div>
 		#{gravatar.img comment.usermail ,size:55/}&nbsp;<cite><strong><a  href="#{if comment.usersite!=null}${comment.usersite}#{/if}#{else}##{/else}">${comment.username}</a> 
 		</strong> a dit le ${comment.date.format('dd/MM/yyyy hh:mm')}</cite>
@@ -30,47 +28,71 @@
 	</div>
 	#{/if}
 	#{/list}
-
+     <hr/>
+  #{/if}
 <!-- Leave a comment -->
+
 <br/>
-<h3>Laisser un commentaire:</h3>
-<div name="comment">
-#{form @Consultation.addComment(), id:'commentform'}
-		<input type="hidden" name="post_id" value="${post.id}">
+<h3  name="comment">Laisser un commentaire:</h3>
+<div>
+<form id="commentform" action="">
+		<input id="post_id" type="hidden" name="post_id" value="${post.id}">
 		<br/>
 		<div>
 			<label style="display:block;"> Nom (obligatoire)</label>
-			<input type="text" class="required" style="display:block;" name="comment.username"value="" />
+			<input id="username" type="text" class="required" style="display:block;" name="comment.username"value="" />
 			
 		</div>
 		<br/>
 		<div>
 			<label style="display:block;"> E-mail (invisible mais obligatoire)</label>
-			<input type="text" class="required email" style="display:block;" name="comment.usermail" value="" />
+			<input id="usermail" type="text" class="required email" style="display:block;" name="comment.usermail" value="" />
 			
 		</div>
 		<br/>
 		<div>	<label style="display:block;"> Site Web</label>
-			<input type="text" name="comment.usersite" style="display:block;" value="" />
+			<input id="usersite" type="text" name="comment.usersite" style="display:block;" value="" />
 			
 		</div>
 		<br/>
-		<div>
-
-		<textarea tabindex="4" rows="10" cols="50%" class="required" style="display:block;" name="comment.content"></textarea>
+		<div >
+        <label style="display:block;">Commentaire:</label>
+		<textarea style="width:100%;" id="content" tabindex="4" rows="10" cols="30" class="required" style="display:block;" name="comment.content"></textarea>
 		</div>
 		<p>
-		<input type="checkbox" style="width: auto;" value="true" name="comment.subscribe">
+		<input id="subscribe" type="checkbox" style="width: auto;" value="true" name="comment.subscribe">
 		<label> s'inscrire au flux des commentaires pour cet article.</label>
 		</p>
-		<div class="submit" style="float: left;">
-			<input type="submit" value="Envoyer" />
-		</div>
-#{/form} 
+		<input id="submit" type="submit" value="Envoyer" />
+
+</form>
+</div>
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#commentform").validate();
 });
+
+  $("#submit").click(function() {
+    var username = $("input#username").val();
+    var usermail = $("input#usermail").val();
+    var usersite = $("input#usersite").val();
+    var content = $("textarea#content").val();
+    var subscribe = $("input#subscribe").val();
+    var post_id = $("input#post_id").val();
+    var dataString = 'comment.username='+ username + '&comment.usermail=' + usermail + '&comment.usersite=' + usersite+ '&comment.content=' + content+ '&comment.subscribe=' + subscribe+ '&post_id=' + post_id;
+    //alert (dataString);return false;
+    $.ajax({
+      type: "POST",
+      url: "/contact/newComment",
+      data: dataString,
+      success: function() {
+       alert("Votre commentaire sera publié aprés sa validation.")
+     }
+   });
+   return false;
+  });
+
+
 </script>
 

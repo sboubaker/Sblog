@@ -1,168 +1,95 @@
-<?xml version="1.0"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta http-equiv="content-language" content="cs" />
-    <meta name="robots" content="all,follow" />
 
-    <meta name="author" content="All: ... [Nazev webu - www.url.cz]; e-mail: info@url.cz" />
-    <meta name="copyright" content="Design/Code: Vit Dlouhy [Nuvio - www.nuvio.cz]; e-mail: vit.dlouhy@nuvio.cz" />
-    
-    <title>Sabri Boubaker</title>
-    <meta name="description" content="..." />
-    <meta name="keywords" content="..." />
-    
-    <link rel="index" href="./" title="Home" />
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="@{'/public/stylesheets/main.css'}" />
-    <link rel="stylesheet" media="print" type="text/css" href="@{'/public/stylesheets/print.css'}" />
-    <link rel="stylesheet" media="aural" type="text/css" href="@{'/public/stylesheets/aural.css'}" />
-        <link rel="stylesheet" type="text/css" media="screen"
-	href="@{'/public/stylesheets/jquery.wysiwyg.css'}" />
-<script type="text/javascript"
-	src="@{'/public/javascripts/jquery-1.5.2.min.js'}"></script>
-	<script type="text/javascript"
-	src="@{'/public/javascripts/jquery.validate.pack.js'}"></script>
-    <script type="text/javascript"
-	src="@{'/public/javascripts/jquery.wysiwyg.js'}"></script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Geek 2.0</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link  href="@{'/public/stylesheets/style.css'}" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jquery.wysiwyg.css'}" />
+<script type="text/javascript"	src="@{'/public/javascripts/jquery-1.5.2.min.js'}"></script>
+<script type="text/javascript"	src="@{'/public/javascripts/jquery.validate.pack.js'}"></script>
+<script type="text/javascript"	src="@{'/public/javascripts/jquery.wysiwyg.js'}"></script>
 <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
 </head>
-
-<body id="www-url-cz">
-
-<!-- Main -->
-<div id="main" class="box">
-
-    <!-- Header -->
-    <div id="header">
-
-        <!-- Logotyp -->
-        <h1 id="logo"><a href="/">Sabri Boubaker's <strong>Blog</strong><span></span></a></h1>
-        <hr class="noscreen" />          
-
-        <!-- Quick links -->
-        <div class="noscreen noprint">
-            <!--<p><em>Quick links: <a href="#content">content</a>, <a href="#tabs">navigation</a>, <a href="#search">search</a>.</em></p>
-            <hr /> -->
-        </div>
-
-        <!-- Search -->
-        <div id="search" class="noprint">
-            <!--<form action="" method="get">
-                <fieldset><legend>Search</legend>
-                    <label><span class="noscreen">Find:</span>
-                    <span id="search-input-out"><input type="text" name="" id="search-input" size="30" /></span></label>
-                    <input type="image" src="design/search_submit.gif" id="search-submit" value="OK" />
-                </fieldset>
-            </form> -->
-        </div> <!-- /search -->
-
-    </div> <!-- /header -->
-
-     <!-- Main menu (tabs) -->
-     <div id="tabs" class="noprint">
-
-            <h3 class="noscreen">Navigation</h3>
-            <ul class="box">
-                <li id="active"><a href="/">Acceuil<span class="tab-l"></span><span class="tab-r"></span></a></li>
-                 #{list items:uiObject.categories, as:'categorie'}
-                  <li ><a href="/articles/1/${categorie.name}">${categorie.name}<span class="tab-l"></span><span class="tab-r"></span></a></li>
+<body>
+	<div id="logo">
+		<h1><a href="#"></a></h1>
+		<p><em> <a href="#"></a></em></p>
+	</div>
+	<hr />
+	<!-- end #logo -->
+	<div id="header">
+		<div id="menu">
+			<ul>
+				<li><a href="/" class="first">Home</a></li>
+                #{list items:uiObject.categories, as:'categorie'}
+                  <li ><a href="/articles/1/${categorie.name}">${categorie.name}</a></li>
                  #{/list}
-                <!-- Active -->
-                <li><a href="/contact">Contact<span class="tab-l"></span><span class="tab-r"></span></a></li>
-                <li><a href="#">About<span class="tab-l"></span><span class="tab-r"></span></a></li>
-            </ul>
-
-        <hr class="noscreen" />
-     </div> <!-- /tabs -->
-
-    <!-- Page (2 columns) -->
-    <div id="page" class="box">
-    <div id="page-in" class="box">
-
-
-
-        <!-- Content -->
-        <div id="content">
-         #{secure.check 'admin'}
-	 <a href="/admin/articles">Tout les articles</a>&nbsp;|&nbsp;<a href="/admin/newpost">Nouveau article</a>&nbsp;
-	 |&nbsp;<a href="/admin/newpic">Nouvelle image</a>|&nbsp;<a href="/admin/categories">Nouvelle catégorie</a><a href="/admin/logout" style="float: right;">logout</a>
-	  <hr/>
-      #{/secure.check}
-
-	#{doLayout/}
-
-        </div> <!-- /content -->
-
-        <!-- Right column -->
-        <div id="col" class="noprint">
-            <div id="col-in">
-
-                <!-- About Me -->
-                <h3><span><a href="#">About</a></span></h3>
-
-                <div id="about-me">
-                    <div style="float:left;">
-                    <p>#{gravatar.img 'boubaker.sabri@gmail.com' ,size:60/}
+				<li><a href="#">About</a></li>
+				<li><a href="/contact">Contact</a></li>
+			</ul>
+		</div>
+		<!-- end #menu -->
+        <!--
+		<div id="search">
+			<form method="get" action="">
+				<fieldset>
+				<input type="text" name="s" id="search-text" size="15" />
+				<input type="submit" id="search-submit" value="GO" />
+				</fieldset>
+			</form>
+		</div> -->
+		<!-- end #search -->
+	</div>
+	<!-- end #header -->
+	<!-- end #header-wrapper -->
+	<div id="page">
+		<div id="content">
+        #{secure.check 'admin'}
+	    <a href="/admin/articles">Tout les articles</a>&nbsp;|&nbsp;<a href="/admin/newpost/-1">Nouveau article</a>&nbsp;
+	    |&nbsp;<a href="/admin/newpic">Nouvelle image</a>|&nbsp;<a href="/admin/categories">Nouvelle catégorie</a><a href="/admin/logout" style="float: right;">logout</a>
+	    <hr/>
+        #{/secure.check}
+        #{doLayout/}
+		</div><!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>
+					<h2>About</h2>
+				    <div style="float:left;">
+                    <p>#{gravatar.img 'boubaker.sabri@gmail.com' ,size:80/}
                     </div>
                     <strong>Sabri Boubaker</strong><br />
                     Age: 26<br />
                     Tunis, TN<br />
                     Geek 2.0<br />
-                    <a href="http://twitter.com/sabri_boubaker"><img src="http://www.twitterbuttons.com/upload/images/6a2fe834b0twitter-wb-fm.png" title="By: TwitterButtons.com" alt="By: TwitterButtons.com" width="100" height="30" /></a></p>
-                </div> <!-- /about-me -->
+                    <a target="_blank" href="http://twitter.com/sabri_boubaker"><img src="http://www.twitterbuttons.com/upload/images/6a2fe834b0twitter-wb-fm.png" title="By: TwitterButtons.com" alt="By: TwitterButtons.com" width="100" height="30" /></a>
 
-                <hr class="noscreen" />
-
-                <!-- Category -->
-                <h3 ><span>Tags</span></h3>
-
-                <ul id="category">
-                    #{list items:uiObject.tags, as:'tag'}
-                     <li id="category-active"><a href="/articles/2/${tag.tag}">${tag.tag}(${tag.vposts})</a></li>
-                    #{/list}
-                </ul>
-
-                <hr class="noscreen" />
-
-                <!-- Archive
-                <h3><span>Archive</span></h3>
-
-                <ul id="archive">
-                   <li><a href="#">January 2007</a></li>
-                    <li><a href="#">December 2006</a></li>
-                    <li><a href="#">November 2006</a></li>
-                    <li><a href="#">October 2006</a></li>
-                    <li><a href="#">September 2006</a></li>
-                    <li id="archive-active"><a href="#">August 2006</a></li>
-                    <li><a href="#">July 2006</a></li>
-                    <li><a href="#">June 2006</a></li>
-                    <li><a href="#">May 2006</a></li>
-                    <li><a href="#">April 2006</a></li>
-                    <li><a href="#">March 2006</a></li>
-                    <li><a href="#">February 2006</a></li>
-                    <li><a href="#">January 2006</a></li>
-                </ul>
-
-                <hr class="noscreen" />
-                 -->
-                <!-- Links -->
-                <h3><span>Blog preferés</span></h3>
-
-                <ul id="links">
-                    <li><a href="http://desgeeksetdeslettres.com/">Des Geeks et des lettres</a></li>
-                    <li><a href="http://www.touilleur-express.fr">Le Touilleur Express </a></li>
-                    <li><a href="http://lescastcodeurs.com">Les Cast Codeurs</a></li>
-                    <li><a href="http://blog.octo.com">Octo Talks!</a></li>
-                    <li><a href="http://blog.xebia.fr/">Xebia</a></li>
-                </ul>
-
-                <hr class="noscreen" />
-
-                <!-- login -->
-                <!-- About Me -->
-                <h3><span><a href="#">Login</a></span></h3>
-                 #{if flash.error}
+                </li>
+				<li>
+					<h2>Tags</h2>
+					<p>
+                        #{list items:uiObject.tags, as:'tag'}
+                        &nbsp;<a href="/articles/2/${tag.tag}" style="font-size:${(int)(Math.random() * (18-12)) + 12}px;">
+                            ${tag.tag}</a>
+                        #{/list}
+					</p>
+				</li>
+				<li>
+					<h2>Blog preferés</h2>
+					<ul>
+						<li><a target="_blank" href="http://desgeeksetdeslettres.com/">Des Geeks et des lettres</a></li>
+                        <li><a target="_blank" href="http://www.touilleur-express.fr">Le Touilleur Express </a></li>
+                        <li><a target="_blank" href="http://lescastcodeurs.com">Les Cast Codeurs</a></li>
+                         <li><a target="_blank" href="http://blog.octo.com">Octo Talks!</a></li>
+                        <li><a target="_blank" href="http://blog.xebia.fr/">Xebia</a></li>
+					</ul>
+				</li>
+                <li>
+					<h2>Login</h2>
+					#{if flash.error}
 			    <p class="error">
 				&{flash.error}
 			    </p>
@@ -186,26 +113,18 @@
                     </p>
                     <input type="submit" name="login" value="Login" />
                 </fieldset>
-            </form>
-                </div> <!-- /about-me -->
-
-                <hr class="noscreen" />
-            </div> <!-- /col-in -->
-        </div> <!-- /col -->
-
-    </div> <!-- /page-in -->
-    </div> <!-- /page -->
-
-    <!-- Footer -->
-    <div id="footer">
-        <div id="top" class="noprint"><p><span class="noscreen">Back on top</span> <a href="#header" title="Back on top ^">^<span></span></a></p></div>
-        <hr class="noscreen" />
-        
-        <p id="createdby">created by <a href="http://www.nuvio.cz">Nuvio | Webdesign</a> <!-- DON´T REMOVE, PLEASE! --></p>
-        <p id="copyright">&copy; 2011 <a href="/contact">Sabri Boubaker</a></p>
-    </div> <!-- /footer -->
-
-</div> <!-- /main -->
-
+                </form>
+                </div>
+				</li>
+			</ul>
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #page -->
+	<div id="footer">
+		<p>Copyright (c) 2010 Sabri Boubaker. All rights reserved. Design by <a href="#">Sabri Boubaker</a>.</p>
+	</div>
+	<!-- end #footer -->
 </body>
 </html>

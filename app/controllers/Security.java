@@ -12,8 +12,8 @@ public class Security extends Secure.Security {
      * the user is allowed to log in into the system. This is the actual authentication process
      * against a third party system (most of the time a DB).
      *
-     * @param username
-     * @param password
+     * @param username l'@ mail de l'utilisateur
+     * @param password  le pwd ed l'utilisateur
      * @return true if the authentication process succeeded
      */
     static boolean authentify(String username, String password) {
@@ -27,7 +27,7 @@ public class Security extends Secure.Security {
      * This method checks that a profile is allowed to view this page/method. This method is called prior
      * to the method's controller annotated with the @Check method. 
      *
-     * @param profile
+     * @param profile le profile de l'utilisateur connecté
      * @return true if you are allowed to execute this controller method.
      */
     static boolean check(String profile) {

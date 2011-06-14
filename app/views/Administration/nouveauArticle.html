@@ -11,22 +11,24 @@
 <div style="float: right; ">
 
 </div>
+
 <form action="@{Administration.ajouterArticle()}" method="POST">
-    <label for="title">Titre:</label><br>
-    <input type="text" name="title"/><br>
+    <input type="hidden" value="${post.id}" name="postId">
+    <label >Titre:</label><br>
+    <input type="text" name="title" value="${post.title}"/><br>
     <span class="error">#{error 'post.title' /}</span>
-    <label for="title">Categorie:</label><br>
-    <select size="1" name="categorieid">
+    <label>Categorie:</label><br>
+    <select size="1" name="categorieId">
             #{list items:categories, as:'categorie'}
                 <option value="${categorie.id}">${categorie.name}</option>
             #{/list}
     </select><br>
     <span class="error">#{error 'categorieid' /}</span>
-    <label for="content">Text:</label><br>
-    <textarea name="content" id="text" rows="25" cols="85"></textarea><br>
+    <label >Text:</label><br>
+    <textarea name="content" id="text" rows="25" cols="70">${post.content}</textarea><br>
     <span class="error">#{error 'post.content' /}</span>
-    <label for="title">Tags:</label><br>
-    <input type="text" name="strtags" /><br>
+    <label >Tags:</label><br>
+    <input type="text" name="strtags" value="#{list items:post.tags, as:'tag'}${tag.tag};#{/list}" /><br>
     <span class="error">#{error 'strtags' /}</span>
     <div class="submit">
     <input type="submit" value="Submit" />

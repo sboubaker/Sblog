@@ -7,8 +7,10 @@ import models.Categorie;
 import models.Post;
 import models.Tag;
 import models.UiObject;
+import org.apache.commons.mail.SimpleEmail;
 import play.data.validation.Required;
 import play.data.validation .Valid;
+import play.libs.Mail;
 import play.mvc.Before;
 import play.mvc.Controller;
 import services.DataLayer;
@@ -32,7 +34,7 @@ public class Consultation extends GenericController {
 		case 2: list= DataLayer.getPostsByTag(value);break;
 		default: break;
 		}
-		if(list==null && (list.size()==0))
+		if((list==null) || (list.size()==0))
 			list=DataLayer.getPosts(false);
 		render(list);
 	}
@@ -55,6 +57,18 @@ public class Consultation extends GenericController {
 		post.save();
 		article(post_id);
 	}
-
+    public static void sendMail(String email,String name,String subject,String message) {
+        SimpleEmail mail=new SimpleEmail();
+        try{
+        mail.setFrom(email);
+        mail.setSubject(subject);
+        mail.addTo("boubaker.sabri@gmail.com");
+        mail.setMsg("Name:"+name+"\n"+message);
+        Mail.send(mail);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        contact();
+	}
 	
 }
