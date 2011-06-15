@@ -37,7 +37,7 @@ font-size: 20px;
 			    </div>
 
                 &nbsp;&nbsp;<a href="http://twitter.com/share" class="twitter-share-button" data-text="${post.title}" data-count="horizontal" data-via="sabri_boubaker" data-lang="fr">Tweeter</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-                <p><strong><a style="float: right;" href="#comment">Commenter</a></strong></p>
+                <p><strong><a id="commenter" class="lien" style="float: right;">Commenter</a></strong></p>
   <hr/>
   #{if post.vcomments>0}
   <h3>Commentaires:</h3><br/>
@@ -57,8 +57,9 @@ font-size: 20px;
 <!-- Leave a comment -->
 
 <br/>
-<h3  name="comment">Laisser un commentaire:</h3>
-<div>
+<div  id="commentzone" >
+<h3 name="comment">Laisser un commentaire:</h3>
+
 <form id="commentform" action="">
 		<input id="post_id" type="hidden" name="post_id" value="${post.id}">
 		<br/>
@@ -100,6 +101,8 @@ $(document).ready(function(){
     {
        $("#object").fadeOut("slow");
     });
+	$("#commentzone").hide();
+	$("#commenter").click(function() { $("#commentzone").show() });
 });
 
   $("#submit").click(function() {

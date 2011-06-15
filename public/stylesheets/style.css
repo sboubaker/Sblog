@@ -481,3 +481,20 @@ background: #F3F3F3;
 padding:5px 80px 5px 5px;
 margin-top:10px;
 }
+.lien{
+-moz-border-radius-bottomleft:3px;
+-moz-border-radius-bottomright:3px;
+-moz-border-radius-topleft:3px;
+-moz-border-radius-topright:3px;
+background-color:#C1D6E2;
+color:#666666;
+font-size:85%;
+margin:0;
+padding:2px 6px 3px;
+text-decoration:none;
+text-shadow:1px 1px 1px #FFFFFF;
+text-transform:uppercase;
+}
+.lien:hover {
+background-color:#C1DFFF;
+}
