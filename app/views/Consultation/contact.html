@@ -1,6 +1,36 @@
 #{extends 'main.html' /}
 #{set title:'Contact' /}
 
+<style>
+.message{
+border:1px solid;
+position:absolute;
+width:100%;
+border:1px solid;
+background:#C1D6E2;
+padding:5px;
+left:0px;
+top : -170px;
+font-size: 20px;
+}
+</style>
+
+#{ifErrors}
+
+   <h1>Oops...</h1>
+
+   #{errors}
+       <li>${error}</li>
+   #{/errors}
+
+#{/ifErrors}
+#{else}
+    #{if succ==1}
+    <div id="object" class="message">
+    <p style="text-align:center;">Message envoyé. Merci !!</p>
+    </div>
+    #{/if}
+#{/else}
 <div>
    <form action="/contact/sendmail" method="post" id="contact">
                 <fieldset style="width:50%;">
@@ -44,5 +74,15 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#contact").validate();
+    //first slide down and blink the message box
+    $("#object").animate({
+    top: "0px"
+    }, 2000 ).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    //close the message box when cross red image is clicked
+    $("#object").click(function()
+    {
+       $("#object").fadeOut("slow");
+    });
+
 });
 </script>

@@ -109,7 +109,6 @@ public class Administration extends GenericController {
         post.title= title;
         post.content=content;
         post.status=false;
-        post.user=DataLayer.getUserByEmail(Security.connected());
         String [] tags=strtags.split(";");
         for(String strtag:tags){
             Tag tag=DataLayer.getTagByName(strtag.trim());
@@ -119,21 +118,28 @@ public class Administration extends GenericController {
                    tag.save();
               }
             tag.init();
-            post.tags.add(tag);
+            if(!post.tags.contains(tag)){
+              post.tags.add(tag);
+            }
+
         }
         Categorie categorie=DataLayer.getCategorieById(categorieId);
         if(categorie != null){
-           if(post.categorie==null){
+            //new Post
+           if(post.categorie.getId()==null){
              post.categorie=categorie;
              post.save();
              categorie.posts.add(post);
              categorie.save();
+          //old post
            }else{
-           if((post.categorie !=null) && categorie.getId().equals(post.categorie.getId())){
+           //not changed categorie
+           if(categorie.getId().equals(post.categorie.getId())){
                post.save();
            }else{
+              //categorie changed
               Categorie cat=post.categorie;
-              int i=post.categorie.posts.indexOf(post);
+              int i=cat.posts.indexOf(post);
               cat.posts.remove(i);
               cat.save();
               post.categorie=categorie;
@@ -178,4 +184,15 @@ public class Administration extends GenericController {
            }
            nouvelleCategorie();
     }
+    public static void supprimerTag(String stag){
+           Tag tag=DataLayer.getTagByName(stag);
+           tag.delete();
+            tags();
+    }
+
+    public static void tags() {
+       List<Tag> tags=DataLayer.getAllTags();
+        render(tags);
+    }
+
 }

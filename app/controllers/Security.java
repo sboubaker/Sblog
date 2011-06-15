@@ -1,8 +1,7 @@
 package controllers;
 
 
-import controllers.Secure;
-import models.User;
+import play.Play;
 import services.DataLayer;
 
 public class Security extends Secure.Security {
@@ -17,11 +16,8 @@ public class Security extends Secure.Security {
      * @return true if the authentication process succeeded
      */
     static boolean authentify(String username, String password) {
-        User user=DataLayer.getUserByEmail(username);
-        if(user!=null){
-        	return user.userpwd.equals(password);
-        }
-        return false;
+        return Play.configuration.getProperty("application.admin").equals(username)
+                && Play.configuration.getProperty("application.adminpwd").equals(password);
     }
     /**
      * This method checks that a profile is allowed to view this page/method. This method is called prior
@@ -31,12 +27,7 @@ public class Security extends Secure.Security {
      * @return true if you are allowed to execute this controller method.
      */
     static boolean check(String profile) {
-    	User user=DataLayer.getUserByEmail(connected());
-        if(user!=null){
-        	return user.role.equals(profile);
-        }
-        return false;
-        	
+    	return Play.configuration.getProperty("application.admin.role").equals(profile);
     }
 }
 

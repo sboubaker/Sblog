@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.Type;
 import play.data.validation.Required;
 import play.db.jpa.Model;
 
@@ -26,9 +25,6 @@ public class Post extends Model {
 	/** Field mapping. */
 	@Required
 	public String title;
-	@ManyToOne
-	@JoinColumn(name = "id_user")
-	public User user;
 	/** Field mapping. */
 	@ManyToOne
     @JoinColumn(name = "id_categorie")

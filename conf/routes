@@ -4,7 +4,7 @@
 # Home page
 
 GET     /                                       	    Consultation.index
-GET     /contact                                	    Consultation.contact
+GET     /contact/{i}                                	    Consultation.contact
 
 # Ignore favicon requests
 
@@ -17,7 +17,6 @@ GET     /articles/{type}/{value}            		    Consultation.articles
 GET     /article/{id}            			            Consultation.article
 POST    /contact/sendmail           			        Consultation.sendMail
 POST    /contact/newComment                             Consultation.addComment
-
 *	    /admin						                    module:secure
 GET	    /admin/articles					                Administration.articles
 GET	    /admin/comments/{postId}			            Administration.getCommentaires
@@ -33,5 +32,7 @@ POST    /admin/nouvelleCategorie                        Administration.ajouterCa
 GET     /admin/categories                               Administration.nouvelleCategorie
 GET     /admin/delcat/{catId}                           Administration.supprimerCategorie
 GET     /admin/comments/delcom/{postId}/{commentNumber} Administration.supprimerCommentaire
+GET     /admin/tags                                     Administration.tags
+GET     /admin/deltag/{stag}                            Administration.supprimerTag
 # Catch all
 *       /{controller}/{action}                  	    {controller}.{action}

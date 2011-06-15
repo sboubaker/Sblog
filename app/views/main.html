@@ -28,7 +28,7 @@
                   <li ><a href="/articles/1/${categorie.name}">${categorie.name}</a></li>
                  #{/list}
 				<li><a href="#">About</a></li>
-				<li><a href="/contact">Contact</a></li>
+				<li><a href="/contact/0">Contact</a></li>
 			</ul>
 		</div>
 		<!-- end #menu -->
@@ -49,7 +49,7 @@
 		<div id="content">
         #{secure.check 'admin'}
 	    <a href="/admin/articles">Tout les articles</a>&nbsp;|&nbsp;<a href="/admin/newpost/-1">Nouveau article</a>&nbsp;
-	    |&nbsp;<a href="/admin/newpic">Nouvelle image</a>|&nbsp;<a href="/admin/categories">Nouvelle catégorie</a><a href="/admin/logout" style="float: right;">logout</a>
+	    |&nbsp;<a href="/admin/newpic">Nouvelle image</a>|&nbsp;<a href="/admin/categories">Catégories</a>|&nbsp;<a href="/admin/tags">Tags</a><a href="/admin/logout" style="float: right;">logout</a>
 	    <hr/>
         #{/secure.check}
         #{doLayout/}
@@ -123,7 +123,7 @@
 	</div>
 	<!-- end #page -->
 	<div id="footer">
-		<p>Copyright (c) 2010 Sabri Boubaker. All rights reserved. Design by <a href="#">Sabri Boubaker</a>.</p>
+		<p>Copyright (c) 2011 Sabri Boubaker. All rights reserved. Design by <a href="#">Sabri Boubaker</a>.</p>
 	</div>
 	<!-- end #footer -->
 </body>

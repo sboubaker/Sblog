@@ -6,7 +6,6 @@ import java.util.List;
 import models.Categorie;
 import models.Post;
 import models.Tag;
-import models.User;
 
 public class DataLayer {
 
@@ -42,16 +41,6 @@ public class DataLayer {
 		List<Categorie> categories = Categorie.findAll();
 		return categories;
 	}
-
-	/**
-	 * Methode to return all users
-	 * 
-	 * @return List<User>    la liste des users
-	 */
-	public static List<User> getAllUsers() {
-		return User.findAll();
-	}
-
 	/**
 	 * Get post by id
 	 * 
@@ -134,17 +123,11 @@ public class DataLayer {
 		}
 		return list;
 	}
-
-    /**
-     * return User by his mail @
-     * @param email l'email du l'utilisateur
-     * @return User l'utilisateur
-     */
-	public static User getUserByEmail(String email) {
-        List<User> user=User.find("usermail", email).fetch();
-        if(user!=null && user.size()!=0){
-             return user.get(0);
-        }
-		return null;
-	}
+    public static void deletePost(Post post){
+          Categorie categorie=post.categorie;
+          int index=categorie.posts.indexOf(post);
+          categorie.posts.remove(index);
+          categorie.save();
+          post.delete();
+    }
 }

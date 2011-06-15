@@ -18,11 +18,12 @@ public class Commentnotifyer extends Job {
     private long postId;
 
     public void doJob() {
-        SimpleEmail email = new SimpleEmail();
+        SimpleEmail email =null;
         Post post= DataLayer.getPostById(postId);
         for(Comment cmt:post.comments){
                if(cmt.subscribe && !cmt.getId().equals(comment.getId())){
                 try{
+                email = new SimpleEmail();
                 email.setFrom("boubaker.sabri@gmail.com");
                 email.addTo(cmt.usermail);
                 email.setSubject("Nouveau commentaire sur: "+post.title);

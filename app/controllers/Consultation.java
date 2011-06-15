@@ -24,8 +24,9 @@ public class Consultation extends GenericController {
             post.init();
 		renderTemplate("Consultation/articles.html",list);
 	}
-	public static void contact() {
-		render();
+	public static void contact(int i) {
+		int succ=i;
+        render(succ);
 	}
 	public static void articles(int type, String value) {
 		List<Post> list=null;
@@ -57,7 +58,12 @@ public class Consultation extends GenericController {
 		post.save();
 		article(post_id);
 	}
-    public static void sendMail(String email,String name,String subject,String message) {
+    public static void sendMail(@Required String email,@Required String name,@Required String subject,@Required String message) {
+        if(validation.hasErrors()) {
+            params.flash(); // add http parameters to the flash scope
+            validation.keep(); // keep the errors for the next request
+            contact(0);
+        }
         SimpleEmail mail=new SimpleEmail();
         try{
         mail.setFrom(email);
@@ -68,7 +74,7 @@ public class Consultation extends GenericController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        contact();
+        contact(1);
 	}
 	
 }
