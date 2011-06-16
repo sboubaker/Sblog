@@ -16,7 +16,7 @@ GET     /public/                                	    staticDir:public
 GET     /articles/{type}/{value}            		    Consultation.articles
 GET     /article/{id}            			            Consultation.article
 POST    /contact/sendmail           			        Consultation.sendMail
-POST    /contact/newComment                             Consultation.addComment
+POST    /newComment                                     Consultation.addComment
 *	    /admin						                    module:secure
 GET	    /admin/articles					                Administration.articles
 GET	    /admin/comments/{postId}			            Administration.getCommentaires
