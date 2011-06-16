@@ -68,7 +68,7 @@ public class Consultation extends GenericController {
         try{
         mail.setFrom(email);
         mail.setSubject(subject);
-        mail.addTo("boubaker.sabri@gmail.com");
+        mail.addTo("sabri.boubaker.blog@gmail.com");
         mail.setMsg("Name:"+name+"\n"+message);
         Mail.send(mail);
         }catch (Exception e){

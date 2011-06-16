@@ -49,7 +49,7 @@
 		<div id="content">
         #{secure.check 'admin'}
 	    <a href="/admin/articles">Tout les articles</a>&nbsp;|&nbsp;<a href="/admin/newpost/-1">Nouveau article</a>&nbsp;
-	    |&nbsp;<a href="/admin/newpic">Nouvelle image</a>|&nbsp;<a href="/admin/categories">Catégories</a>|&nbsp;<a href="/admin/tags">Tags</a><a href="/admin/logout" style="float: right;">logout</a>
+	    |&nbsp;<a href="/admin/newpic">Nouvelle image</a>|&nbsp;<a href="/admin/categories">Catégories</a>|&nbsp;<a href="/admin/tags">Tags</a>|&nbsp;<a href="/admin/clscache">ClearCache</a><a href="/admin/logout" style="float: right;">logout</a>
 	    <hr/>
         #{/secure.check}
         #{doLayout/}
@@ -76,6 +76,42 @@
                             ${tag.tag}</a>
                         #{/list}
 					</p>
+				</li>
+                <li>
+					<div id="twitter">
+                        <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+var twt=new TWTR.Widget({
+  version: 2,
+  type: 'profile',
+  rpp: 5,
+  interval: 6000,
+  width: 'auto',
+  height: 300,
+  theme: {
+    shell: {
+      background: '#98caf5',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#000000',
+      links: '#000000'
+    }
+  },
+  features: {
+    scrollbar: true,
+    loop: false,
+    live: false,
+    hashtags: true,
+    timestamp: true,
+    avatars: false,
+    behavior: 'all'
+  }
+}).render().setUser('sabri_boubaker').start();
+</script>
+
+					</div>
 				</li>
 				<li>
 					<h2>Blog preferés</h2>

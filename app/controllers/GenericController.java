@@ -19,12 +19,12 @@ public class GenericController extends Controller{
 	static void intiIHM() {
         UiObject uiObject=null;
         //TODO ignore before deploying
-        //uiObject=(UiObject)Cache.get("uiobject");
+        uiObject=(UiObject)Cache.get("uiobject");
 		if(uiObject==null){
         uiObject=new UiObject();
 		uiObject.tags=DataLayer.getAllTags();
 		uiObject.categories=DataLayer.getAllCategories();
-        //Cache.add("uiobject",uiObject);
+        Cache.add("uiobject",uiObject);
         }
 		renderArgs.put("uiObject", uiObject);
     }

@@ -24,7 +24,7 @@ font-size: 20px;
 }
 </style>
 <div id="object" class="message">
-    <p style="text-align:center;">Commentaire envoyé.Il sera publié aprés sa validation. Merci !!</p>
+    <p style="text-align:center;">Commentaire envoyé. Il sera publié aprés sa validation. Merci !!</p>
     </div>
  <div class="post">
 				<h2 class="title"><a href="/article/${post.id}">${post.title}</a></h2>
@@ -60,7 +60,7 @@ font-size: 20px;
 <div  id="commentzone" >
 <h3 name="comment">Laisser un commentaire:</h3>
 
-<form id="commentform" action="">
+<form id="commentform" action="/contact/newComment">
 		<input id="post_id" type="hidden" name="post_id" value="${post.id}">
 		<br/>
 		<div>
@@ -95,8 +95,8 @@ font-size: 20px;
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#commentform").validate();
-    //close the message box when cross red image is clicked
+    $("#commentform").validate();
+	//close the message box when cross red image is clicked
     $("#object").click(function()
     {
        $("#object").fadeOut("slow");
@@ -104,31 +104,5 @@ $(document).ready(function(){
 	$("#commentzone").hide();
 	$("#commenter").click(function() { $("#commentzone").show() });
 });
-
-  $("#submit").click(function() {
-    var username = $("input#username").val();
-    var usermail = $("input#usermail").val();
-    var usersite = $("input#usersite").val();
-    var content = $("textarea#content").val();
-    var subscribe = $("input#subscribe").val();
-    var post_id = $("input#post_id").val();
-    var dataString = 'comment.username='+ username + '&comment.usermail=' + usermail + '&comment.usersite=' + usersite+ '&comment.content=' + content+ '&comment.subscribe=' + subscribe+ '&post_id=' + post_id;
-    //alert (dataString);return false;
-    $.ajax({
-    type: "POST",
-    url: "/contact/newComment",
-    data: dataString,
-    success: function() {
-    scroll(0,0);
-    //first slide down and blink the message box
-    $("#object").animate({
-    top: "0px"
-    }, 2000 ).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-     }
-   });
-   return false;
-  });
-
-
 </script>
 

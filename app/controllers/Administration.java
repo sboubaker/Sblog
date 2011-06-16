@@ -4,6 +4,7 @@ import jobs.Commentnotifyer;
 import models.*;
 import play.Logger;
 import play.Play;
+import play.cache.Cache;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.With;
@@ -194,5 +195,8 @@ public class Administration extends GenericController {
        List<Tag> tags=DataLayer.getAllTags();
         render(tags);
     }
-
+    public static void clearCache() {
+       Cache.clear();
+        articles();
+    }
 }

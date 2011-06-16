@@ -34,5 +34,6 @@ GET     /admin/delcat/{catId}                           Administration.supprimer
 GET     /admin/comments/delcom/{postId}/{commentNumber} Administration.supprimerCommentaire
 GET     /admin/tags                                     Administration.tags
 GET     /admin/deltag/{stag}                            Administration.supprimerTag
+GET     /admin/clscache                                 Administration.clearCache
 # Catch all
 *       /{controller}/{action}                  	    {controller}.{action}

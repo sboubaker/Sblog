@@ -24,7 +24,7 @@ public class Commentnotifyer extends Job {
                if(cmt.subscribe && !cmt.getId().equals(comment.getId())){
                 try{
                 email = new SimpleEmail();
-                email.setFrom("boubaker.sabri@gmail.com");
+                email.setFrom("Geek 2.0");
                 email.addTo(cmt.usermail);
                 email.setSubject("Nouveau commentaire sur: "+post.title);
                 email.setMsg(comment.username+" a ajouté un nouveau commentaire");
