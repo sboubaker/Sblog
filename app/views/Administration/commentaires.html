@@ -17,9 +17,9 @@ Site: ${comment.usersite}<br>
 Inscrit: ${comment.subscribe}<br>
 <p>${comment.content}</p>
 <!--actions-->
-#{if comment.status}<a href="/admin/comments/validc/${post.id}/${comment.number}" style=" font-size:11px;">Dévalider</a>#{/if}
-#{else}<a href="/admin/comments/validc/${post.id}/${comment.number}" style=" font-size:11px;">Valider</a>#{/else}
-<a href="/admin/comments/delcom/${post.id}/${comment.number}" style=" font-size:11px;">Supprimer</a>
+#{if comment.status}<a href="/admin/comments/validc/${post.id}/${comment.id}" style=" font-size:11px;">Dévalider</a>#{/if}
+#{else}<a href="/admin/comments/validc/${post.id}/${comment.id}" style=" font-size:11px;">Valider</a>#{/else}
+<a href="/admin/comments/delcom/${post.id}/${comment.id}" style=" font-size:11px;">Supprimer</a>
 </div>
 <br/>
 #{/list}

@@ -8,7 +8,11 @@
 #{/errors}
 #{/ifErrors}
 #{else}
-
+ #{if succ==1}
+    <div id="object" class="message">
+    <p style="text-align:center;">Commentaire envoyé. Il sera publié aprés sa validation. Merci !!</p>
+    </div>
+    #{/if}
 #{/else}
 <style>
 .message{
@@ -23,14 +27,12 @@ top : -170px;
 font-size: 20px;
 }
 </style>
-<div id="object" class="message">
-    <p style="text-align:center;">Commentaire envoyé. Il sera publié aprés sa validation. Merci !!</p>
-    </div>
+
  <div class="post">
-				<h2 class="title"><a href="/article/${post.id}">${post.title}</a></h2>
+				<h2 class="title"><a href="/article/${post.id}/0">${post.title}</a></h2>
 				<p class="meta">Date:${post.lastchange.format('dd/MM/yyyy hh:mm')}
                     Catégorie:${post.categorie.name}
-                     Tags:#{list items:post.tags, as:'tag'}<a href="/articles/2/${tag.tag}"> ${tag.tag}</a>#{/list}
+                     Tags:#{list items:post.tags, as:'tag'}<a style="text-decoration:none;" href="/articles/2/${tag.tag}"> ${tag.tag}</a>#{/list}
                  Commentaires: ${post.vcomments}</p>
 				<div class="entry">
 					<p>${post.content.raw()}</p>
@@ -45,7 +47,7 @@ font-size: 20px;
 	#{if comment.status==true}
 	<div class="commentaire">
 		<div>
-		#{gravatar.img comment.usermail ,size:55/}&nbsp;<cite><strong><a  href="#{if comment.usersite!=null}${comment.usersite}#{/if}#{else}##{/else}">${comment.username}</a> 
+		#{gravatar.img comment.usermail ,size:55/}&nbsp;<cite><strong><a target="_blank"  href="#{if comment.usersite!=null}${comment.usersite}#{/if}#{else}##{/else}">${comment.username}</a>
 		</strong> a dit le ${comment.date.format('dd/MM/yyyy hh:mm')}</cite>
 		</div>
 		<p>${comment.content}</p>
@@ -96,7 +98,10 @@ font-size: 20px;
 <script type="text/javascript">
 $(document).ready(function(){
     $("#commentform").validate();
-	//close the message box when cross red image is clicked
+	$("#object").animate({
+    top: "0px"
+    }, 2000 ).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    //close the message box when cross red image is clicked
     $("#object").click(function()
     {
        $("#object").fadeOut("slow");

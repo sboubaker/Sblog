@@ -6,6 +6,7 @@ import java.util.List;
 import models.Categorie;
 import models.Post;
 import models.Tag;
+import models.Comment;
 
 public class DataLayer {
 
@@ -49,6 +50,15 @@ public class DataLayer {
 	 */
 	public static Post getPostById(long id) {
 		return Post.findById(id);
+	}
+
+    /**
+     * Get comment by Id
+     * @param id
+     * @return
+     */
+    public static Comment getCommentById(long id) {
+		return Comment.findById(id);
 	}
 
     /**

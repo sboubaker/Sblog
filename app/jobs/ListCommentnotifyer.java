@@ -13,7 +13,7 @@ import play.libs.Mail;
  * Time: 16:57
  * To change this template use File | Settings | File Templates.
  */
-public class Commentnotifyer extends Job {
+public class ListCommentnotifyer extends Job {
     private Comment comment;
     private long postId;
 
@@ -24,10 +24,10 @@ public class Commentnotifyer extends Job {
                if(cmt.subscribe && !cmt.getId().equals(comment.getId())){
                 try{
                 email = new SimpleEmail();
-                email.setFrom("Geek 2.0");
+                email.setFrom("boubaker.sabri@gmail.com");
                 email.addTo(cmt.usermail);
                 email.setSubject("Nouveau commentaire sur: "+post.title);
-                email.setMsg(comment.username+" a ajouté un nouveau commentaire");
+                email.setMsg(comment.username+" a ajouté un nouveau commentaire. \nLien direct: http://geek-20.cloudfoundry.com/article/"+postId+"/0");
                 Mail.send(email);
                 }catch(Exception e){
                     e.printStackTrace();
@@ -36,7 +36,7 @@ public class Commentnotifyer extends Job {
                }
         }
         }
-    public Commentnotifyer(Comment comment,long postId){
+    public ListCommentnotifyer(Comment comment, long postId){
               this.comment=comment;
               this.postId=postId;
     }

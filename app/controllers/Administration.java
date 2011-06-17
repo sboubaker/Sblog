@@ -1,23 +1,18 @@
 package controllers;
 
-import jobs.Commentnotifyer;
+import jobs.ListCommentnotifyer;
 import models.*;
 import play.Logger;
 import play.Play;
 import play.cache.Cache;
 import play.mvc.Before;
-import play.mvc.Controller;
 import play.mvc.With;
 
 import java.io.File;
-import java.io.PipedOutputStream;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Date;
 
 import play.data.validation.Required;
-import play.data.validation .Valid;
-import play.mvc.Controller;
 import services.DataLayer;
 
 @With(Security.class)
@@ -38,21 +33,17 @@ public class Administration extends GenericController {
         post.init();
 		renderTemplate("Administration/commentaires.html", post);
 	}
-	public static void validerCommentaire(long postId,int commentNumber) {
-		Post post=DataLayer.getPostById(postId);
-        post.comments.get(commentNumber).status= !post.comments.get(commentNumber).status;
-		post.comments.get(commentNumber).save();
-        if(post.comments.get(commentNumber).status){
-            new Commentnotifyer(post.comments.get(commentNumber),postId).now();
+	public static void validerCommentaire(long postId,long commentId) {
+		Comment comment=DataLayer.getCommentById(commentId);
+        comment.status= !comment.status;
+		comment.save();
+        if(comment.status){
+            new ListCommentnotifyer(comment,postId).now();
         }
-		post.save();
 		getCommentaires(postId);
 	}
-    public static void supprimerCommentaire(long postId,int commentNumber) {
-		Post post=DataLayer.getPostById(postId);
-        Comment comment=post.comments.get(commentNumber);
-        post.comments.set(commentNumber,null);
-        post.save();
+    public static void supprimerCommentaire(long postId,long commentId) {
+		Comment comment=DataLayer.getCommentById(commentId);
         comment.delete();
 		getCommentaires(postId);
 	}

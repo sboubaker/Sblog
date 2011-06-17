@@ -74,7 +74,7 @@ hr { display: none; }
 
 #header {
 	width: 980px;
-	height: 50px;
+	height: 30px;
 	margin: 0 auto;
 	padding: 0px;
 }
@@ -83,7 +83,7 @@ hr { display: none; }
 
 #logo {
 	width: 980px;
-	height: 145px;
+	height: 99px;
 	margin: 0 auto;
 	padding: 0px;
 	background: url(/public/images/logo.jpg) no-repeat left top;
@@ -122,20 +122,20 @@ hr { display: none; }
 
 #menu {
 	float: left;
-	height: 50px;
+	height: 30px;
 }
 
 #menu ul {
 	margin: 0;
 	padding: 0px;
 	list-style: none;
-	line-height: normal;
+	line-height: 1px;
 }
 
 #menu li {
 	display: block;
 	float: left;
-	background: url(/public/images/img04.jpg) no-repeat left top;
+
 
 }
 #menu li:hover {
@@ -144,7 +144,7 @@ hr { display: none; }
 #menu a {
 	display: block;
 	float: left;
-	height: 32px;
+	height: 30px;
 	padding: 12px 20px 0px 20px;
 	letter-spacing: -1px;
 	text-decoration: none;
@@ -210,6 +210,10 @@ hr { display: none; }
 /* Page */
 
 #page {
+    -moz-border-radius-bottomleft:3px;
+    -moz-border-radius-bottomright:3px;
+    -moz-border-radius-topleft:3px;
+    -moz-border-radius-topright:3px;
 	width: 940px;
 	margin: 0 auto;
 	padding: 20px 20px 0px 20px;
@@ -236,19 +240,19 @@ hr { display: none; }
     -moz-border-radius-topright:3px;
 	width: 580px;
 	margin-bottom: 20px;
-	padding: 20px 20px;
+	padding: 10px 20px;
 	background: #FFFFFF;
 	border: 1px solid #8D9AB0;
 }
 
 .post .title {
-	height: 44px;
+	height: 25px;
 }
 
 .post .title a {
 	text-decoration: none;
 	text-transform: capitalize;
-	font-size: 30px;
+	font-size: 25px;
 	color: #238EC6;
 }
 

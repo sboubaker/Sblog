@@ -14,8 +14,6 @@ import play.db.jpa.Model;
 @Table(name="comment")
 public class  Comment extends Model{
 
-	@Required
-	public int number;
 	/** Field mapping. */
 	@Required
 	public String content;
