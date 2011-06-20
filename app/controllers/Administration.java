@@ -44,6 +44,10 @@ public class Administration extends GenericController {
 	}
     public static void supprimerCommentaire(long postId,long commentId) {
 		Comment comment=DataLayer.getCommentById(commentId);
+        Post post= DataLayer.getPostById(postId);
+        int index=post.comments.indexOf(comment);
+        post.comments.set(index,null);
+        post.save();
         comment.delete();
 		getCommentaires(postId);
 	}

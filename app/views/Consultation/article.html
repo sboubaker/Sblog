@@ -8,7 +8,7 @@
 #{/errors}
 #{/ifErrors}
 #{else}
- #{if succ==1}
+ #{if i==1}
     <div id="object" class="message">
     <p style="text-align:center;">Commentaire envoyé. Il sera publié aprés sa validation. Merci !!</p>
     </div>
@@ -47,7 +47,7 @@ font-size: 20px;
 	#{if comment.status==true}
 	<div class="commentaire">
 		<div>
-		#{gravatar.img comment.usermail ,size:55/}&nbsp;<cite><strong><a target="_blank"  href="#{if comment.usersite!=null}${comment.usersite}#{/if}#{else}##{/else}">${comment.username}</a>
+		#{gravatar.img comment.usermail ,size:55/}&nbsp;<cite><strong>#{if comment.usersite!=null && !comment.usersite.equals("") }<a target="_blank"  href="${comment.usersite}">${comment.username}</a>#{/if}#{else}${comment.username}#{/else}
 		</strong> a dit le ${comment.date.format('dd/MM/yyyy hh:mm')}</cite>
 		</div>
 		<p>${comment.content}</p>
@@ -100,7 +100,7 @@ $(document).ready(function(){
     $("#commentform").validate();
 	$("#object").animate({
     top: "0px"
-    }, 2000 ).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    }, 2000 ).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
     //close the message box when cross red image is clicked
     $("#object").click(function()
     {

@@ -17,7 +17,7 @@ public class GenericController extends Controller{
 
     @Before
 	static void intiIHM() {
-        UiObject uiObject=null;
+        UiObject uiObject;
         //TODO ignore before deploying
         uiObject=(UiObject)Cache.get("uiobject");
 		if(uiObject==null){

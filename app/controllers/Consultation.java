@@ -15,13 +15,15 @@ public class Consultation extends GenericController {
 
 	public static void index() {
 		List<Post> list=DataLayer.getPosts(false);
+        if(list.size()>=5){
+           list=list.subList(0,4);
+        }
         for(Post post:list)
             post.init();
 		renderTemplate("Consultation/articles.html",list);
 	}
 	public static void contact(int i) {
-		int succ=i;
-        render(succ);
+		render(i);
 	}
     public static void about() {
 		render();
@@ -43,8 +45,7 @@ public class Consultation extends GenericController {
 		post.nshow++;
         post.save();
         post.init();
-        int succ=i;
-		render(post,succ);
+        render(post,i);
 	}
 	public static void addComment(@Valid models.Comment comment,long post_id) {
 		Post post = DataLayer.getPostById(post_id);

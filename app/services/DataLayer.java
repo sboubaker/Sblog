@@ -1,12 +1,15 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import models.Categorie;
 import models.Post;
 import models.Tag;
 import models.Comment;
+import org.apache.commons.collections.bag.SynchronizedSortedBag;
 
 public class DataLayer {
 
@@ -19,7 +22,7 @@ public class DataLayer {
 		if(all)
 		return Post.findAll();
 		else
-		return Post.find("status", true).fetch();
+		return Post.find("status is true order by lastchange desc").fetch(5);
 	}
     /**
 	 * Methode to return all tags
@@ -58,7 +61,7 @@ public class DataLayer {
      * @return
      */
     public static Comment getCommentById(long id) {
-		return Comment.findById(id);
+       return Comment.findById(id);
 	}
 
     /**
@@ -110,6 +113,7 @@ public class DataLayer {
                 }
 			}
 		}
+        Collections.reverse(list);
 		return list;
 	}
 
@@ -131,7 +135,8 @@ public class DataLayer {
                 }
 			}
 		}
-		return list;
+        Collections.reverse(list);
+        return list;
 	}
     public static void deletePost(Post post){
           Categorie categorie=post.categorie;

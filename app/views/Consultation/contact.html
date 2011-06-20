@@ -25,7 +25,7 @@ font-size: 20px;
 
 #{/ifErrors}
 #{else}
-    #{if succ==1}
+    #{if i==1}
     <div id="object" class="message">
     <p style="text-align:center;">Message envoyé. Merci !!</p>
     </div>
@@ -77,7 +77,7 @@ $(document).ready(function(){
     //first slide down and blink the message box
     $("#object").animate({
     top: "0px"
-    }, 2000 ).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    }, 2000 ).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
     //close the message box when cross red image is clicked
     $("#object").click(function()
     {
