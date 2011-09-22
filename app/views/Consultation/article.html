@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title: title /}
 
 #{ifErrors}
 <h1>Oops...</h1>
@@ -8,106 +8,130 @@
 #{/errors}
 #{/ifErrors}
 #{else}
- #{if i==1}
-    <div id="object" class="message">
+#{if i==1}
+<style>
+    .message{
+    border:1px solid;
+    position:absolute;
+    width:100%;
+    border:1px solid;
+    background:#C1D6E2;
+    padding:5px;
+    left:0px;
+    top : -170px;
+    font-size: 20px;
+    }
+</style>
+<div id="object" class="message">
     <p style="text-align:center;">Commentaire envoyé. Il sera publié aprés sa validation. Merci !!</p>
+</div>
+#{/if}
+#{/else}
+
+<article class="post">
+
+    <ul id="TwittBar" style="width: 80px; margin-left: -112px; display: block; position: fixed;">
+        <li>
+            <a href="http://twitter.com/share" class="twitter-share-button" data-text="${post.title}"
+               data-count="vertical" data-via="sabri_boubaker" data-lang="fr">Tweeter</a>
+        </li>
+    </ul>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <header class="title"><a href="/article/${post.title}">${post.title}</a></header>
+    <div class="entry">
+        <p>${post.content.raw()}</p>
+    </div>
+    <div>
+        <footer>
+            <p class="meta">Date:${post.lastchange.format('dd/MM/yyyy hh:mm')}
+                Catégorie:${post.categorie.name}
+                Tags:#{list items:post.tags, as:'tag'}&nbsp;<a style="text-decoration:none;"
+                                                               href="/articles/tag/${tag.tag}">${tag.tag}</a>#{/list}
+                Commentaires: ${post.vcomments}</p>
+        </footer>
+    </div>
+
+    <p><strong><a id="commenter" class="lien" style="float: right;">Commenter</a></strong></p>
+    <hr/>
+    #{if post.vcomments>0}
+    <h4>Commentaires:</h4><br/>
+    #{list items:post.comments, as:'comment'}
+    #{if comment.status==true}
+    <div class="commentaire">
+        <div>
+            #{gravatar.img comment.usermail ,size:55/}&nbsp;<cite><strong>#{if comment.usersite!=null &&
+            !comment.usersite.equals("") }<a target="_blank" href="${comment.usersite}">${comment.username}</a>#{/if}#{else}${comment.username}#{/else}
+        </strong> a dit le ${comment.date.format('dd/MM/yyyy hh:mm')}</cite>
+        </div>
+        <p>${comment.content}</p>
     </div>
     #{/if}
-#{/else}
-<style>
-.message{
-border:1px solid;
-position:absolute;
-width:100%;
-border:1px solid;
-background:#C1D6E2;
-padding:5px;
-left:0px;
-top : -170px;
-font-size: 20px;
-}
-</style>
+    #{/list}
+    <hr/>
+    #{/if}
+    <!-- Leave a comment -->
 
- <div class="post">
-				<h2 class="title"><a href="/article/${post.id}/0">${post.title}</a></h2>
-				<p class="meta">Date:${post.lastchange.format('dd/MM/yyyy hh:mm')}
-                    Catégorie:${post.categorie.name}
-                     Tags:#{list items:post.tags, as:'tag'}<a style="text-decoration:none;" href="/articles/2/${tag.tag}"> ${tag.tag}</a>#{/list}
-                 Commentaires: ${post.vcomments}</p>
-				<div class="entry">
-					<p>${post.content.raw()}</p>
-			    </div>
+    <br/>
 
-                &nbsp;&nbsp;<a href="http://twitter.com/share" class="twitter-share-button" data-text="${post.title}" data-count="horizontal" data-via="sabri_boubaker" data-lang="fr">Tweeter</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-                <p><strong><a id="commenter" class="lien" style="float: right;">Commenter</a></strong></p>
-  <hr/>
-  #{if post.vcomments>0}
-  <h3>Commentaires:</h3><br/>
-  #{list items:post.comments, as:'comment'}
-	#{if comment.status==true}
-	<div class="commentaire">
-		<div>
-		#{gravatar.img comment.usermail ,size:55/}&nbsp;<cite><strong>#{if comment.usersite!=null && !comment.usersite.equals("") }<a target="_blank"  href="${comment.usersite}">${comment.username}</a>#{/if}#{else}${comment.username}#{/else}
-		</strong> a dit le ${comment.date.format('dd/MM/yyyy hh:mm')}</cite>
-		</div>
-		<p>${comment.content}</p>
-	</div>
-	#{/if}
-	#{/list}
-     <hr/>
-  #{/if}
-<!-- Leave a comment -->
+    <div id="commentzone">
+        <h4 name="comment">Laisser un commentaire:</h4>
 
-<br/>
-<div  id="commentzone" >
-<h3 name="comment">Laisser un commentaire:</h3>
+        <form id="commentform" action="/newComment" method="POST">
+            <input id="post_title" type="hidden" name="title" value="${post.title}">
+            <br/>
 
-<form id="commentform" action="/newComment" method="POST">
-		<input id="post_id" type="hidden" name="post_id" value="${post.id}">
-		<br/>
-		<div>
-			<label style="display:block;"> Nom (obligatoire)</label>
-			<input id="username" type="text" class="required" style="display:block;" name="comment.username"value="" />
-			
-		</div>
-		<br/>
-		<div>
-			<label style="display:block;"> E-mail (invisible mais obligatoire)</label>
-			<input id="usermail" type="text" class="required email" style="display:block;" name="comment.usermail" value="" />
-			
-		</div>
-		<br/>
-		<div>	<label style="display:block;"> Site Web</label>
-			<input id="usersite" type="text" name="comment.usersite" style="display:block;" value="" />
-			
-		</div>
-		<br/>
-		<div >
-        <label style="display:block;">Commentaire:</label>
-		<textarea style="width:100%;" id="content" tabindex="4" rows="10" cols="30" class="required" style="display:block;" name="comment.content"></textarea>
-		</div>
-		<p>
-		<input id="subscribe" type="checkbox" style="width: auto;" value="true" name="comment.subscribe">
-		<label> s'inscrire au flux des commentaires pour cet article.</label>
-		</p>
-		<input id="submit" type="submit" value="Envoyer" />
+            <div>
+                <label style="display:block;"> Nom (obligatoire)</label>
+                <input id="username" type="text" class="required" style="display:block;" name="comment.username"
+                       value=""/>
 
-</form>
-</div>
-</div>
+            </div>
+            <br/>
+
+            <div>
+                <label style="display:block;"> E-mail (invisible mais obligatoire)</label>
+                <input id="usermail" type="text" class="required email" style="display:block;"
+                       name="comment.usermail"
+                       value=""/>
+
+            </div>
+            <br/>
+
+            <div><label style="display:block;"> Site Web</label>
+                <input id="usersite" type="text" name="comment.usersite" style="display:block;" value=""/>
+
+            </div>
+            <br/>
+
+            <div>
+                <label style="display:block;">Commentaire:</label>
+                <textarea style="width:100%;" id="content" tabindex="4" rows="10" cols="30" class="required"
+                          style="display:block;" name="comment.content"></textarea>
+            </div>
+            <p>
+                <input id="subscribe" type="checkbox" style="width: auto;" value="true" name="comment.subscribe">
+                <label> s'inscrire au flux des commentaires pour cet article.</label>
+            </p>
+            <input id="submit" type="submit" value="Envoyer"/>
+
+        </form>
+    </div>
+
+</article>
 <script type="text/javascript">
-$(document).ready(function(){
+    $(document).ready(function(){
     $("#commentform").validate();
-	$("#object").animate({
+    $("#object").animate({
     top: "0px"
-    }, 2000 ).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
+    }, 2000
+    ).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
     //close the message box when cross red image is clicked
     $("#object").click(function()
     {
-       $("#object").fadeOut("slow");
+    $("#object").fadeOut("slow");
     });
-	$("#commentzone").hide();
-	$("#commenter").click(function() { $("#commentzone").show() });
-});
+    $("#commentzone").hide();
+    $("#commenter").click(function() { $("#commentzone").show() });
+    });
 </script>
 

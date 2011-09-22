@@ -4,4 +4,4 @@ require:
     - play
     - play -> secure
     - play -> gravatar 1.0
-    - play -> cloudfondry
+    - play -> cloudfondry 0.3

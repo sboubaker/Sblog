@@ -13,19 +13,19 @@ import services.DataLayer;
  * Time: 13:37
  * To change this template use File | Settings | File Templates.
  */
-public class GenericController extends Controller{
+public class GenericController extends Controller {
 
     @Before
-	static void intiIHM() {
+    static void intiIHM() {
         UiObject uiObject;
         //TODO ignore before deploying
-        uiObject=(UiObject)Cache.get("uiobject");
-		if(uiObject==null){
-        uiObject=new UiObject();
-		uiObject.tags=DataLayer.getAllTags();
-		uiObject.categories=DataLayer.getAllCategories();
-        Cache.add("uiobject",uiObject);
+        uiObject = (UiObject) Cache.get("uiobject");
+        if (uiObject == null) {
+            uiObject = new UiObject();
+            uiObject.tags = DataLayer.getAllTags();
+            uiObject.categories = DataLayer.getAllCategories();
+            Cache.add("uiobject", uiObject);
         }
-		renderArgs.put("uiObject", uiObject);
+        renderArgs.put("uiObject", uiObject);
     }
 }

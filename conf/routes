@@ -4,7 +4,7 @@
 # Home page
 
 GET     /                                       	    Consultation.index
-GET     /contact/{i}                                	Consultation.contact
+GET     /contact                                      	Consultation.contact
 GET     /about                                          Consultation.about
 # Ignore favicon requests
 
@@ -14,7 +14,7 @@ GET     /favicon.ico                            	    404
 
 GET     /public/                                	    staticDir:public
 GET     /articles/{type}/{value}            		    Consultation.articles
-GET     /article/{id}/{i}            			        Consultation.article
+GET     /article/{title}                			    Consultation.article
 POST    /contact/sendmail           			        Consultation.sendMail
 POST    /newComment                                     Consultation.addComment
 *	    /admin						                    module:secure

@@ -1,20 +1,28 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title: title /}
 
 #{list items:list, as:'post'}
- <!-- Articles -->
-        <div class="post">
-				<h2 class="title"><a href="/article/${post.id}/0">${post.title}</a></h2>
-				<p class="meta">Date:${post.lastchange.format('dd/MM/yyyy hh:mm')}
-                    Catégorie:${post.categorie.name}
-                     Tags:#{list items:post.tags, as:'tag'}&nbsp;<a style="text-decoration:none;" href="/articles/2/${tag.tag}">${tag.tag}</a>#{/list}
-                 Commentaires: ${post.vcomments}</p>
-				<div class="entry">
-					#{if post.content.length()>500}
-                    <p>${post.content.substring(0, 500).raw()} ...</p>
-                    #{/if}
-                    #{else}<p>${post.content.raw()} ...</p>#{/else}
-			    </div>
-            <a href="/article/${post.id}/0" class="lien">plus...</a>
-		  </div>
+<!-- Articles -->
+<article class="post">
+
+    <header class="title"><a href="/article/${post.title}">${post.title}</a></header>
+
+
+    <div class="entry">
+        #{if post.content.length()>500}
+        <p>${post.content.substring(0, 500).raw()} ...</p>
+        #{/if}
+        #{else}<p>${post.content.raw()} ...</p>#{/else}
+    </div>
+    <div>
+        <footer>
+            <p class="meta">Date:${post.lastchange.format('dd/MM/yyyy hh:mm')}
+                Catégorie:${post.categorie.name}
+                Tags:#{list items:post.tags, as:'tag'}&nbsp;<a style="text-decoration:none;"
+                                                               href="/articles/2/${tag.tag}">${tag.tag}</a>#{/list}
+                Commentaires: ${post.vcomments}</p>
+        </footer>
+    </div>
+    <a href="/article/${post.title}" class="lien">plus...</a>
+</article>
 #{/list}

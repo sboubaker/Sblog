@@ -4,31 +4,32 @@
 <h3>List des articles</h3>
 <hr/>
 <table id="box-table-a">
-<thead>
-<tr>
-<th scope="col">Statut</th>
-<th scope="col">Date modification</th>
-<th scope="col">Titre</th>
-<th scope="col">Commentaires</th>
-<th scope="col">Vu</th>
-<th scope="col">&nbsp;</th>
-<th scope="col">&nbsp;</th>
-</tr>
-</thead>
-<tbody>
-#{list items:list, as:'post'}
-<tr>
-<td>#{if post.status}<a href="/admin/posts/validp/${post.id}" style=" font-size:11px;">Dévalider</a>#{/if}
-#{else}<a href="/admin/posts/validp/${post.id}" style=" font-size:11px;">Valider</a>#{/else}</td>
-<td>${post.lastchange.format('dd/MM/yyyy hh:mm')}</td>
-<td>${post.title}</td>
-<td>${post.comments.size()}</td>
-<td>${post.nshow}</td>
-<!--actions-->
-<td><a href="/admin/newpost/${post.id}" style="float: right; font-size:11px;">Modifier</a></td>
-    <td><a href="/admin/delpost/${post.id}" style="float: right; font-size:11px;">Supprimer</a>
-<td><a href="/admin/comments/${post.id}" style="float: right; font-size:11px;">Commentaires</a></td>
-</tr>
-#{/list}
-</tbody>
+    <thead>
+    <tr>
+        <th scope="col">Statut</th>
+        <th scope="col">Date modification</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Commentaires</th>
+        <th scope="col">Vu</th>
+        <th scope="col">&nbsp;</th>
+        <th scope="col">&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    #{list items:list, as:'post'}
+    <tr>
+        <td>#{if post.status}<a href="/admin/posts/validp/${post.id}" style=" font-size:11px;">Dévalider</a>#{/if}
+            #{else}<a href="/admin/posts/validp/${post.id}" style=" font-size:11px;">Valider</a>#{/else}
+        </td>
+        <td>${post.lastchange.format('dd/MM/yyyy hh:mm')}</td>
+        <td>${post.title}</td>
+        <td>${post.comments.size()}</td>
+        <td>${post.nshow}</td>
+        <!--actions-->
+        <td><a href="/admin/newpost/${post.id}" style="float: right; font-size:11px;">Modifier</a></td>
+        <td><a href="/admin/delpost/${post.id}" style="float: right; font-size:11px;">Supprimer</a>
+        <td><a href="/admin/comments/${post.id}" style="float: right; font-size:11px;">Commentaires</a></td>
+    </tr>
+    #{/list}
+    </tbody>
 </table>

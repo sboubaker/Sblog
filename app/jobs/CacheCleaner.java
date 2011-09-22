@@ -11,12 +11,13 @@ import play.jobs.OnApplicationStart;
  * Time: 15:29
  */
 @OnApplicationStart
-public class CacheCleaner extends Job{
+public class CacheCleaner extends Job {
 
     public void doJob() {
         Cache.clear();
     }
-    public CacheCleaner(){
+
+    public CacheCleaner() {
 
     }
 }

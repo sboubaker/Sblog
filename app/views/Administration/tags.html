@@ -4,11 +4,11 @@
 <h2>La liste des Tag</h2>
 <hr/>
 #{if tags.size()==0}
-        <p>Aucune Tag</p>
+<p>Aucune Tag</p>
 #{/if}
 #{else}
 #{list items:tags, as:'tag'}
 *&nbsp;&nbsp;${tag.tag}&nbsp;&nbsp;&nbsp;<a href="/admin/deltag/${tag.tag}">Supprimer</a>
- <br/><br/>
+<br/><br/>
 #{/list}
 #{/else}

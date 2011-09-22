@@ -10,50 +10,69 @@ import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
-@Table(name="post")
+@Table(name = "post")
 public class Post extends Model {
 
-	/** Field mapping. */
-	@Required
+    /**
+     * Field mapping.
+     */
+    @Required
     @Column(length = 65535)
-	public String content;
-	/** Field mapping. */
-	public Date lastchange;
-	/** Field mapping. */
-	@Required
-	public boolean status;
-	/** Field mapping. */
-	@Required
-	public String title;
-	/** Field mapping. */
-	@ManyToOne
+    public String content;
+    /**
+     * Field mapping.
+     */
+    public Date lastchange;
+    /**
+     * Field mapping.
+     */
+    @Required
+    public boolean status;
+    /**
+     * Field mapping.
+     */
+    @Required
+    public String title;
+    /**
+     * Field mapping.
+     */
+    @ManyToOne
     @JoinColumn(name = "id_categorie")
-	public Categorie categorie = new Categorie();
-	/** Field mapping. */
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(
-		name = "post_tag", 
-		joinColumns = { 
-			@JoinColumn(name = "id_post") 
-		}, 
-		inverseJoinColumns = { 
-			@JoinColumn(name = "id_tag") 
-		}
-	)
-	public List<Tag> tags = new ArrayList<Tag>();
-	/** Field mapping. */
-	@OneToMany(cascade = CascadeType.REMOVE)
-	public List<Comment> comments = new ArrayList<Comment>();
-	/** number of show **/
-	public int nshow;
-    /** nuber of valid comments **/
+    public Categorie categorie = new Categorie();
+    /**
+     * Field mapping.
+     */
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "post_tag",
+            joinColumns = {
+                    @JoinColumn(name = "id_post")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "id_tag")
+            }
+    )
+    public List<Tag> tags = new ArrayList<Tag>();
+    /**
+     * Field mapping.
+     */
+    @OneToMany(cascade = CascadeType.REMOVE)
+    public List<Comment> comments = new ArrayList<Comment>();
+    /**
+     * number of show *
+     */
+    public int nshow;
+    /**
+     * nuber of valid comments *
+     */
     @Transient
     public int vcomments;
-	public void init(){
-        vcomments=0;
-        for(Comment comment:comments){
-              if(comment.status)
-                  vcomments++;
+
+    public void init() {
+        vcomments = 0;
+        for (Comment comment : comments) {
+            if (comment.status)
+                vcomments++;
         }
     }
 }

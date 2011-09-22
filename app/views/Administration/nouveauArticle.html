@@ -14,59 +14,60 @@
 
 <form action="@{Administration.ajouterArticle()}" method="POST">
     <input type="hidden" value="${post.id}" name="postId">
-    <label >Titre:</label><br>
+    <label>Titre:</label><br>
     <input type="text" name="title" value="${post.title}"/><br>
     <span class="error">#{error 'post.title' /}</span>
     <label>Categorie:</label><br>
     <select size="1" name="categorieId">
-            #{list items:categories, as:'categorie'}
-                <option value="${categorie.id}">${categorie.name}</option>
-            #{/list}
+        #{list items:categories, as:'categorie'}
+        <option value="${categorie.id}">${categorie.name}</option>
+        #{/list}
     </select><br>
     <span class="error">#{error 'categorieid' /}</span>
-    <label >Text:</label><br>
+    <label>Text:</label><br>
     <textarea name="content" id="text" rows="25" cols="70">${post.content}</textarea><br>
     <span class="error">#{error 'post.content' /}</span>
-    <label >Tags:</label><br>
-    <input type="text" name="strtags" value="#{list items:post.tags, as:'tag'}${tag.tag};#{/list}" /><br>
+    <label>Tags:</label><br>
+    <input type="text" name="strtags" value="#{list items:post.tags, as:'tag'}${tag.tag};#{/list}"/><br>
     <span class="error">#{error 'strtags' /}</span>
+
     <div class="submit">
-    <input type="submit" value="Submit" />
+        <input type="submit" value="Submit"/>
     </div>
 </form>
 <script language="Javascript" type="text/javascript">
-$("#text").htmlbox({
+    $("#text").htmlbox({
     toolbars:[
-	    [
-		// Cut, Copy, Paste
-		"separator","cut","copy","paste",
-		// Undo, Redo
-		"separator","undo","redo",
-		// Bold, Italic, Underline, Strikethrough, Sup, Sub
-		"separator","bold","italic","underline","strike","sup","sub",
-		// Left, Right, Center, Justify
-		"separator","justify","left","center","right",
-		// Ordered List, Unordered List, Indent, Outdent
-		"separator","ol","ul","indent","outdent",
-		// Hyperlink, Remove Hyperlink, Image
-		"separator","link","unlink","image"
+    [
+    // Cut, Copy, Paste
+    "separator","cut","copy","paste",
+    // Undo, Redo
+    "separator","undo","redo",
+    // Bold, Italic, Underline, Strikethrough, Sup, Sub
+    "separator","bold","italic","underline","strike","sup","sub",
+    // Left, Right, Center, Justify
+    "separator","justify","left","center","right",
+    // Ordered List, Unordered List, Indent, Outdent
+    "separator","ol","ul","indent","outdent",
+    // Hyperlink, Remove Hyperlink, Image
+    "separator","link","unlink","image"
 
-		],
-		[// Show code
-		"separator","code",
-        // Formats, Font size, Font family, Font color, Font, Background
-        "separator","formats","fontsize","fontfamily",
-		"separator","fontcolor","highlight",
-		],
-		[
-		//Strip tags
-		"separator","removeformat","striptags","hr","paragraph",
-		// Styles, Source code syntax buttons
-		"separator","quote","styles","syntax"
-		]
-	],
+    ],
+    [// Show code
+    "separator","code",
+    // Formats, Font size, Font family, Font color, Font, Background
+    "separator","formats","fontsize","fontfamily",
+    "separator","fontcolor","highlight",
+    ],
+    [
+    //Strip tags
+    "separator","removeformat","striptags","hr","paragraph",
+    // Styles, Source code syntax buttons
+    "separator","quote","styles","syntax"
+    ]
+    ],
     idir:"@{'/public/images/'}",
-	skin:"blue"
-});
+    skin:"blue"
+    });
 </script>
 

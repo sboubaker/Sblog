@@ -2,87 +2,95 @@
 #{set title:'Contact' /}
 
 <style>
-.message{
-border:1px solid;
-position:absolute;
-width:100%;
-border:1px solid;
-background:#C1D6E2;
-padding:5px;
-left:0px;
-top : -170px;
-font-size: 20px;
-}
+    .message{
+    border:1px solid;
+    position:absolute;
+    width:100%;
+    border:1px solid;
+    background:#C1D6E2;
+    padding:5px;
+    left:0px;
+    top : -170px;
+    font-size: 20px;
+    }
 </style>
 
 #{ifErrors}
 
-   <h1>Oops...</h1>
+<h1>Oops...</h1>
 
-   #{errors}
-       <li>${error}</li>
-   #{/errors}
+#{errors}
+<li>${error}</li>
+#{/errors}
 
 #{/ifErrors}
 #{else}
-    #{if i==1}
-    <div id="object" class="message">
+#{if i==1}
+<div id="object" class="message">
     <p style="text-align:center;">Message envoyé. Merci !!</p>
-    </div>
-    #{/if}
+</div>
+#{/if}
 #{/else}
-<div>
-   <form action="/contact/sendmail" method="post" id="contact">
-                <fieldset style="width:50%;">
-                    <legend>Informations</legend>
-                    <p style="font-weight:bold;">
-                        Sabri Boubaker<br />
-                        Bardo Ave. Khaznadar<br />
-                        Tunis Tunisie<br />
-                        Tél: 00 216 97 876 212<br />
-                        E-Mail: boubaker.sabri@gmail.com
-                    </p>
-                </fieldset>
-                <fieldset style="width:80%;">
-                    <legend>Me contacter</legend>
-                    <div>
-                        <label for="name" style="display:block;">Nom:</label>
-                        <input name="name" type="text" id="name" class="required" value="" style="display:block;" />
-                    </div>
-                    <div>
-                        <label for="email" style="display:block;">E-Mail:</label>
-                        <input name="email" type="text" id="email" style="display:block;" class="email required" value="" />
-                    </div>
-                    <div>
-                        <label for="subject" style="display:block;">Sujet:</label>
-                        <input name="subject"  style="display:block;"type="text" id="subject" class="required" value="" />
-                    </div>
-                    <div>
-                        <label for="message" style="display:block;">Message:</label>
-                        <textarea name="message" style="display:block;" rows="10" cols="50" id="message" class="required"></textarea>
-                    </div>
-                    <!--<div class="radio">
-                        <input type="checkbox" name="x_wpc_cc" id="x_wpc_cc" value="true" />
-                        <label for="x_wpc_cc">Send a copy to yourself?</label>
-                    </div>-->
+<div class="post">
+    <form action="/contact/sendmail" method="post" id="contact">
+        <fieldset style="width:50%;">
+            <br>
+            <legend>Informations</legend>
+            <br>
 
-                        <input type="submit" style="display:block;" name="x_wpc_contact" value="Envoyer" class="button" />
+            <p style="font-weight:bold;">
+                Sabri Boubaker<br/>
+                Tunis Tunisie<br/>
+                Tél: 00 216 97 876 212<br/>
+                E-Mail: boubaker.sabri@gmail.com
+            </p>
+        </fieldset>
+        <br>
+        <fieldset style="width:80%;">
+            <br>
+            <legend>Me contacter</legend>
+            <br>
 
-                </fieldset>
-            </form>
+            <div>
+                <label for="name" style="display:block;">Nom:</label>
+                <input name="name" type="text" id="name" class="required" value="" style="display:block;"/>
+            </div>
+            <div>
+                <label for="email" style="display:block;">E-Mail:</label>
+                <input name="email" type="text" id="email" style="display:block;" class="email required" value=""/>
+            </div>
+            <div>
+                <label for="subject" style="display:block;">Sujet:</label>
+                <input name="subject" style="display:block;" type="text" id="subject" class="required" value=""/>
+            </div>
+            <div>
+                <label for="message" style="display:block;">Message:</label>
+                <textarea name="message" style="display:block;" rows="10" cols="50" id="message"
+                          class="required"></textarea>
+            </div>
+            <!--<div class="radio">
+                <input type="checkbox" name="x_wpc_cc" id="x_wpc_cc" value="true" />
+                <label for="x_wpc_cc">Send a copy to yourself?</label>
+            </div>-->
+
+            <input type="submit" style="display:block;" name="x_wpc_contact" value="Envoyer" class="button"/>
+
+        </fieldset>
+    </form>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){
-	$("#contact").validate();
+    $(document).ready(function(){
+    $("#contact").validate();
     //first slide down and blink the message box
     $("#object").animate({
     top: "0px"
-    }, 2000 ).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
+    }, 2000
+    ).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
     //close the message box when cross red image is clicked
     $("#object").click(function()
     {
-       $("#object").fadeOut("slow");
+    $("#object").fadeOut("slow");
     });
 
-});
+    });
 </script>

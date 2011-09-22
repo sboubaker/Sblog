@@ -15,26 +15,27 @@ import services.DataLayer;
  */
 public class NewCommentnotifyer extends Job {
     private Comment comment;
-    private long postId;
+    private String title;
 
     public void doJob() {
-        SimpleEmail email =null;
-        Post post= DataLayer.getPostById(postId);
-                try{
-                email = new SimpleEmail();
-                email.setFrom("boubaker.sabri@gmail.com");
-                email.addTo("boubaker.sabri@gmail.com");
-                email.setSubject("Nouveau commentaire sur: "+post.title);
-                email.setMsg(comment.username+" a ajouté un nouveau commentaire le "+comment.date);
-                Mail.send(email);
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
+        SimpleEmail email = null;
+        Post post = DataLayer.getPostByTitle(title);
+        try {
+            email = new SimpleEmail();
+            email.setFrom("boubaker.sabri@gmail.com");
+            email.addTo("boubaker.sabri@gmail.com");
+            email.setSubject("Nouveau commentaire sur: " + post.title);
+            email.setMsg(comment.username + " a ajouté un nouveau commentaire le " + comment.date);
+            Mail.send(email);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
-    public NewCommentnotifyer(Comment comment, long postId){
-              this.comment=comment;
-              this.postId=postId;
+
+    public NewCommentnotifyer(Comment comment, String title) {
+        this.comment = comment;
+        this.title = title;
     }
 }
