@@ -1,12 +1,9 @@
 <!doctype html>
-<!--[if lt IE 7]>
-<html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>
-<html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>
-<html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if lt IE 7 ]> <html class="ie6" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <title>#{get 'title' /}</title>
@@ -24,7 +21,7 @@ tutoriel, tutoriels, tutorial, tutorials, démo, demo, démos, demos, exemple, e
     <script type="text/javascript" src="@{'/public/javascripts/jquery.validate.pack.js'}"></script>
     <script type="text/javascript" src="@{'/public/javascripts/jquery.wysiwyg.js'}"></script>
 </head>
-<body>
+<body onload="x12d()">
 <a id="followme" title="Sabri boubaker sur Twitter" target="_blank" href="http://twitter.com/sabri_boubaker"
    style="border-bottom:none;" alt="Sabri boubaker sur Twitter"><img src="@{'/public/images/twitter2.png'}" border="0"></a>
 
@@ -70,7 +67,7 @@ tutoriel, tutoriels, tutorial, tutorials, démo, demo, démos, demos, exemple, e
         #{secure.check 'admin'}
         <a href="/admin/articles">Tout les articles</a>&nbsp;|&nbsp;<a href="/admin/newpost/-1">Nouveau article</a>&nbsp;
         |&nbsp;<a href="/admin/newpic">Nouvelle image</a>|&nbsp;<a href="/admin/categories">Catégories</a>|&nbsp;<a
-            href="/admin/tags">Tags</a>|&nbsp;<a href="/admin/clscache">ClearCache</a><a href="/admin/logout"
+            href="/admin/tags">Tags</a>|&nbsp;<a href="/admin/stat">Stat</a>|&nbsp;<a href="/admin/clscache">ClearCache</a>|&nbsp;<a href="/admin/logout"
                                                                                          style="float: right;">logout</a>
         <hr/>
         #{/secure.check}
@@ -155,36 +152,6 @@ tutoriel, tutoriels, tutorial, tutorials, démo, demo, démos, demos, exemple, e
 
                 </div>
             </li>
-            <li>
-                <h2>Login</h2>
-                #{if flash.error}
-                <p class="error">
-                    &{flash.error}
-                </p>
-                #{/if}
-                #{if flash.success}
-                <p class="success">
-                    &{flash.success}
-                </p>
-                #{/if}
-                <div>
-                    <form action="/admin/login" method="post" id="loginForm">
-                        <fieldset>
-                            <legend>Login</legend>
-                            <p>
-                                <label for="username">Username:</label>
-                                <input type="text" name="username" id="username" class="email required" value=""/>
-                            </p>
-
-                            <p>
-                                <label for="password">Password:</label>
-                                <input type="password" name="password" id="password" class="required" value=""/>
-                            </p>
-                            <input type="submit" name="login" value="Login"/>
-                        </fieldset>
-                    </form>
-                </div>
-            </li>
         </ul>
     </aside>
     <!-- end #sidebar -->
@@ -194,18 +161,5 @@ tutoriel, tutoriels, tutorial, tutorials, démo, demo, démos, demos, exemple, e
 <footer id="footer">
     <p>Copyright (c) 2011 Sabri Boubaker. All rights reserved. Design by <a href="#">Sabri Boubaker</a>.</p>
 </footer>
-
-
-<script>
-    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']]; // Change UA-XXXXX-X to be your site's ID
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-    s.parentNode.insertBefore(g,s)}(document,'script'));
-</script>
-
-<!--[if lt IE 7 ]>
-<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
-<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
-<![endif]-->
 </body>
 </html>

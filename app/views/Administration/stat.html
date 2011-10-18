@@ -1,0 +1,14 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<h2>Statistiques:</h2>
+<hr/>
+#{if list.size()==0}
+<p>Rien</p>
+#{/if}
+#{else}
+#{list items:list, as:'stat'}
+*&nbsp;&nbsp;${stat.url}&nbsp;&nbsp;${stat.date}&nbsp;&nbsp;${stat.ip}&nbsp;&nbsp;<a href="/admin/supprimerStat/${stat.id}">Supprimer</a>
+<br/><br/>
+#{/list}
+#{/else}

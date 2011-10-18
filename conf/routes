@@ -13,12 +13,15 @@ GET     /favicon.ico                            	    404
 # Map static resources from the /app/public folder to the /public path
 
 GET     /public/                                	    staticDir:public
+POST    /stat                                           Consultation.stat
 GET     /articles/{type}/{value}            		    Consultation.articles
 GET     /article/{title}                			    Consultation.article
 POST    /contact/sendmail           			        Consultation.sendMail
 POST    /newComment                                     Consultation.addComment
 *	    /admin						                    module:secure
+GET     /admin/supprimerStat/{statId}                   Administration.supprimerStat
 GET	    /admin/articles					                Administration.articles
+GET	    /admin/stat					                    Administration.stat
 GET	    /admin/comments/{postId}			            Administration.getCommentaires
 GET	    /admin/comments/validc/{postId}/{commentId}	    Administration.validerCommentaire
 GET	    /admin/posts/validp/{postId}             	    Administration.validerArticle

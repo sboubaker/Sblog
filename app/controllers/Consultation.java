@@ -4,16 +4,28 @@ import java.util.List;
 
 import jobs.NewCommentnotifyer;
 import models.Post;
+import models.Stat;
 import org.apache.commons.mail.SimpleEmail;
 import play.data.validation.Required;
 import play.data.validation.Valid;
 import play.libs.Mail;
+import play.mvc.Before;
+import play.mvc.Http;
 import services.DataLayer;
 
 import java.util.Date;
 
 public class Consultation extends GenericController {
 
+    public static void stat(String stat){
+       if (!Security.isConnected()){
+           Stat st=new Stat();
+           st.date=new Date();
+           st.url=stat.substring(stat.indexOf("#")+1,stat.length()) ;
+           st.ip=stat.substring(0,stat.indexOf("#")) ;
+           st.save();
+         }
+    }
     public static void index() {
         List<Post> list = DataLayer.getPosts(false);
         if (list.size() >= 5) {
@@ -28,6 +40,7 @@ public class Consultation extends GenericController {
     public static void contact(int i) {
         render(i);
     }
+
 
     public static void about() {
         render();
@@ -50,8 +63,11 @@ public class Consultation extends GenericController {
 
     public static void article(String title, int i) {
         Post post = DataLayer.getPostByTitle(title);
-        post.nshow++;
-        post.save();
+        if (!Security.isConnected())
+        {
+            post.nshow += 1;
+            post.save();
+        }
         post.init();
         render(post, i,title);
     }

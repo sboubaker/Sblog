@@ -29,7 +29,15 @@ public class Administration extends GenericController {
             post.init();
         render(list);
     }
-
+    public static void stat() {
+        List<Stat> list =Stat.findAll();
+        render(list);
+    }
+     public static void supprimerStat(long statId) {
+        Stat stat = Stat.findById(statId);
+        stat.delete();
+        stat();
+    }
     public static void getCommentaires(long postId) {
         Post post = DataLayer.getPostById(postId);
         post.init();

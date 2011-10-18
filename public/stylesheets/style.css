@@ -415,7 +415,6 @@ input, textarea {
 	margin: 0;
 	padding: 0px;
 	list-style: none;
-	line-height: 1px;
 }
 
 #menu li {
@@ -438,7 +437,7 @@ input, textarea {
 	display: block;
 	float: left;
 	height: 30px;
-	padding: 12px 20px 0px 20px;
+	padding: 0px 20px 0px 20px;
 	letter-spacing: -1px;
 	text-decoration: none;
 	text-align: center;
